@@ -1,21 +1,22 @@
 import { useState } from "react";
-import { Challenges, Contact, Faq, Footer, Hero, Nav, Packages, Process, Results, WhatIsCoaching } from "./components/sections";
+import { Contact, Evidence, Footer, Hero, Leaders, Nav, Paths, Privacy, Sources, WhatIsCoaching, WhyLeaders } from "./components/sections";
 
 export default function App() {
-  // Clicking "Request a proposal" on a package preselects it in the contact form.
+  // Choosing a path ("authority" or "team") preselects it in the contact form.
   const [interest, setInterest] = useState("");
   return (
     <>
       <Nav />
       <main>
         <Hero />
+        <Paths onChoose={setInterest} />
         <WhatIsCoaching />
-        <Challenges />
-        <Packages onChoose={setInterest} />
-        <Process />
-        <Results />
-        <Faq />
+        <WhyLeaders />
+        <Evidence />
+        <Leaders />
+        <Privacy />
         <Contact interest={interest} setInterest={setInterest} />
+        <Sources />
       </main>
       <Footer />
     </>

@@ -1,22 +1,7 @@
-import {
-  ArrowLeft,
-  BatteryLow,
-  Check,
-  Compass,
-  Eye,
-  GitBranch,
-  Lock,
-  Menu,
-  Minus,
-  Plus,
-  TrendingUp,
-  UserMinus,
-  UserPlus,
-  Users,
-  X,
-} from "lucide-react";
+import { ArrowLeft, Check, Crown, ExternalLink, Lock, Menu, Users, X } from "lucide-react";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { CONTACT_EMAIL } from "../config";
+import { sourceCitations, sourceLinks, type SourceId } from "../content";
 import { localDigits, useI18n } from "../i18n";
 
 /* --------------------------------- Shared -------------------------------- */
@@ -32,11 +17,11 @@ const Eyebrow = ({ children, light = false }: { children: ReactNode; light?: boo
   </div>
 );
 
-const SectionHead = ({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) => (
+const SectionHead = ({ eyebrow, title, subtitle, light = false }: { eyebrow: string; title: string; subtitle?: string; light?: boolean }) => (
   <div className="max-w-3xl">
-    <Eyebrow>{eyebrow}</Eyebrow>
+    <Eyebrow light={light}>{eyebrow}</Eyebrow>
     <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-balance sm:text-4xl">{title}</h2>
-    {subtitle && <p className="mt-4 text-lg leading-8 text-muted">{subtitle}</p>}
+    {subtitle && <p className={`mt-4 text-lg leading-8 ${light ? "text-ink-foreground/70" : "text-muted"}`}>{subtitle}</p>}
   </div>
 );
 
@@ -45,12 +30,27 @@ const Forward = ({ className = "" }: { className?: string }) => (
   <ArrowLeft className={`size-4 ltr:rotate-180 ${className}`} aria-hidden />
 );
 
+// Small citation link shown under every figure.
+function SourceLink({ id, text, light = false }: { id: SourceId; text: string; light?: boolean }) {
+  const { t } = useI18n();
+  return (
+    <a
+      href={sourceLinks[id]}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center gap-1 text-xs underline-offset-4 hover:underline ${light ? "text-ink-foreground/60" : "text-muted"}`}
+    >
+      {t.sourceLabel}: {text}
+      <ExternalLink className="size-3" aria-hidden />
+    </a>
+  );
+}
+
 /* ---------------------------------- Nav ---------------------------------- */
 
 export function Nav() {
   const { t, lang, setLang } = useI18n();
   const [open, setOpen] = useState(false);
-  const toggleLang = () => setLang(lang === "fa" ? "en" : "fa");
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-background/85 backdrop-blur-xl">
@@ -70,7 +70,7 @@ export function Nav() {
 
         <div className="flex items-center gap-2">
           <button
-            onClick={toggleLang}
+            onClick={() => setLang(lang === "fa" ? "en" : "fa")}
             aria-label={t.meta.langSwitchLabel}
             className="h-10 rounded-md border border-line px-3 text-sm font-medium transition-colors hover:border-ink"
             lang={lang === "fa" ? "en" : "fa"}
@@ -112,30 +112,26 @@ export function Nav() {
 /* ---------------------------------- Hero --------------------------------- */
 
 export function Hero() {
-  const { t, lang } = useI18n();
+  const { t } = useI18n();
   const h = t.hero;
+  const c = h.card;
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,var(--color-gold-soft),transparent_45%)] rtl:bg-[radial-gradient(circle_at_20%_10%,var(--color-gold-soft),transparent_45%)]" />
-      <Container className="relative grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+      <Container className="relative grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.2fr_1fr] lg:items-center">
         <div>
           <Eyebrow>{h.eyebrow}</Eyebrow>
-          <h1 className="mt-5 text-4xl font-extrabold leading-[1.15] tracking-tight text-balance sm:text-5xl lg:text-6xl">
-            {h.title}
-          </h1>
+          <h1 className="mt-5 text-4xl font-extrabold leading-[1.2] tracking-tight text-balance sm:text-5xl lg:text-6xl">{h.title}</h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{h.subtitle}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href="#packages"
+              href="#contact"
               className="inline-flex h-12 items-center gap-2 rounded-md bg-ink px-6 font-medium text-ink-foreground transition hover:-translate-y-0.5 hover:shadow-lg"
             >
               {h.primary}
               <Forward />
             </a>
-            <a
-              href="#contact"
-              className="inline-flex h-12 items-center rounded-md border border-ink/20 bg-white/60 px-6 font-medium transition hover:border-ink"
-            >
+            <a href="#evidence" className="inline-flex h-12 items-center rounded-md border border-ink/20 bg-white/60 px-6 font-medium transition hover:border-ink">
               {h.secondary}
             </a>
           </div>
@@ -149,21 +145,68 @@ export function Hero() {
           </ul>
         </div>
 
-        <div className="rounded-2xl bg-ink p-6 text-ink-foreground shadow-2xl sm:p-8">
-          <div className="text-sm font-semibold text-gold">{h.card.title}</div>
-          <ol className="mt-6 space-y-5">
-            {h.card.steps.map(([title, desc], i) => (
-              <li key={title} className="flex gap-4">
-                <span className="grid size-9 shrink-0 place-items-center rounded-full border border-gold/50 text-sm font-bold text-gold">
-                  {localDigits(i + 1, lang)}
-                </span>
-                <div>
-                  <div className="font-semibold">{title}</div>
-                  <div className="mt-1 text-sm leading-6 text-ink-foreground/70">{desc}</div>
-                </div>
+        <figure className="rounded-2xl bg-ink p-6 text-ink-foreground shadow-2xl sm:p-8">
+          <figcaption className="text-sm font-semibold leading-6 text-gold">{c.label}</figcaption>
+          <ul className="mt-6 space-y-3">
+            {c.names.map((name) => (
+              <li key={name} className="border-b border-white/10 pb-3 text-2xl font-extrabold sm:text-3xl">
+                {name}
               </li>
             ))}
-          </ol>
+          </ul>
+          <div className="mt-6 flex items-center gap-3">
+            <Crown className="size-5 shrink-0 text-gold" aria-hidden />
+            <span className="text-lg font-bold text-gold">{c.coach}</span>
+          </div>
+          <p className="mt-2 text-sm leading-7 text-ink-foreground/75">{c.body}</p>
+          <div className="mt-4">
+            <SourceLink id={c.source} text={c.sourceText} light />
+          </div>
+        </figure>
+      </Container>
+    </section>
+  );
+}
+
+/* ----------------------------------- Paths ------------------------------- */
+
+const pathIcons = { authority: Crown, team: Users } as const;
+
+export function Paths({ onChoose }: { onChoose: (id: string) => void }) {
+  const { t } = useI18n();
+  const p = t.paths;
+  return (
+    <section className="border-y border-line bg-surface py-20 sm:py-24">
+      <Container>
+        <SectionHead eyebrow={p.eyebrow} title={p.title} />
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          {p.items.map((item) => {
+            const Icon = pathIcons[item.id as keyof typeof pathIcons];
+            return (
+              <article key={item.id} className="flex flex-col rounded-2xl border border-line bg-white p-7 sm:p-9">
+                <Icon className="size-7 text-gold" aria-hidden />
+                <h3 className="mt-5 text-2xl font-extrabold">{item.title}</h3>
+                <blockquote className="mt-4 border-s-2 border-gold ps-4 text-lg font-medium leading-8">{item.quote}</blockquote>
+                <p className="mt-4 leading-8 text-muted">{item.body}</p>
+                <ul className="mt-5 flex-1 space-y-3">
+                  {item.points.map((pt) => (
+                    <li key={pt} className="flex gap-2.5 leading-7">
+                      <Check className="mt-1.5 size-4 shrink-0 text-gold" aria-hidden />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#contact"
+                  onClick={() => onChoose(item.id)}
+                  className="mt-7 inline-flex h-12 items-center justify-center gap-2 rounded-md bg-ink px-6 font-medium text-ink-foreground transition hover:shadow-lg sm:self-start"
+                >
+                  {item.cta}
+                  <Forward />
+                </a>
+              </article>
+            );
+          })}
         </div>
       </Container>
     </section>
@@ -176,236 +219,147 @@ export function WhatIsCoaching() {
   const { t } = useI18n();
   const c = t.coaching;
   return (
-    <section id="coaching" className="border-y border-line bg-surface py-20 sm:py-24">
-      <Container className="grid gap-12 lg:grid-cols-2">
-        <div>
-          <SectionHead eyebrow={c.eyebrow} title={c.title} />
-          <p className="mt-6 text-lg leading-8 text-muted">{c.body}</p>
+    <section id="coaching" className="py-20 sm:py-24">
+      <Container>
+        <div className="grid gap-12 lg:grid-cols-2">
+          <div>
+            <SectionHead eyebrow={c.eyebrow} title={c.title} />
+            <p className="mt-6 text-lg leading-8 text-muted">{c.body}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold">{c.compareTitle}</h3>
+            <dl className="mt-5 divide-y divide-line rounded-xl border border-line bg-white">
+              {c.compare.map(([term, desc]) => (
+                <div key={term} className="p-5">
+                  <dt className="font-semibold">{term}</dt>
+                  <dd className="mt-1 leading-7 text-muted">{desc}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
-        <div>
-          <h3 className="text-lg font-bold">{c.compareTitle}</h3>
-          <dl className="mt-5 divide-y divide-line rounded-xl border border-line bg-white">
-            {c.compare.map(([term, desc]) => (
-              <div key={term} className="grid gap-1 p-5 sm:grid-cols-[8rem_1fr] sm:gap-4">
-                <dt className="font-semibold">{term}</dt>
-                <dd className="leading-7 text-muted">{desc}</dd>
+
+        <h3 className="mt-16 text-lg font-bold">{c.mythsTitle}</h3>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          {c.myths.map(([myth, fact]) => (
+            <div key={myth} className="rounded-xl border border-line bg-white p-6">
+              <div className="flex items-start gap-2.5 text-muted line-through decoration-gold/70">
+                <X className="mt-1 size-4 shrink-0 text-gold no-underline" aria-hidden />
+                {myth}
               </div>
-            ))}
-          </dl>
+              <div className="mt-3 flex items-start gap-2.5 font-medium leading-7">
+                <Check className="mt-1.5 size-4 shrink-0 text-gold" aria-hidden />
+                {fact}
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
     </section>
   );
 }
 
-/* -------------------------------- Challenges ----------------------------- */
+/* --------------------------------- Why leaders --------------------------- */
 
-const challengeIcons = [UserPlus, Compass, UserMinus, TrendingUp, GitBranch, BatteryLow];
-
-export function Challenges() {
+export function WhyLeaders() {
   const { t } = useI18n();
-  const c = t.challenges;
+  const w = t.why;
   return (
-    <section className="py-20 sm:py-24">
+    <section id="why" className="bg-ink py-20 text-ink-foreground sm:py-24">
       <Container>
-        <SectionHead eyebrow={c.eyebrow} title={c.title} />
-        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {c.items.map(([title, desc], i) => {
-            const Icon = challengeIcons[i];
-            return (
-              <div key={title} className="bg-background p-7">
-                <Icon className="size-6 text-gold" aria-hidden />
-                <h3 className="mt-4 text-lg font-bold">{title}</h3>
-                <p className="mt-2 leading-7 text-muted">{desc}</p>
+        <SectionHead eyebrow={w.eyebrow} title={w.title} light />
+        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+          {w.stats.map((s) => (
+            <div key={s.value} className="flex flex-col bg-ink p-7">
+              <div className="text-4xl font-extrabold text-gold">{s.value}</div>
+              <p className="mt-4 flex-1 leading-7 text-ink-foreground/85">{s.text}</p>
+              <div className="mt-5">
+                <SourceLink id={s.source} text={s.sourceText} light />
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </Container>
     </section>
   );
 }
 
-/* --------------------------------- Packages ------------------------------ */
+/* ---------------------------------- Evidence ----------------------------- */
 
-export function Packages({ onChoose }: { onChoose: (id: string) => void }) {
-  const { t } = useI18n();
-  const p = t.packages;
+export function Evidence() {
+  const { t, lang } = useI18n();
+  const e = t.evidence;
   return (
-    <section id="packages" className="bg-ink py-20 text-ink-foreground sm:py-24">
+    <section id="evidence" className="py-20 sm:py-24">
       <Container>
-        <div className="max-w-3xl">
-          <Eyebrow light>{p.eyebrow}</Eyebrow>
-          <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">{p.title}</h2>
-          <p className="mt-4 text-lg leading-8 text-ink-foreground/70">{p.subtitle}</p>
-        </div>
-
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {p.items.map((pkg) => (
-            <article
-              key={pkg.id}
-              className={`relative flex flex-col rounded-2xl p-6 ${
-                pkg.featured ? "bg-ink-foreground text-ink ring-2 ring-gold" : "bg-ink-soft"
-              }`}
-            >
-              {pkg.featured && (
-                <span className="absolute -top-3 start-6 rounded-full bg-gold px-3 py-1 text-xs font-bold text-ink">
-                  {p.badge}
-                </span>
-              )}
-              <h3 className="text-xl font-extrabold">{pkg.name}</h3>
-              <p className={`mt-3 leading-7 ${pkg.featured ? "text-muted" : "text-ink-foreground/70"}`}>{pkg.summary}</p>
-
-              <dl className={`mt-5 grid grid-cols-2 gap-3 border-y py-4 text-sm ${pkg.featured ? "border-line" : "border-white/10"}`}>
-                <div>
-                  <dt className={pkg.featured ? "text-muted" : "text-ink-foreground/60"}>{p.who}</dt>
-                  <dd className="mt-1 font-semibold">{pkg.who}</dd>
-                </div>
-                <div>
-                  <dt className={pkg.featured ? "text-muted" : "text-ink-foreground/60"}>{p.duration}</dt>
-                  <dd className="mt-1 font-semibold">{pkg.duration}</dd>
-                </div>
-              </dl>
-
-              <div className={`mt-5 text-sm font-semibold ${pkg.featured ? "text-ink" : "text-gold"}`}>{p.includes}</div>
-              <ul className="mt-3 flex-1 space-y-2.5 text-sm leading-6">
-                {pkg.features.map((f) => (
-                  <li key={f} className="flex gap-2">
-                    <Check className="mt-1 size-4 shrink-0 text-gold" aria-hidden />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="#contact"
-                onClick={() => onChoose(pkg.id)}
-                className={`mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-md font-medium transition ${
-                  pkg.featured ? "bg-ink text-ink-foreground hover:shadow-lg" : "border border-white/25 hover:border-gold hover:text-gold"
-                }`}
-              >
-                {p.cta}
-                <Forward />
-              </a>
+        <SectionHead eyebrow={e.eyebrow} title={e.title} subtitle={e.subtitle} />
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {e.studies.map((s, i) => (
+            <article key={s.title} className="flex flex-col rounded-2xl border border-line bg-white p-7">
+              <div className="text-sm font-bold text-gold">{localDigits(String(i + 1).padStart(2, "0"), lang)}</div>
+              <h3 className="mt-3 text-xl font-extrabold">{s.title}</h3>
+              <p className="mt-3 leading-7 text-muted">{s.what}</p>
+              <p className="mt-4 flex-1 rounded-lg bg-surface p-4 font-medium leading-7">{s.found}</p>
+              <div className="mt-5">
+                <SourceLink id={s.source} text={s.sourceText} />
+              </div>
             </article>
           ))}
         </div>
+      </Container>
+    </section>
+  );
+}
 
-        <div className="mt-12 rounded-2xl border border-white/10 p-6 sm:p-8">
-          <h3 className="font-bold text-gold">{p.addonsTitle}</h3>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {p.addons.map((a) => (
-              <li key={a} className="rounded-full border border-white/15 px-4 py-2 text-sm text-ink-foreground/85">
-                {a}
-              </li>
-            ))}
-          </ul>
+/* ---------------------------------- Leaders ------------------------------ */
+
+export function Leaders() {
+  const { t } = useI18n();
+  const l = t.leaders;
+  return (
+    <section id="leaders" className="border-y border-line bg-surface py-20 sm:py-24">
+      <Container>
+        <SectionHead eyebrow={l.eyebrow} title={l.title} />
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+          {l.items.map((item) => (
+            <article key={item.title} className="flex flex-col rounded-2xl border border-line bg-white p-7">
+              <h3 className="text-lg font-extrabold">{item.title}</h3>
+              <p className="mt-3 flex-1 leading-8 text-muted">{item.body}</p>
+              <div className="mt-4">
+                <SourceLink id={item.source} text={sourceCitations[item.source].split(" — ")[0].split(" (")[0]} />
+              </div>
+            </article>
+          ))}
         </div>
       </Container>
     </section>
   );
 }
 
-/* ---------------------------------- Process ------------------------------ */
+/* ---------------------------------- Privacy ------------------------------ */
 
-export function Process() {
-  const { t, lang } = useI18n();
-  const p = t.process;
+export function Privacy() {
+  const { t } = useI18n();
+  const p = t.privacy;
   return (
-    <section id="process" className="py-20 sm:py-24">
-      <Container>
-        <SectionHead eyebrow={p.eyebrow} title={p.title} />
-        <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {p.steps.map(([title, desc], i) => (
-            <li key={title} className="rounded-xl border border-line bg-white p-6">
-              <div className="text-3xl font-extrabold text-gold">{localDigits(String(i + 1).padStart(2, "0"), lang)}</div>
-              <h3 className="mt-3 text-lg font-bold">{title}</h3>
-              <p className="mt-2 leading-7 text-muted">{desc}</p>
+    <section className="py-20 sm:py-24">
+      <Container className="grid gap-10 rounded-3xl bg-ink p-8 text-ink-foreground sm:p-12 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+        <div>
+          <Eyebrow light>{p.eyebrow}</Eyebrow>
+          <h2 className="mt-4 flex items-start gap-3 text-2xl font-extrabold leading-tight sm:text-3xl">
+            <Lock className="mt-1.5 size-6 shrink-0 text-gold" aria-hidden />
+            {p.title}
+          </h2>
+          <p className="mt-4 leading-8 text-ink-foreground/75">{p.body}</p>
+        </div>
+        <ul className="space-y-3">
+          {p.points.map((pt) => (
+            <li key={pt} className="flex items-center gap-3 rounded-lg border border-white/10 px-4 py-3">
+              <Check className="size-4 shrink-0 text-gold" aria-hidden />
+              {pt}
             </li>
           ))}
-        </ol>
-      </Container>
-    </section>
-  );
-}
-
-/* ---------------------------------- Results ------------------------------ */
-
-export function Results() {
-  const { t } = useI18n();
-  const r = t.results;
-  return (
-    <section id="results" className="border-y border-line bg-surface py-20 sm:py-24">
-      <Container>
-        <SectionHead eyebrow={r.eyebrow} title={r.title} subtitle={r.body} />
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <div>
-            <h3 className="text-lg font-bold">{r.measuresTitle}</h3>
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              {r.measures.map(([title, desc]) => (
-                <div key={title} className="rounded-xl border border-line bg-white p-5">
-                  <div className="font-semibold">{title}</div>
-                  <p className="mt-1.5 text-sm leading-6 text-muted">{desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="grid gap-4">
-            <PrivacyList icon={<Lock className="size-5" />} title={r.privateTitle} items={r.private} dark />
-            <PrivacyList icon={<Eye className="size-5" />} title={r.sharedTitle} items={r.shared} />
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function PrivacyList({ icon, title, items, dark = false }: { icon: ReactNode; title: string; items: string[]; dark?: boolean }) {
-  return (
-    <div className={`rounded-xl p-6 ${dark ? "bg-ink text-ink-foreground" : "border border-line bg-white"}`}>
-      <div className={`flex items-center gap-2 font-bold ${dark ? "text-gold" : ""}`}>
-        {icon}
-        {title}
-      </div>
-      <ul className="mt-4 space-y-2 text-sm">
-        {items.map((i) => (
-          <li key={i} className="flex gap-2">
-            <Check className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
-            {i}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-/* ------------------------------------ FAQ -------------------------------- */
-
-export function Faq() {
-  const { t } = useI18n();
-  const [open, setOpen] = useState<number | null>(0);
-  return (
-    <section id="faq" className="py-20 sm:py-24">
-      <Container className="grid gap-10 lg:grid-cols-[1fr_1.6fr]">
-        <SectionHead eyebrow={t.faq.eyebrow} title={t.faq.title} />
-        <div className="divide-y divide-line border-y border-line">
-          {t.faq.items.map(([q, a], i) => {
-            const isOpen = open === i;
-            return (
-              <div key={q}>
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-4 py-5 text-start text-lg font-semibold"
-                >
-                  {q}
-                  {isOpen ? <Minus className="size-5 shrink-0 text-gold" /> : <Plus className="size-5 shrink-0 text-gold" />}
-                </button>
-                {isOpen && <p className="pb-6 leading-8 text-muted">{a}</p>}
-              </div>
-            );
-          })}
-        </div>
+        </ul>
       </Container>
     </section>
   );
@@ -423,15 +377,14 @@ export function Contact({ interest, setInterest }: { interest: string; setIntere
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const pkgName = t.packages.items.find((p) => p.id === interest)?.name ?? c.notSure;
+    const choice = c.interests.find(([id]) => id === interest)?.[1] ?? "";
     const lines = [
       [f.name, data.get("name")],
       [f.company, data.get("company")],
       [f.role, data.get("role")],
       [f.email, data.get("email")],
       [f.phone, data.get("phone")],
-      [f.size, data.get("size")],
-      [f.interest, pkgName],
+      [f.interest, choice],
       [f.message, data.get("message")],
     ].map(([k, v]) => `${k}: ${v ?? ""}`);
     const subject = `${t.nav.cta} — ${data.get("company")}`;
@@ -442,21 +395,27 @@ export function Contact({ interest, setInterest }: { interest: string; setIntere
   const input = "mt-2 h-12 w-full rounded-md border border-line bg-white px-4 outline-none transition focus:border-ink focus:ring-2 focus:ring-gold/40";
 
   return (
-    <section id="contact" className="bg-ink py-20 text-ink-foreground sm:py-24">
+    <section id="contact" className="border-t border-line bg-surface py-20 sm:py-24">
       <Container className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
-        <div>
-          <Eyebrow light>{c.eyebrow}</Eyebrow>
-          <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">{c.title}</h2>
-          <p className="mt-4 text-lg leading-8 text-ink-foreground/70">{c.subtitle}</p>
-          <div className="mt-8 flex items-center gap-3 text-ink-foreground/80">
-            <Users className="size-5 text-gold" aria-hidden />
-            <a href={`mailto:${CONTACT_EMAIL}`} className="font-[Inter] underline-offset-4 hover:underline">
-              {CONTACT_EMAIL}
-            </a>
-          </div>
-        </div>
+        <SectionHead eyebrow={c.eyebrow} title={c.title} subtitle={c.subtitle} />
 
-        <form onSubmit={submit} className="grid gap-4 rounded-2xl bg-background p-6 text-ink sm:grid-cols-2 sm:p-8">
+        <form onSubmit={submit} className="grid gap-4 rounded-2xl border border-line bg-white p-6 sm:grid-cols-2 sm:p-8">
+          <fieldset className="sm:col-span-2">
+            <legend className="text-sm font-medium">{f.interest}</legend>
+            <div className="mt-2 grid gap-2 sm:grid-cols-3">
+              {c.interests.map(([id, label]) => (
+                <label
+                  key={id}
+                  className={`flex cursor-pointer items-center gap-2 rounded-md border px-3 py-3 text-sm transition ${
+                    interest === id ? "border-ink bg-gold-soft font-semibold" : "border-line hover:border-ink/40"
+                  }`}
+                >
+                  <input type="radio" name="interest" value={id} checked={interest === id} onChange={() => setInterest(id)} className="accent-[var(--color-ink)]" />
+                  {label}
+                </label>
+              ))}
+            </div>
+          </fieldset>
           <label className="text-sm font-medium">
             {f.name}
             <input name="name" required autoComplete="name" className={input} />
@@ -470,35 +429,16 @@ export function Contact({ interest, setInterest }: { interest: string; setIntere
             <input name="role" autoComplete="organization-title" className={input} />
           </label>
           <label className="text-sm font-medium">
-            {f.email}
-            <input name="email" type="email" required autoComplete="email" dir="ltr" className={input} />
-          </label>
-          <label className="text-sm font-medium">
             {f.phone}
-            <input name="phone" type="tel" autoComplete="tel" dir="ltr" className={input} />
-          </label>
-          <label className="text-sm font-medium">
-            {f.size}
-            <select name="size" className={input}>
-              {c.sizes.map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
+            <input name="phone" type="tel" required autoComplete="tel" dir="ltr" className={input} />
           </label>
           <label className="text-sm font-medium sm:col-span-2">
-            {f.interest}
-            <select value={interest} onChange={(e) => setInterest(e.target.value)} className={input}>
-              <option value="">{c.notSure}</option>
-              {t.packages.items.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
+            {f.email}
+            <input name="email" type="email" autoComplete="email" dir="ltr" className={input} />
           </label>
           <label className="text-sm font-medium sm:col-span-2">
             {f.message}
-            <textarea name="message" rows={4} className={`${input} h-auto py-3`} />
+            <textarea name="message" rows={3} className={`${input} h-auto py-3`} />
           </label>
           <div className="sm:col-span-2">
             <button
@@ -520,12 +460,34 @@ export function Contact({ interest, setInterest }: { interest: string; setIntere
   );
 }
 
+/* --------------------------------- Sources ------------------------------- */
+
+export function Sources() {
+  const { t } = useI18n();
+  return (
+    <section className="py-12">
+      <Container>
+        <h2 className="text-sm font-bold">{t.sources.title}</h2>
+        <ol className="mt-4 grid gap-2 text-xs leading-6 text-muted sm:grid-cols-2" dir="ltr">
+          {(Object.keys(sourceLinks) as SourceId[]).map((id) => (
+            <li key={id}>
+              <a href={sourceLinks[id]} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:text-ink hover:underline">
+                {sourceCitations[id]}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </Container>
+    </section>
+  );
+}
+
 /* ---------------------------------- Footer ------------------------------- */
 
 export function Footer() {
   const { t, lang } = useI18n();
   return (
-    <footer className="py-10">
+    <footer className="border-t border-line py-10">
       <Container className="flex flex-col justify-between gap-4 text-sm text-muted sm:flex-row sm:items-center">
         <div>
           <span className="text-base font-extrabold text-ink">{t.brand.name}</span>

@@ -1,231 +1,228 @@
-// All site copy lives here. Each language has the same shape, so adding or
-// editing a section means updating both `en` and `fa` below.
+// All site copy lives here. Each language has the same shape, so editing a
+// section means updating both `en` and `fa` below. Every figure on the page
+// points at an entry in `sources`.
 
 export type Lang = "fa" | "en";
 
+export type SourceId =
+  | "gallupIran"
+  | "gallupGlobal"
+  | "gallupManagers"
+  | "gallupBoss"
+  | "google"
+  | "theeboom"
+  | "jones"
+  | "rctMeta"
+  | "campbell"
+  | "microsoft"
+  | "icf";
+
+export const sourceLinks: Record<SourceId, string> = {
+  gallupIran: "https://www.gallup.com/workplace/705698/state-global-workplace-iran-country-level-data.aspx",
+  gallupGlobal: "https://www.gallup.com/workplace/697904/state-of-the-global-workplace-global-data.aspx",
+  gallupManagers: "https://news.gallup.com/businessjournal/182792/managers-account-variance-employee-engagement.aspx",
+  gallupBoss: "https://www.govexec.com/management/2015/04/half-american-workers-have-left-job-because-they-hated-their-boss/109183/",
+  google: "https://rework.withgoogle.com/en/guides/managers-coach-managers-to-coach",
+  theeboom: "https://research.vu.nl/en/publications/does-coaching-work-a-meta-analysis-on-the-effects-of-coaching-on-/",
+  jones: "https://research.aston.ac.uk/en/publications/the-effectiveness-of-workplace-coaching-a-meta-analysis-of-learni/",
+  rctMeta: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10272735/",
+  campbell: "https://www.hachette.co.uk/titles/eric-schmidt/trillion-dollar-coach/9781473676008/",
+  microsoft: "https://www.microsoft.com/en-us/worklab/5-questions-on-hybrid-managers-minds",
+  icf: "https://coachingfederation.org/research/global-coaching-study",
+};
+
 const en = {
   meta: {
-    title: "Setia | Business Coaching for Organizations",
+    title: "Setia | Leadership Coaching",
     langSwitch: "فارسی",
     langSwitchLabel: "Switch to Persian",
   },
-  brand: { name: "Setia", tagline: "BUSINESS COACHING" },
+  brand: { name: "Setia", tagline: "LEADERSHIP COACHING" },
   nav: {
     links: [
       ["#coaching", "What is coaching"],
-      ["#packages", "Packages"],
-      ["#process", "How it works"],
-      ["#results", "Results"],
-      ["#faq", "FAQ"],
+      ["#why", "Why leaders matter"],
+      ["#evidence", "The evidence"],
+      ["#leaders", "Who uses it"],
     ],
-    cta: "Book a consultation",
+    cta: "Request a private briefing",
     menu: "Menu",
   },
+  sourceLabel: "Source",
   hero: {
-    eyebrow: "Coaching programs for organizations",
-    title: "Develop leaders who grow your business.",
+    eyebrow: "Leadership coaching",
+    title: "The world’s most powerful leaders have coaches.",
     subtitle:
-      "Structured coaching packages for managers, leadership teams and executives, with clear goals, confidential sessions and progress reported back to your organization.",
-    primary: "View packages",
-    secondary: "Book a free consultation",
-    points: ["Persian and English", "Online or in person", "Start with a small pilot"],
+      "Private leadership coaching for CEOs and leadership teams: practical, confidential and backed by research.",
+    primary: "Request a private briefing",
+    secondary: "See the evidence",
+    points: ["Fully confidential", "One-to-one, on your schedule", "Backed by research"],
     card: {
-      title: "A coaching program at a glance",
-      steps: [
-        ["Goals agreed", "Coachee, manager and HR align on 2–3 business goals"],
-        ["Coaching sessions", "Confidential one-to-one or team sessions"],
-        ["Midpoint review", "Progress check with the sponsor"],
-        ["Final report", "Measured change and next steps"],
-      ],
+      label: "One coach behind some of the world’s most influential leaders",
+      names: ["Steve Jobs", "Larry Page", "Eric Schmidt"],
+      coach: "Bill Campbell",
+      body: "Coach and trusted advisor to the leaders of Apple and Google. Three former Google leaders tell his story in the book Trillion Dollar Coach.",
+      source: "campbell" as SourceId,
+      sourceText: "Trillion Dollar Coach, 2019",
+    },
+    stat: {
+      label: "Employees who are engaged at work",
+      rows: [
+        ["Iran", 12],
+        ["Middle East & North Africa", 14],
+        ["World average", 20],
+      ] as [string, number][],
+      note: "Engaged means people who bring energy and commitment to their work, not just attendance.",
+      source: "gallupIran" as SourceId,
+      sourceText: "Gallup, State of the Global Workplace 2026",
     },
   },
-  coaching: {
-    eyebrow: "What is coaching?",
-    title: "A structured conversation that turns potential into performance.",
-    body:
-      "Coaching is a partnership between a trained coach and a professional. The coach doesn’t give answers. Through focused questions, honest feedback and accountability, they help people see their situation clearly, choose better actions and build lasting habits. In a business setting, every coaching program is tied to goals the organization cares about.",
-    compareTitle: "How coaching differs from other development",
-    compare: [
-      ["Training", "Teaches the same skills to a group. Coaching applies them to each person’s real work."],
-      ["Mentoring", "An experienced person shares their own path. A coach helps people find their own."],
-      ["Consulting", "The consultant solves the problem. A coach builds the client’s ability to solve it."],
-      ["Therapy", "Therapy addresses mental health and the past. Coaching focuses on work, goals and the future."],
-    ],
-  },
-  challenges: {
-    eyebrow: "Why companies invest in coaching",
-    title: "The challenges coaching is built to solve",
-    items: [
-      ["New managers without support", "Your best specialists get promoted and are left to learn managing people by trial and error."],
-      ["Misaligned leadership teams", "Senior leaders pull in different directions, and decisions slow down."],
-      ["Losing high performers", "Talented people leave when they can’t see growth or don’t feel invested in."],
-      ["Growth and change", "Restructuring, scaling or new strategy demand new behaviors from leaders, fast."],
-      ["Succession gaps", "No one is ready to step into critical roles when they open up."],
-      ["Burnout and pressure", "Leaders carry heavy loads without a safe space to think and reset."],
-    ],
-  },
-  packages: {
-    eyebrow: "Coaching packages",
-    title: "Packages for every level of your organization",
-    subtitle:
-      "Each package can be adjusted to your team size, goals and budget. Pricing is quoted after a free discovery call.",
-    duration: "Duration",
-    who: "For",
-    includes: "Includes",
-    cta: "Request a proposal",
-    badge: "Best place to start",
+  paths: {
+    eyebrow: "Two kinds of leaders come to us",
+    title: "Where are you today?",
     items: [
       {
-        id: "managers",
-        name: "Manager Essentials",
-        summary: "Group coaching for new and mid-level managers to build core people-leadership skills.",
-        who: "8–20 managers",
-        duration: "3 months",
-        features: [
-          "6 group coaching sessions (90 min)",
-          "2 one-to-one sessions per manager",
-          "Before and after leadership self-assessment",
-          "Practical tools: feedback, delegation, one-to-ones",
-          "Summary report for HR",
+        id: "authority",
+        title: "From authority to influence",
+        quote: "The best leaders aren’t made in classrooms. They’re made by how they lead.",
+        body: "You already make the decisions. Coaching helps your people follow because they believe in where you are going, not only because they must.",
+        points: [
+          "A private thinking partner, one-to-one and fully confidential",
+          "Practical: your real decisions, your real people, your schedule",
+          "No classes, no exams, no theory",
         ],
-        featured: true,
+        cta: "Request a private briefing",
       },
       {
         id: "team",
-        name: "Leadership Team",
-        summary: "Team coaching for executive and senior teams that need alignment, trust and faster decisions.",
-        who: "One team of 5–12",
-        duration: "6 months",
-        features: [
-          "Team diagnostic and interviews",
-          "Kick-off workshop (1 day)",
-          "Monthly team coaching sessions",
-          "3 one-to-one sessions per team member",
-          "Team agreements and progress review",
+        title: "A leadership team that holds under pressure",
+        quote: "You can’t change the conditions. You can change how your team leads in them.",
+        body: "You want a top team that is aligned, decisive and still standing after a hard year. Coaching builds that, and shows you the progress.",
+        points: [
+          "Align your top team and make decisions faster",
+          "Keep key leaders from burning out or leaving",
+          "Measurable progress you can see and report",
         ],
-        featured: false,
+        cta: "Assess my leadership team",
       },
-      {
-        id: "executive",
-        name: "Executive Coaching",
-        summary: "One-to-one coaching for CEOs, founders and C-level leaders facing high-stakes challenges.",
-        who: "Individual leaders",
-        duration: "6 months",
-        features: [
-          "12 one-to-one sessions (60–90 min)",
-          "360° stakeholder interviews",
-          "Three-way goal setting with the sponsor",
-          "Messaging support between sessions",
-          "Midpoint and final review",
-        ],
-        featured: false,
-      },
-      {
-        id: "culture",
-        name: "Coaching Culture",
-        summary: "A company-wide program that teaches your managers to coach and makes coaching part of how you work.",
-        who: "Whole organization",
-        duration: "9–12 months",
-        features: [
-          "Pilot with one department first",
-          "Coaching-skills training for managers",
-          "Coaching for key leaders",
-          "Internal coach development",
-          "Quarterly impact reports",
-        ],
-        featured: false,
-      },
-    ],
-    addonsTitle: "Add-ons",
-    addons: [
-      "360° feedback assessment",
-      "Leadership style and strengths assessment",
-      "Half-day workshops on topics you choose",
-      "Career-transition coaching for departing employees",
-      "Onboarding coaching for newly hired leaders",
     ],
   },
-  process: {
-    eyebrow: "How it works",
-    title: "From first call to measurable results",
-    steps: [
-      ["Discovery call", "A free 30-minute conversation about your challenges and goals."],
-      ["Proposal", "We recommend a package, timeline and price fitted to your needs."],
-      ["Coach matching", "Each participant chooses from coaches matched to their role and goals."],
-      ["Goal setting", "The coachee, their manager and the coach agree on measurable goals."],
-      ["Coaching", "Regular confidential sessions with practice between meetings."],
-      ["Review and report", "We measure progress and agree on the next steps with you."],
-    ],
-  },
-  results: {
-    eyebrow: "Measurable results",
-    title: "You see the progress. The conversations stay private.",
+  coaching: {
+    eyebrow: "What is leadership coaching?",
+    title: "A private, structured conversation that helps a leader lead better.",
     body:
-      "What is said in a coaching session stays between coach and coachee. That trust is what makes coaching work. What the organization receives is a clear picture of progress against the goals everyone agreed on at the start.",
-    measuresTitle: "What we measure",
-    measures: [
-      ["Goal progress", "Progress on each agreed goal, rated by the coachee and their manager"],
-      ["360° change", "Before and after feedback from colleagues"],
-      ["Engagement", "Short pulse surveys of the leader’s team"],
-      ["Sponsor rating", "How the manager and HR rate the program’s value"],
+      "A trained coach meets a leader regularly, one-to-one. The coach doesn’t lecture or give orders. Through sharp questions, honest feedback and follow-up, the leader sees situations more clearly, makes better decisions and builds habits their team notices. Everything stays between the two of them.",
+    compareTitle: "What coaching is not",
+    compare: [
+      ["Not a training course", "Courses teach the same content to everyone. Coaching works on your own decisions and challenges."],
+      ["Not consulting", "A consultant solves the problem for you. A coach strengthens your own judgement, so the results stay."],
+      ["Not psychotherapy", "Therapy deals with mental health and the past. Coaching is about work, results and what comes next."],
     ],
-    privateTitle: "Kept confidential",
-    private: ["Session content", "Personal reflections", "Anything the coachee doesn’t choose to share"],
-    sharedTitle: "Shared with the organization",
-    shared: ["Attendance", "Progress against goals", "Aggregate assessment results"],
+    mythsTitle: "Common beliefs, and the facts",
+    myths: [
+      ["“Coaching is for weak managers.”", "The opposite. The world’s most powerful CEOs have coaches, just like top athletes do."],
+      ["“It’s just motivational talk.”", "Coaching is tied to concrete goals agreed at the start and reviewed at the end."],
+      ["“You can’t measure it.”", "Goal progress, 360° feedback and team engagement can all be measured before and after."],
+      ["“It takes too much time.”", "Usually one or two hours a month, scheduled around your calendar."],
+    ],
   },
-  faq: {
-    eyebrow: "Questions",
-    title: "Frequently asked questions",
-    items: [
-      [
-        "How long does a coaching program take?",
-        "Most programs run 3 to 6 months. Real behavior change needs time to practice between sessions. Company-wide programs usually run 9 to 12 months.",
-      ],
-      [
-        "Are sessions online or in person?",
-        "Both. Most one-to-one sessions work well online. We recommend workshops and team kick-offs in person when possible.",
-      ],
-      [
-        "Which languages do you coach in?",
-        "Persian and English. Each participant chooses the language they are most comfortable in.",
-      ],
-      [
-        "How do you choose coaches?",
-        "Coaches are selected based on their training, business experience and fit with the participant’s role. Each participant can meet a coach before starting.",
-      ],
-      [
-        "Can we start small?",
-        "Yes. Many organizations start with a pilot for a few managers or one team, review the results, then scale up.",
-      ],
-      [
-        "How much does it cost?",
-        "It depends on the package, the number of participants and the duration. After a free discovery call we send a clear written proposal with a fixed price.",
-      ],
+  why: {
+    eyebrow: "Why leaders matter",
+    title: "The numbers point to the same place: the person leading the team.",
+    stats: [
+      { value: "70%+", text: "of the difference in engagement between teams comes down to the manager.", source: "gallupManagers" as SourceId, sourceText: "Gallup" },
+      { value: "1 in 2", text: "employees have left a job at some point to get away from their manager.", source: "gallupBoss" as SourceId, sourceText: "Gallup, US survey, 2015" },
+      { value: "27% → 22%", text: "Engagement among managers worldwide fell five points in a single year.", source: "gallupGlobal" as SourceId, sourceText: "Gallup, 2026" },
+      { value: "#1", text: "When Google studied its best managers, being a good coach came first.", source: "google" as SourceId, sourceText: "Google, Project Oxygen" },
     ],
+  },
+  evidence: {
+    eyebrow: "Does coaching work?",
+    title: "What independent research says",
+    subtitle:
+      "These are not claims by coaching companies. They are university studies that combined the results of many separate experiments.",
+    studies: [
+      {
+        title: "Better results across the board",
+        what: "Researchers in the Netherlands combined the results of earlier coaching studies in organizations.",
+        found: "Coaching improved all five outcomes measured: performance, well-being, coping with pressure, attitude to work, and reaching goals.",
+        source: "theeboom" as SourceId,
+        sourceText: "Theeboom et al., Journal of Positive Psychology, 2014",
+      },
+      {
+        title: "Stronger skills and results at work",
+        what: "A UK team analysed 17 studies of workplace coaching.",
+        found: "Coaching had clear positive effects on skills, attitudes and work results, with the strongest effect on results.",
+        source: "jones" as SourceId,
+        sourceText: "Jones et al., Journal of Occupational and Organizational Psychology, 2016",
+      },
+      {
+        title: "Proven in controlled experiments",
+        what: "A 2023 review brought together randomised experiments, where leaders were assigned to coaching or no coaching by chance.",
+        found: "Executive coaching produced significant gains in confidence, resilience and psychological strength.",
+        source: "rctMeta" as SourceId,
+        sourceText: "Meta-analysis of randomised controlled trials, 2023",
+      },
+    ],
+  },
+  leaders: {
+    eyebrow: "Who uses coaching",
+    title: "The most powerful leaders in the world have coaches",
+    items: [
+      {
+        title: "Steve Jobs, Larry Page and Eric Schmidt",
+        body: "All worked with the same coach, Bill Campbell. Three former Google leaders wrote a book about him: Trillion Dollar Coach.",
+        source: "campbell" as SourceId,
+      },
+      {
+        title: "Google",
+        body: "After finding that its best managers were good coaches, Google began teaching its managers to coach.",
+        source: "google" as SourceId,
+      },
+      {
+        title: "Microsoft",
+        body: "Microsoft sets out what it expects of its managers in three words: Model, Coach, Care.",
+        source: "microsoft" as SourceId,
+      },
+      {
+        title: "A global profession",
+        body: "About 123,000 professional coaches now work worldwide, in a field worth around $5.3 billion a year, with companies such as BetterUp built entirely around coaching.",
+        source: "icf" as SourceId,
+      },
+    ],
+  },
+  privacy: {
+    eyebrow: "Complete discretion",
+    title: "What you say stays between you and your coach.",
+    body:
+      "Trust is what makes coaching work. Session content is never shared with anyone. When a company sponsors coaching for its leaders, it only sees what everyone agrees to at the start: attendance and progress on goals.",
+    points: ["Confidential one-to-one sessions", "In person or online, on your schedule", "Persian or English"],
   },
   contact: {
-    eyebrow: "Get started",
-    title: "Let’s talk about your team",
+    eyebrow: "First step",
+    title: "Start with a private conversation",
     subtitle:
-      "Tell us a little about your organization. We’ll reply within two business days to schedule a free discovery call.",
+      "A free, confidential meeting to understand your situation and whether coaching is right for you or your team. No obligation.",
     fields: {
       name: "Full name",
       company: "Company",
       role: "Your role",
       email: "Email",
-      phone: "Phone (optional)",
-      size: "Company size",
-      interest: "Interested in",
-      message: "What would you like coaching to help with?",
+      phone: "Phone",
+      interest: "I would like",
+      message: "Anything you’d like us to know (optional)",
     },
-    sizes: ["Under 50", "50–200", "200–1,000", "Over 1,000"],
-    notSure: "Not sure yet",
+    interests: [
+      ["authority", "A private briefing for myself"],
+      ["team", "An assessment of my leadership team"],
+      ["", "Not sure yet, let’s talk"],
+    ],
     submit: "Send request",
-    success: "Thank you! Your email app has opened with your request. Just press send.",
+    success: "Thank you. Your email app has opened with your request. Just press send.",
   },
+  sources: { title: "Sources" },
   footer: {
-    about: "Business coaching for managers, leadership teams and executives.",
+    about: "Leadership coaching for CEOs and leadership teams.",
     rights: "All rights reserved.",
   },
 };
@@ -234,229 +231,213 @@ export type Content = typeof en;
 
 const fa: Content = {
   meta: {
-    title: "ستیا | کوچینگ سازمانی",
+    title: "ستیا | کوچینگ رهبری",
     langSwitch: "English",
     langSwitchLabel: "تغییر زبان به انگلیسی",
   },
-  brand: { name: "ستیا", tagline: "BUSINESS COACHING" },
+  brand: { name: "ستیا", tagline: "LEADERSHIP COACHING" },
   nav: {
     links: [
       ["#coaching", "کوچینگ چیست"],
-      ["#packages", "بسته‌ها"],
-      ["#process", "فرایند"],
-      ["#results", "نتایج"],
-      ["#faq", "پرسش‌ها"],
+      ["#why", "چرا رهبران مهم‌اند"],
+      ["#evidence", "شواهد علمی"],
+      ["#leaders", "چه کسانی استفاده می‌کنند"],
     ],
-    cta: "رزرو جلسه مشاوره",
+    cta: "درخواست جلسه خصوصی",
     menu: "منو",
   },
+  sourceLabel: "منبع",
   hero: {
-    eyebrow: "برنامه‌های کوچینگ برای سازمان‌ها",
-    title: "رهبرانی پرورش دهید که کسب‌وکارتان را رشد می‌دهند.",
+    eyebrow: "کوچینگ رهبری",
+    title: "قدرتمندترین رهبران دنیا کوچ دارند.",
     subtitle:
-      "بسته‌های کوچینگ ساختاریافته برای مدیران، تیم‌های رهبری و مدیران ارشد؛ با اهداف روشن، جلسات محرمانه و گزارش پیشرفت به سازمان شما.",
-    primary: "مشاهده بسته‌ها",
-    secondary: "رزرو جلسه مشاوره رایگان",
-    points: ["فارسی و انگلیسی", "حضوری یا آنلاین", "شروع با یک پایلوت کوچک"],
+      "کوچینگ رهبری خصوصی برای مدیران ارشد و تیم‌های رهبری؛ کاربردی، محرمانه، بر پایه شواهد علمی.",
+    primary: "درخواست جلسه خصوصی",
+    secondary: "شواهد را ببینید",
+    points: ["کاملاً محرمانه", "جلسات فردی، در زمان‌بندی شما", "بر پایه شواهد علمی"],
     card: {
-      title: "یک برنامه کوچینگ در یک نگاه",
-      steps: [
-        ["توافق بر اهداف", "کوچی، مدیر او و منابع انسانی بر ۲ تا ۳ هدف کسب‌وکاری توافق می‌کنند"],
-        ["جلسات کوچینگ", "جلسات محرمانه فردی یا تیمی"],
-        ["بازبینی میانی", "بررسی پیشرفت با حامی سازمانی"],
-        ["گزارش نهایی", "تغییرات اندازه‌گیری‌شده و گام‌های بعدی"],
+      label: "یک کوچ در کنار برخی از اثرگذارترین رهبران دنیا",
+      names: ["استیو جابز", "لری پیج", "اریک اشمیت"],
+      coach: "بیل کمبل",
+      body: "کوچ و مشاور مورد اعتماد مدیران اپل و گوگل. سه مدیر پیشین گوگل داستان او را در کتاب «کوچ تریلیون‌دلاری» روایت کرده‌اند.",
+      source: "campbell",
+      sourceText: "کتاب کوچ تریلیون‌دلاری، ۲۰۱۹",
+    },
+    stat: {
+      label: "کارکنانی که با انگیزه و تعهد کار می‌کنند",
+      rows: [
+        ["ایران", 12],
+        ["خاورمیانه و شمال آفریقا", 14],
+        ["میانگین جهانی", 20],
       ],
+      note: "منظور کسانی است که با انرژی و تعهد کار می‌کنند، نه فقط حضور فیزیکی.",
+      source: "gallupIran",
+      sourceText: "گالوپ، گزارش وضعیت محیط کار جهانی ۲۰۲۶",
     },
   },
-  coaching: {
-    eyebrow: "کوچینگ چیست؟",
-    title: "گفت‌وگویی ساختاریافته که توانمندی را به عملکرد تبدیل می‌کند.",
-    body:
-      "کوچینگ همکاری میان یک کوچ آموزش‌دیده و یک فرد حرفه‌ای است. کوچ پاسخ آماده نمی‌دهد؛ با پرسش‌های هدفمند، بازخورد صادقانه و پیگیری مستمر کمک می‌کند فرد موقعیت خود را روشن‌تر ببیند، اقدام‌های بهتری انتخاب کند و عادت‌های ماندگار بسازد. در سازمان، هر برنامه کوچینگ به اهدافی گره می‌خورد که برای کسب‌وکار اهمیت دارند.",
-    compareTitle: "تفاوت کوچینگ با سایر روش‌های توسعه",
-    compare: [
-      ["آموزش", "مهارت‌های یکسان را به یک گروه می‌آموزد؛ کوچینگ آن‌ها را در کار واقعی هر فرد به کار می‌گیرد."],
-      ["منتورینگ", "فردی باتجربه مسیر خودش را منتقل می‌کند؛ کوچ کمک می‌کند هر کس مسیر خودش را پیدا کند."],
-      ["مشاوره", "مشاور مسئله را حل می‌کند؛ کوچ توانایی حل مسئله را در خود فرد می‌سازد."],
-      ["روان‌درمانی", "درمان به سلامت روان و گذشته می‌پردازد؛ کوچینگ بر کار، اهداف و آینده تمرکز دارد."],
-    ],
-  },
-  challenges: {
-    eyebrow: "چرا سازمان‌ها روی کوچینگ سرمایه‌گذاری می‌کنند",
-    title: "چالش‌هایی که کوچینگ برای حل آن‌ها طراحی شده است",
-    items: [
-      ["مدیران تازه‌کار بدون پشتیبانی", "بهترین متخصصان شما ارتقا می‌گیرند و باید مدیریت افراد را با آزمون و خطا یاد بگیرند."],
-      ["تیم رهبری ناهماهنگ", "مدیران ارشد در جهت‌های مختلف حرکت می‌کنند و تصمیم‌گیری کند می‌شود."],
-      ["از دست دادن نیروهای کلیدی", "افراد مستعد وقتی مسیر رشدی نمی‌بینند یا احساس نمی‌کنند روی آن‌ها سرمایه‌گذاری شده، سازمان را ترک می‌کنند."],
-      ["رشد و تغییر", "تغییر ساختار، توسعه یا استراتژی جدید، رفتارهای تازه‌ای را از مدیران می‌طلبد؛ آن هم سریع."],
-      ["خلأ جانشینی", "وقتی جایگاه‌های کلیدی خالی می‌شوند، کسی برای تصدی آن‌ها آماده نیست."],
-      ["فرسودگی و فشار کاری", "مدیران بار سنگینی به دوش می‌کشند، بدون فضایی امن برای فکر کردن و بازیابی."],
-    ],
-  },
-  packages: {
-    eyebrow: "بسته‌های کوچینگ",
-    title: "بسته‌هایی برای همه سطوح سازمان شما",
-    subtitle:
-      "هر بسته بر اساس اندازه تیم، اهداف و بودجه شما قابل تنظیم است. قیمت پس از یک جلسه شناخت رایگان اعلام می‌شود.",
-    duration: "مدت",
-    who: "مخاطب",
-    includes: "شامل",
-    cta: "درخواست پیشنهاد",
-    badge: "بهترین نقطه شروع",
+  paths: {
+    eyebrow: "دو گروه از رهبران به ما مراجعه می‌کنند",
+    title: "امروز کجا ایستاده‌اید؟",
     items: [
       {
-        id: "managers",
-        name: "مهارت‌های پایه مدیران",
-        summary: "کوچینگ گروهی برای مدیران تازه‌کار و میانی، برای ساختن مهارت‌های اصلی رهبری افراد.",
-        who: "۸ تا ۲۰ مدیر",
-        duration: "۳ ماه",
-        features: [
-          "۶ جلسه کوچینگ گروهی (۹۰ دقیقه)",
-          "۲ جلسه فردی برای هر مدیر",
-          "خودارزیابی رهبری در ابتدا و انتهای دوره",
-          "ابزارهای کاربردی: بازخورد، تفویض، جلسات فردی",
-          "گزارش خلاصه برای منابع انسانی",
+        id: "authority",
+        title: "از اختیار تا نفوذ",
+        quote: "بهترین رهبران در کلاس درس ساخته نمی‌شوند؛ با شیوه رهبری‌شان ساخته می‌شوند.",
+        body: "تصمیم‌گیرنده شما هستید. کوچینگ کمک می‌کند افرادتان از سر باور به مسیری که تعیین کرده‌اید همراه شوند، نه فقط از سر اجبار.",
+        points: [
+          "یک هم‌فکر خصوصی؛ جلسات فردی و کاملاً محرمانه",
+          "کاملاً کاربردی: تصمیم‌های واقعی، آدم‌های واقعی، در زمان‌بندی شما",
+          "بدون کلاس، بدون امتحان، بدون تئوری",
         ],
-        featured: true,
+        cta: "درخواست جلسه خصوصی",
       },
       {
         id: "team",
-        name: "تیم رهبری",
-        summary: "کوچینگ تیمی برای تیم‌های اجرایی و ارشد که به هم‌راستایی، اعتماد و تصمیم‌گیری سریع‌تر نیاز دارند.",
-        who: "یک تیم ۵ تا ۱۲ نفره",
-        duration: "۶ ماه",
-        features: [
-          "عارضه‌یابی تیم و مصاحبه‌ها",
-          "کارگاه شروع (یک روزه)",
-          "جلسات ماهانه کوچینگ تیمی",
-          "۳ جلسه فردی برای هر عضو تیم",
-          "توافق‌نامه‌های تیمی و بازبینی پیشرفت",
+        title: "تیم رهبری‌ای که زیر فشار دوام می‌آورد",
+        quote: "شرایط را نمی‌توانید تغییر دهید؛ اما شیوه رهبری تیم‌تان در این شرایط را می‌توانید.",
+        body: "تیمی ارشد می‌خواهید که هم‌راستا باشد، سریع تصمیم بگیرد و پس از یک سال سخت هنوز پابرجا بماند. کوچینگ این تیم را می‌سازد و پیشرفت را به شما نشان می‌دهد.",
+        points: [
+          "هم‌راستا کردن تیم ارشد و تصمیم‌گیری سریع‌تر",
+          "جلوگیری از فرسودگی و رفتن مدیران کلیدی",
+          "پیشرفت قابل‌اندازه‌گیری که می‌توانید ببینید و گزارش کنید",
         ],
-        featured: false,
+        cta: "ارزیابی تیم رهبری من",
       },
-      {
-        id: "executive",
-        name: "کوچینگ مدیران ارشد",
-        summary: "کوچینگ فردی برای مدیرعامل‌ها، بنیان‌گذاران و مدیران ارشد در مواجهه با چالش‌های حساس.",
-        who: "مدیران ارشد به‌صورت فردی",
-        duration: "۶ ماه",
-        features: [
-          "۱۲ جلسه فردی (۶۰ تا ۹۰ دقیقه)",
-          "مصاحبه ۳۶۰ درجه با ذی‌نفعان",
-          "تعیین هدف سه‌جانبه با حامی سازمانی",
-          "پشتیبانی پیامی بین جلسات",
-          "بازبینی میانی و نهایی",
-        ],
-        featured: false,
-      },
-      {
-        id: "culture",
-        name: "فرهنگ کوچینگ",
-        summary: "برنامه‌ای سازمانی که به مدیران شما کوچ‌کردن را می‌آموزد و کوچینگ را بخشی از شیوه کار سازمان می‌کند.",
-        who: "کل سازمان",
-        duration: "۹ تا ۱۲ ماه",
-        features: [
-          "شروع با پایلوت در یک واحد",
-          "آموزش مهارت‌های کوچینگ به مدیران",
-          "کوچینگ برای مدیران کلیدی",
-          "پرورش کوچ‌های داخلی",
-          "گزارش‌های فصلی اثربخشی",
-        ],
-        featured: false,
-      },
-    ],
-    addonsTitle: "خدمات تکمیلی",
-    addons: [
-      "ارزیابی بازخورد ۳۶۰ درجه",
-      "ارزیابی سبک رهبری و نقاط قوت",
-      "کارگاه‌های نیم‌روزه با موضوع دلخواه شما",
-      "کوچینگ گذار شغلی برای کارکنان در حال جدایی",
-      "کوچینگ ورود برای مدیران تازه‌استخدام",
     ],
   },
-  process: {
-    eyebrow: "فرایند همکاری",
-    title: "از اولین تماس تا نتایج قابل‌اندازه‌گیری",
-    steps: [
-      ["جلسه شناخت", "گفت‌وگویی رایگان و ۳۰ دقیقه‌ای درباره چالش‌ها و اهداف شما."],
-      ["پیشنهاد", "بسته، زمان‌بندی و قیمت متناسب با نیاز شما را پیشنهاد می‌کنیم."],
-      ["انتخاب کوچ", "هر شرکت‌کننده از میان کوچ‌هایی متناسب با نقش و اهدافش انتخاب می‌کند."],
-      ["تعیین اهداف", "کوچی، مدیر او و کوچ بر اهداف قابل‌اندازه‌گیری توافق می‌کنند."],
-      ["کوچینگ", "جلسات منظم و محرمانه، همراه با تمرین در فاصله جلسات."],
-      ["بازبینی و گزارش", "پیشرفت را می‌سنجیم و درباره گام‌های بعدی با شما توافق می‌کنیم."],
-    ],
-  },
-  results: {
-    eyebrow: "نتایج قابل‌اندازه‌گیری",
-    title: "شما پیشرفت را می‌بینید؛ گفت‌وگوها محرمانه می‌مانند.",
+  coaching: {
+    eyebrow: "کوچینگ رهبری چیست؟",
+    title: "گفت‌وگویی خصوصی و ساختاریافته که به رهبر کمک می‌کند بهتر رهبری کند.",
     body:
-      "آنچه در جلسه کوچینگ گفته می‌شود میان کوچ و کوچی می‌ماند؛ همین اعتماد است که کوچینگ را اثربخش می‌کند. آنچه سازمان دریافت می‌کند، تصویری روشن از پیشرفت در برابر اهدافی است که همه در ابتدا بر آن توافق کرده‌اند.",
-    measuresTitle: "آنچه اندازه می‌گیریم",
-    measures: [
-      ["پیشرفت اهداف", "میزان پیشرفت در هر هدف، با ارزیابی کوچی و مدیر او"],
-      ["تغییر ۳۶۰ درجه", "بازخورد همکاران در ابتدا و انتهای برنامه"],
-      ["مشارکت تیم", "نظرسنجی‌های کوتاه از تیم هر مدیر"],
-      ["ارزیابی حامی", "ارزیابی مدیر و منابع انسانی از ارزش برنامه"],
+      "یک کوچ حرفه‌ای به‌طور منظم و به‌صورت فردی با رهبر دیدار می‌کند. کوچ سخنرانی نمی‌کند و دستور نمی‌دهد. با پرسش‌های دقیق، بازخورد صادقانه و پیگیری، رهبر موقعیت‌ها را روشن‌تر می‌بیند، تصمیم‌های بهتری می‌گیرد و عادت‌هایی می‌سازد که تیمش تغییر را حس می‌کند. همه‌چیز میان همین دو نفر می‌ماند.",
+    compareTitle: "کوچینگ چه چیزی نیست",
+    compare: [
+      ["دوره آموزشی نیست", "دوره‌ها محتوای یکسانی به همه می‌آموزند. کوچینگ روی تصمیم‌ها و چالش‌های خود شما کار می‌کند."],
+      ["مشاوره مدیریت نیست", "مشاور مسئله را برای شما حل می‌کند. کوچ قدرت قضاوت خود شما را تقویت می‌کند تا نتیجه ماندگار باشد."],
+      ["روان‌درمانی نیست", "درمان به سلامت روان و گذشته می‌پردازد. کوچینگ درباره کار، نتیجه و قدم بعدی است."],
     ],
-    privateTitle: "محرمانه می‌ماند",
-    private: ["محتوای جلسات", "تأملات شخصی", "هر آنچه کوچی نخواهد به اشتراک بگذارد"],
-    sharedTitle: "با سازمان به اشتراک گذاشته می‌شود",
-    shared: ["حضور در جلسات", "پیشرفت در برابر اهداف", "نتایج تجمیعی ارزیابی‌ها"],
+    mythsTitle: "باورهای رایج و واقعیت",
+    myths: [
+      ["«کوچینگ برای مدیران ضعیف است.»", "برعکس. قدرتمندترین مدیران جهان کوچ دارند؛ درست مثل ورزشکاران بزرگ."],
+      ["«فقط حرف‌های انگیزشی است.»", "کوچینگ به اهداف مشخصی گره خورده که در ابتدا توافق و در پایان بررسی می‌شوند."],
+      ["«نتیجه‌اش قابل‌اندازه‌گیری نیست.»", "پیشرفت اهداف، بازخورد ۳۶۰ درجه و انگیزه تیم را می‌توان قبل و بعد سنجید."],
+      ["«وقت زیادی می‌گیرد.»", "معمولاً یک تا دو ساعت در ماه، هماهنگ با تقویم شما."],
+    ],
   },
-  faq: {
-    eyebrow: "پرسش‌ها",
-    title: "پرسش‌های متداول",
-    items: [
-      [
-        "یک برنامه کوچینگ چقدر طول می‌کشد؟",
-        "بیشتر برنامه‌ها ۳ تا ۶ ماه طول می‌کشند؛ تغییر رفتار واقعی به زمان برای تمرین بین جلسات نیاز دارد. برنامه‌های سازمانی معمولاً ۹ تا ۱۲ ماه هستند.",
-      ],
-      [
-        "جلسات آنلاین است یا حضوری؟",
-        "هر دو. بیشتر جلسات فردی به‌صورت آنلاین به‌خوبی برگزار می‌شوند. کارگاه‌ها و جلسات شروع تیمی را در صورت امکان حضوری پیشنهاد می‌کنیم.",
-      ],
-      [
-        "کوچینگ به چه زبانی انجام می‌شود؟",
-        "فارسی و انگلیسی. هر شرکت‌کننده زبانی را که با آن راحت‌تر است انتخاب می‌کند.",
-      ],
-      [
-        "کوچ‌ها چگونه انتخاب می‌شوند؟",
-        "کوچ‌ها بر اساس آموزش، تجربه کسب‌وکاری و تناسب با نقش شرکت‌کننده انتخاب می‌شوند. هر شرکت‌کننده می‌تواند پیش از شروع با کوچ آشنا شود.",
-      ],
-      [
-        "آیا می‌توانیم با مقیاس کوچک شروع کنیم؟",
-        "بله. بسیاری از سازمان‌ها با یک پایلوت برای چند مدیر یا یک تیم شروع می‌کنند، نتایج را بررسی می‌کنند و سپس برنامه را گسترش می‌دهند.",
-      ],
-      [
-        "هزینه آن چقدر است؟",
-        "به بسته، تعداد شرکت‌کنندگان و مدت برنامه بستگی دارد. پس از جلسه شناخت رایگان، یک پیشنهاد کتبی شفاف با قیمت مشخص برایتان ارسال می‌کنیم.",
-      ],
+  why: {
+    eyebrow: "چرا رهبران مهم‌اند",
+    title: "اعداد همه به یک نقطه اشاره می‌کنند: کسی که تیم را رهبری می‌کند.",
+    stats: [
+      { value: "بیش از ۷۰٪", text: "از تفاوت انگیزه و تعهد میان تیم‌ها به مدیر آن تیم برمی‌گردد.", source: "gallupManagers", sourceText: "گالوپ" },
+      { value: "۱ از ۲", text: "کارمند دست‌کم یک بار شغلش را ترک کرده تا از مدیرش دور شود.", source: "gallupBoss", sourceText: "گالوپ، نظرسنجی آمریکا، ۲۰۱۵" },
+      { value: "۲۷٪ ← ۲۲٪", text: "انگیزه و تعهد مدیران در جهان تنها در یک سال پنج واحد کاهش یافت.", source: "gallupGlobal", sourceText: "گالوپ، ۲۰۲۶" },
+      { value: "رتبه ۱", text: "وقتی گوگل بهترین مدیرانش را بررسی کرد، «کوچ خوب بودن» در رتبه اول قرار گرفت.", source: "google", sourceText: "گوگل، پروژه اکسیژن" },
     ],
+  },
+  evidence: {
+    eyebrow: "آیا کوچینگ اثر دارد؟",
+    title: "پژوهش‌های مستقل چه می‌گویند",
+    subtitle:
+      "این‌ها ادعای شرکت‌های کوچینگ نیستند. پژوهش‌های دانشگاهی‌اند که نتایج ده‌ها آزمایش جداگانه را کنار هم گذاشته‌اند.",
+    studies: [
+      {
+        title: "نتایج بهتر در همه زمینه‌ها",
+        what: "پژوهشگرانی در هلند نتایج پژوهش‌های پیشین درباره کوچینگ در سازمان‌ها را با هم ترکیب کردند.",
+        found: "کوچینگ هر پنج شاخص سنجیده‌شده را بهبود داد: عملکرد، بهزیستی، کنار آمدن با فشار، نگرش به کار و دستیابی به اهداف.",
+        source: "theeboom",
+        sourceText: "Theeboom و همکاران، ۲۰۱۴",
+      },
+      {
+        title: "مهارت‌ها و نتایج کاری قوی‌تر",
+        what: "تیمی در بریتانیا ۱۷ پژوهش درباره کوچینگ در محیط کار را تحلیل کرد.",
+        found: "کوچینگ اثر مثبت روشنی بر مهارت‌ها، نگرش‌ها و نتایج کاری داشت و بیشترین اثر روی نتایج بود.",
+        source: "jones",
+        sourceText: "Jones و همکاران، ۲۰۱۶",
+      },
+      {
+        title: "اثبات‌شده در آزمایش‌های کنترل‌شده",
+        what: "یک مرور در سال ۲۰۲۳ آزمایش‌هایی را گرد آورد که در آن‌ها مدیران به‌صورت تصادفی به گروه کوچینگ یا بدون کوچینگ تقسیم شده بودند.",
+        found: "کوچینگ اجرایی افزایش معناداری در اعتمادبه‌نفس، تاب‌آوری و توان روانی مدیران ایجاد کرد.",
+        source: "rctMeta",
+        sourceText: "فراتحلیل کارآزمایی‌های تصادفی، ۲۰۲۳",
+      },
+    ],
+  },
+  leaders: {
+    eyebrow: "چه کسانی از کوچینگ استفاده می‌کنند",
+    title: "قدرتمندترین رهبران جهان کوچ دارند",
+    items: [
+      {
+        title: "استیو جابز، لری پیج و اریک اشمیت",
+        body: "همه با یک کوچ کار کرده‌اند: بیل کمبل. سه مدیر پیشین گوگل کتابی درباره او نوشته‌اند به نام «کوچ تریلیون‌دلاری».",
+        source: "campbell",
+      },
+      {
+        title: "گوگل",
+        body: "گوگل پس از آنکه دریافت بهترین مدیرانش کوچ‌های خوبی هستند، کوچ‌کردن را به همه مدیرانش آموزش داد.",
+        source: "google",
+      },
+      {
+        title: "مایکروسافت",
+        body: "مایکروسافت انتظاراتش از مدیران را در سه کلمه خلاصه کرده است: الگو باش، کوچ باش، اهمیت بده.",
+        source: "microsoft",
+      },
+      {
+        title: "حرفه‌ای جهانی",
+        body: "امروز حدود ۱۲۳ هزار کوچ حرفه‌ای در جهان فعال‌اند، در صنعتی با ارزش سالانه حدود ۵٫۳ میلیارد دلار؛ با شرکت‌هایی مانند BetterUp که تماماً بر کوچینگ بنا شده‌اند.",
+        source: "icf",
+      },
+    ],
+  },
+  privacy: {
+    eyebrow: "رازداری کامل",
+    title: "آنچه می‌گویید میان شما و کوچ‌تان می‌ماند.",
+    body:
+      "اعتماد، پایه اثربخشی کوچینگ است. محتوای جلسات هرگز با کسی به اشتراک گذاشته نمی‌شود. وقتی شرکتی کوچینگ مدیرانش را تأمین می‌کند، فقط آنچه همه از ابتدا بر آن توافق کرده‌اند را می‌بیند: حضور در جلسات و پیشرفت در اهداف.",
+    points: ["جلسات فردی و محرمانه", "حضوری یا آنلاین، در زمان‌بندی شما", "به زبان فارسی یا انگلیسی"],
   },
   contact: {
-    eyebrow: "شروع همکاری",
-    title: "درباره تیم‌تان گفت‌وگو کنیم",
+    eyebrow: "قدم اول",
+    title: "با یک گفت‌وگوی خصوصی شروع کنید",
     subtitle:
-      "کمی درباره سازمان‌تان بگویید. ظرف دو روز کاری برای هماهنگی جلسه شناخت رایگان با شما تماس می‌گیریم.",
+      "یک جلسه رایگان و محرمانه برای شناخت شرایط شما و اینکه آیا کوچینگ برای شما یا تیم‌تان مناسب است. بدون هیچ تعهدی.",
     fields: {
       name: "نام و نام خانوادگی",
       company: "نام شرکت",
       role: "سمت شما",
       email: "ایمیل",
-      phone: "تلفن (اختیاری)",
-      size: "اندازه شرکت",
-      interest: "بسته مورد نظر",
-      message: "دوست دارید کوچینگ در چه زمینه‌ای کمک کند؟",
+      phone: "تلفن",
+      interest: "مایلم",
+      message: "اگر نکته‌ای هست که بخواهید بدانیم (اختیاری)",
     },
-    sizes: ["کمتر از ۵۰ نفر", "۵۰ تا ۲۰۰ نفر", "۲۰۰ تا ۱٬۰۰۰ نفر", "بیش از ۱٬۰۰۰ نفر"],
-    notSure: "هنوز مطمئن نیستم",
+    interests: [
+      ["authority", "یک جلسه خصوصی برای خودم"],
+      ["team", "ارزیابی تیم رهبری‌ام"],
+      ["", "هنوز مطمئن نیستم، گفت‌وگو کنیم"],
+    ],
     submit: "ارسال درخواست",
-    success: "سپاس! برنامه ایمیل شما با متن درخواست باز شد؛ فقط کافی است آن را ارسال کنید.",
+    success: "سپاس. برنامه ایمیل شما با متن درخواست باز شد؛ فقط کافی است آن را ارسال کنید.",
   },
+  sources: { title: "منابع" },
   footer: {
-    about: "کوچینگ سازمانی برای مدیران، تیم‌های رهبری و مدیران ارشد.",
+    about: "کوچینگ رهبری برای مدیران ارشد و تیم‌های رهبری.",
     rights: "تمامی حقوق محفوظ است.",
   },
 };
 
 export const content: Record<Lang, Content> = { en, fa };
+
+// Full citations for the sources list at the bottom of the page.
+export const sourceCitations: Record<SourceId, string> = {
+  gallupIran: "Gallup — State of the Global Workplace: Iran country-level data (2026)",
+  gallupGlobal: "Gallup — State of the Global Workplace: global data (2026)",
+  gallupManagers: "Beck & Harter — Managers Account for 70% of Variance in Employee Engagement, Gallup",
+  gallupBoss: "Gallup (2015), reported in Government Executive — Half of American workers have left a job because of their boss",
+  google: "Google re:Work — Coach managers to coach (Project Oxygen)",
+  theeboom: "Theeboom, Beersma & van Vianen (2014). Does coaching work? Journal of Positive Psychology, 9(1)",
+  jones: "Jones, Woods & Guillaume (2016). The effectiveness of workplace coaching. Journal of Occupational and Organizational Psychology, 89(2)",
+  rctMeta: "The effects of executive coaching on behaviors, attitudes, and personal characteristics: a meta-analysis of randomized control trial studies (2023)",
+  campbell: "Schmidt, Rosenberg & Eagle (2019). Trillion Dollar Coach",
+  microsoft: "Microsoft WorkLab — managers and the Model, Coach, Care framework",
+  icf: "International Coaching Federation — 2025 Global Coaching Study",
+};
