@@ -55,6 +55,15 @@ const en = {
     primary: "Book an introductory session",
     secondary: "What is coaching?",
   },
+  perspective: {
+    title: "Sometimes, changing the results means looking from a new angle.",
+    text: "In business, the problem isn’t always not knowing the solution. Sometimes settled interpretations, automatic reactions or recurring patterns limit our choices. Coaching creates room to pause, re-examine what we take for granted, and see new possibilities for action.",
+    items: [
+      ["Seeing beyond first impressions", "Examining assumptions and discovering perspectives we have paid little attention to before."],
+      ["Choosing instead of reacting", "Recognising emotions and behavioural patterns to respond more deliberately, especially in difficult moments."],
+      ["Creating meaningful change", "Bringing the way we think, relate and act into closer alignment with our goals and values."],
+    ],
+  },
   paths: {
     eyebrow: "Two kinds of leaders come to us",
     title: "Where are you today?",
@@ -230,6 +239,15 @@ const fa: Content = {
     text: "Setia به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
     primary: "رزرو جلسه آشنایی",
     secondary: "کوچینگ چیست؟",
+  },
+  perspective: {
+    title: "گاهی برای تغییر نتایج، لازم است از زاویه‌ای تازه نگاه کنیم.",
+    text: "در کسب‌وکار، همیشه مسئله ندانستن راه‌حل نیست. گاهی برداشت‌های تثبیت‌شده، واکنش‌های خودکار یا الگوهای تکرارشونده، انتخاب‌های ما را محدود می‌کنند. کوچینگ فرصتی فراهم می‌کند تا مکث کنیم، آنچه را بدیهی می‌پنداریم دوباره بررسی کنیم و امکان‌های تازه‌ای برای اقدام ببینیم.",
+    items: [
+      ["دیدن فراتر از برداشت‌های اولیه", "بررسی فرضیات و کشف زاویه‌های دیدی که پیش از این کمتر به آن‌ها توجه کرده‌ایم."],
+      ["انتخاب به‌جای واکنش خودکار", "شناخت احساسات و الگوهای رفتاری برای پاسخ‌دادن آگاهانه‌تر، به‌ویژه در موقعیت‌های دشوار."],
+      ["ایجاد تغییر معنادار", "هم‌راستاتر کردن شیوه فکرکردن، ارتباط برقرارکردن و عمل‌کردن با اهداف و ارزش‌ها."],
+    ],
   },
   paths: {
     eyebrow: "دو گروه از رهبران به ما مراجعه می‌کنند",

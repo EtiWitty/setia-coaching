@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Hero } from "./components/Hero";
+import { Perspective } from "./components/Perspective";
 import { Contact, Evidence, Footer, Leaders, Nav, Paths, Privacy, Sources, WhatIsCoaching, WhyLeaders } from "./components/sections";
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
+        <Perspective />
         <Paths onChoose={setInterest} />
         <WhatIsCoaching />
         <WhyLeaders />
