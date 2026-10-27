@@ -38,7 +38,7 @@ export function Hero() {
       title={hero.title}
       text={hero.text}
       primary={{ label: hero.primary, href: "#contact" }}
-      secondary={{ label: hero.secondary, href: "#coaching" }}
+      secondary={{ label: hero.secondary, href: "#perspective" }}
     />
   );
 }

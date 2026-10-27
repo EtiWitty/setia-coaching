@@ -1,13 +1,10 @@
-import { useState } from "react";
-import { Hero } from "./components/Hero";
 import { Audiences } from "./components/Audiences";
+import { Hero } from "./components/Hero";
 import { Perspective } from "./components/Perspective";
 import { Philosophy } from "./components/Philosophy";
-import { Contact, Evidence, Footer, Leaders, Nav, Paths, Privacy, Sources, WhatIsCoaching, WhyLeaders } from "./components/sections";
+import { Footer, Nav } from "./components/sections";
 
 export default function App() {
-  // Choosing a path ("authority" or "team") preselects it in the contact form.
-  const [interest, setInterest] = useState("");
   return (
     <>
       <Nav />
@@ -16,14 +13,6 @@ export default function App() {
         <Perspective />
         <Audiences />
         <Philosophy />
-        <Paths onChoose={setInterest} />
-        <WhatIsCoaching />
-        <WhyLeaders />
-        <Evidence />
-        <Leaders />
-        <Privacy />
-        <Contact interest={interest} setInterest={setInterest} />
-        <Sources />
       </main>
       <Footer />
     </>
