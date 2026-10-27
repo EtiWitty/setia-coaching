@@ -73,6 +73,16 @@ const en = {
       ["Teams and organisations", "To better understand differing perspectives, strengthen constructive conversations and build closer alignment around shared goals."],
     ],
   },
+  philosophy: {
+    title: "Lasting change begins with how we see and how we respond.",
+    text: "At Setia, coaching is a chance to pause, understand more deeply and discover new possibilities. We believe that when we examine our interpretations, get to know our emotions and reactions better, and see the connection between our values, choices and behaviour, we can choose our path more deliberately.",
+    items: [
+      ["Awareness before change", "Recognising the patterns that shape our decisions, reactions and relationships."],
+      ["Openness to new perspectives", "Curiosity about different interpretations, making room to see choices that weren’t visible before."],
+      ["Inner alignment and deliberate action", "Bringing our decisions and behaviour closer to the values and goals that matter to us."],
+    ],
+    closing: "The aim isn’t to become flawless, but to grow our awareness and our capacity to choose in situations where we might once have reacted automatically.",
+  },
   paths: {
     eyebrow: "Two kinds of leaders come to us",
     title: "Where are you today?",
@@ -266,6 +276,16 @@ const fa: Content = {
       ["رهبران و مدیران", "برای شناخت الگوهای رهبری، مواجهه سازنده‌تر با فشار و تعارض، و ایجاد ارتباطاتی مبتنی بر اعتماد و مسئولیت‌پذیری."],
       ["تیم‌ها و سازمان‌ها", "برای درک بهتر تفاوت دیدگاه‌ها، تقویت گفت‌وگوهای سازنده و ایجاد هماهنگی بیشتر در مسیر اهداف مشترک."],
     ],
+  },
+  philosophy: {
+    title: "تغییر پایدار، از شیوه دیدن و مواجهه ما آغاز می‌شود.",
+    text: "در Setia، کوچینگ فرصتی برای مکث، شناخت عمیق‌تر و کشف امکان‌های تازه است. ما باور داریم وقتی برداشت‌های خود را بررسی می‌کنیم، احساسات و واکنش‌هایمان را بهتر می‌شناسیم و ارتباط میان ارزش‌ها، انتخاب‌ها و رفتارهایمان را می‌بینیم، می‌توانیم آگاهانه‌تر مسیر خود را انتخاب کنیم.",
+    items: [
+      ["آگاهی پیش از تغییر", "شناخت الگوهایی که بر تصمیم‌ها، واکنش‌ها و روابط ما اثر می‌گذارند."],
+      ["گشودگی به دیدگاه‌های تازه", "کنجکاوی نسبت به برداشت‌های متفاوت و ایجاد فضایی برای دیدن انتخاب‌هایی که پیش‌تر آشکار نبودند."],
+      ["هماهنگی درونی و اقدام آگاهانه", "نزدیک‌تر کردن تصمیم‌ها و رفتارها به ارزش‌ها و اهدافی که برای ما اهمیت دارند."],
+    ],
+    closing: "هدف، تبدیل‌شدن به فردی بی‌نقص نیست؛ بلکه افزایش آگاهی و ظرفیت انتخاب در موقعیت‌هایی است که پیش‌تر ممکن بود به‌صورت خودکار به آن‌ها واکنش نشان دهیم.",
   },
   paths: {
     eyebrow: "دو گروه از رهبران به ما مراجعه می‌کنند",

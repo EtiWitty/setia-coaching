@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Hero } from "./components/Hero";
 import { Audiences } from "./components/Audiences";
 import { Perspective } from "./components/Perspective";
+import { Philosophy } from "./components/Philosophy";
 import { Contact, Evidence, Footer, Leaders, Nav, Paths, Privacy, Sources, WhatIsCoaching, WhyLeaders } from "./components/sections";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Hero />
         <Perspective />
         <Audiences />
+        <Philosophy />
         <Paths onChoose={setInterest} />
         <WhatIsCoaching />
         <WhyLeaders />

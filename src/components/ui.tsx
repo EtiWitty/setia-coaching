@@ -36,11 +36,12 @@ export function TextLink({ href, children, className = "" }: { href: string; chi
 }
 
 // Section headline with a short introduction underneath.
-export function SectionIntro({ title, text }: { title: string; text: string }) {
+// `inverted` is for dark backgrounds.
+export function SectionIntro({ title, text, inverted = false }: { title: string; text: string; inverted?: boolean }) {
   return (
     <div className="max-w-3xl">
       <h2 className="text-3xl font-extrabold leading-[1.4] tracking-tight text-balance sm:text-4xl sm:leading-[1.35]">{title}</h2>
-      <p className="mt-7 text-lg leading-9 text-muted">{text}</p>
+      <p className={`mt-7 text-lg leading-9 ${inverted ? "text-ink-foreground/75" : "text-muted"}`}>{text}</p>
     </div>
   );
 }
