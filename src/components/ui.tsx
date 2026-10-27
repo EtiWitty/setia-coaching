@@ -34,3 +34,13 @@ export function TextLink({ href, children, className = "" }: { href: string; chi
     </a>
   );
 }
+
+// Section headline with a short introduction underneath.
+export function SectionIntro({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="max-w-3xl">
+      <h2 className="text-3xl font-extrabold leading-[1.4] tracking-tight text-balance sm:text-4xl sm:leading-[1.35]">{title}</h2>
+      <p className="mt-7 text-lg leading-9 text-muted">{text}</p>
+    </div>
+  );
+}

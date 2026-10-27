@@ -64,6 +64,15 @@ const en = {
       ["Creating meaningful change", "Bringing the way we think, relate and act into closer alignment with our goals and values."],
     ],
   },
+  audiences: {
+    title: "Every challenge is a chance to see new possibilities.",
+    text: "Sometimes a change in one decision, one conversation or the way we approach a challenge can open a different path ahead. Setia offers leaders and teams a space to examine issues more deeply and find new ways to move forward.",
+    items: [
+      ["Founders and business owners", "To work through hard decisions, partnership challenges, conflicts of interest and growth opportunities with a clearer, more considered view."],
+      ["Leaders and managers", "To recognise leadership patterns, handle pressure and conflict more constructively, and build relationships grounded in trust and accountability."],
+      ["Teams and organisations", "To better understand differing perspectives, strengthen constructive conversations and build closer alignment around shared goals."],
+    ],
+  },
   paths: {
     eyebrow: "Two kinds of leaders come to us",
     title: "Where are you today?",
@@ -247,6 +256,15 @@ const fa: Content = {
       ["دیدن فراتر از برداشت‌های اولیه", "بررسی فرضیات و کشف زاویه‌های دیدی که پیش از این کمتر به آن‌ها توجه کرده‌ایم."],
       ["انتخاب به‌جای واکنش خودکار", "شناخت احساسات و الگوهای رفتاری برای پاسخ‌دادن آگاهانه‌تر، به‌ویژه در موقعیت‌های دشوار."],
       ["ایجاد تغییر معنادار", "هم‌راستاتر کردن شیوه فکرکردن، ارتباط برقرارکردن و عمل‌کردن با اهداف و ارزش‌ها."],
+    ],
+  },
+  audiences: {
+    title: "هر چالش، فرصتی برای دیدن امکان‌های تازه است.",
+    text: "گاهی تغییر در یک تصمیم، یک گفت‌وگو یا شیوه مواجهه با یک چالش می‌تواند مسیر متفاوتی پیش روی ما بگذارد. Setia فضایی فراهم می‌کند تا رهبران و تیم‌ها مسائل را عمیق‌تر بررسی کنند و راه‌های تازه‌ای برای حرکت به جلو بیابند.",
+    items: [
+      ["بنیان‌گذاران و صاحبان کسب‌وکار", "برای بررسی تصمیم‌های دشوار، چالش‌های شراکت، تعارض منافع و فرصت‌های رشد با نگاهی روشن‌تر و آگاهانه‌تر."],
+      ["رهبران و مدیران", "برای شناخت الگوهای رهبری، مواجهه سازنده‌تر با فشار و تعارض، و ایجاد ارتباطاتی مبتنی بر اعتماد و مسئولیت‌پذیری."],
+      ["تیم‌ها و سازمان‌ها", "برای درک بهتر تفاوت دیدگاه‌ها، تقویت گفت‌وگوهای سازنده و ایجاد هماهنگی بیشتر در مسیر اهداف مشترک."],
     ],
   },
   paths: {

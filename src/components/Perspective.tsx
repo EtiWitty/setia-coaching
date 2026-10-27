@@ -1,6 +1,6 @@
 import { localDigits, useI18n } from "../i18n";
 import type { Lang } from "../content";
-import { Container } from "./ui";
+import { Container, SectionIntro } from "./ui";
 
 type PerspectiveProps = {
   title: string;
@@ -14,10 +14,7 @@ export function PerspectiveLayout({ title, text, items, lang }: PerspectiveProps
   return (
     <section id="perspective" className="bg-surface">
       <Container className="py-24 sm:py-32">
-        <div className="max-w-3xl">
-          <h2 className="text-3xl font-extrabold leading-[1.4] tracking-tight text-balance sm:text-4xl sm:leading-[1.35]">{title}</h2>
-          <p className="mt-7 text-lg leading-9 text-muted">{text}</p>
-        </div>
+        <SectionIntro title={title} text={text} />
 
         <ol className="mt-16 grid gap-10 sm:mt-20 md:grid-cols-3 md:gap-12">
           {items.map(([itemTitle, description], i) => (
