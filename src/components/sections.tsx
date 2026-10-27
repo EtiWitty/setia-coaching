@@ -1,14 +1,11 @@
-import { ArrowLeft, Check, Crown, ExternalLink, Lock, Menu, Users, X } from "lucide-react";
+import { Check, Crown, ExternalLink, Lock, Menu, Users, X } from "lucide-react";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { CONTACT_EMAIL } from "../config";
 import { sourceCitations, sourceLinks, type SourceId } from "../content";
 import { localDigits, useI18n } from "../i18n";
+import { Container, Forward } from "./ui";
 
 /* --------------------------------- Shared -------------------------------- */
-
-const Container = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
-  <div className={`mx-auto w-full max-w-6xl px-4 sm:px-8 ${className}`}>{children}</div>
-);
 
 const Eyebrow = ({ children, light = false }: { children: ReactNode; light?: boolean }) => (
   <div className={`flex items-center gap-3 text-sm font-semibold ${light ? "text-gold" : "text-ink-soft"}`}>
@@ -23,11 +20,6 @@ const SectionHead = ({ eyebrow, title, subtitle, light = false }: { eyebrow: str
     <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-balance sm:text-4xl">{title}</h2>
     {subtitle && <p className={`mt-4 text-lg leading-8 ${light ? "text-ink-foreground/70" : "text-muted"}`}>{subtitle}</p>}
   </div>
-);
-
-// Arrow that points "forward" in both reading directions.
-const Forward = ({ className = "" }: { className?: string }) => (
-  <ArrowLeft className={`size-4 ltr:rotate-180 ${className}`} aria-hidden />
 );
 
 // Small citation link shown under every figure.
@@ -106,65 +98,6 @@ export function Nav() {
         </nav>
       )}
     </header>
-  );
-}
-
-/* ---------------------------------- Hero --------------------------------- */
-
-export function Hero() {
-  const { t } = useI18n();
-  const h = t.hero;
-  const c = h.card;
-  return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,var(--color-gold-soft),transparent_45%)] rtl:bg-[radial-gradient(circle_at_20%_10%,var(--color-gold-soft),transparent_45%)]" />
-      <Container className="relative grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-        <div>
-          <Eyebrow>{h.eyebrow}</Eyebrow>
-          <h1 className="mt-5 text-4xl font-extrabold leading-[1.2] tracking-tight text-balance sm:text-5xl lg:text-6xl">{h.title}</h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{h.subtitle}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#contact"
-              className="inline-flex h-12 items-center gap-2 rounded-md bg-ink px-6 font-medium text-ink-foreground transition hover:-translate-y-0.5 hover:shadow-lg"
-            >
-              {h.primary}
-              <Forward />
-            </a>
-            <a href="#evidence" className="inline-flex h-12 items-center rounded-md border border-ink/20 bg-white/60 px-6 font-medium transition hover:border-ink">
-              {h.secondary}
-            </a>
-          </div>
-          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-            {h.points.map((p) => (
-              <li key={p} className="flex items-center gap-2">
-                <Check className="size-4 text-gold" aria-hidden />
-                {p}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <figure className="rounded-2xl bg-ink p-6 text-ink-foreground shadow-2xl sm:p-8">
-          <figcaption className="text-sm font-semibold leading-6 text-gold">{c.label}</figcaption>
-          <ul className="mt-6 space-y-3">
-            {c.names.map((name) => (
-              <li key={name} className="border-b border-white/10 pb-3 text-2xl font-extrabold sm:text-3xl">
-                {name}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6 flex items-center gap-3">
-            <Crown className="size-5 shrink-0 text-gold" aria-hidden />
-            <span className="text-lg font-bold text-gold">{c.coach}</span>
-          </div>
-          <p className="mt-2 text-sm leading-7 text-ink-foreground/75">{c.body}</p>
-          <div className="mt-4">
-            <SourceLink id={c.source} text={c.sourceText} light />
-          </div>
-        </figure>
-      </Container>
-    </section>
   );
 }
 

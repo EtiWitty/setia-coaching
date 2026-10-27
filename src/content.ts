@@ -50,32 +50,10 @@ const en = {
   },
   sourceLabel: "Source",
   hero: {
-    eyebrow: "Leadership coaching",
-    title: "The world’s most powerful leaders have coaches.",
-    subtitle:
-      "Private leadership coaching for CEOs and leadership teams: practical, confidential and backed by research.",
-    primary: "Request a private briefing",
-    secondary: "See the evidence",
-    points: ["Fully confidential", "One-to-one, on your schedule", "Backed by research"],
-    card: {
-      label: "One coach behind some of the world’s most influential leaders",
-      names: ["Steve Jobs", "Larry Page", "Eric Schmidt"],
-      coach: "Bill Campbell",
-      body: "Coach and trusted advisor to the leaders of Apple and Google. Three former Google leaders tell his story in the book Trillion Dollar Coach.",
-      source: "campbell" as SourceId,
-      sourceText: "Trillion Dollar Coach, 2019",
-    },
-    stat: {
-      label: "Employees who are engaged at work",
-      rows: [
-        ["Iran", 12],
-        ["Middle East & North Africa", 14],
-        ["World average", 20],
-      ] as [string, number][],
-      note: "Engaged means people who bring energy and commitment to their work, not just attendance.",
-      source: "gallupIran" as SourceId,
-      sourceText: "Gallup, State of the Global Workplace 2026",
-    },
+    title: "Business growth starts with the quality of your decisions.",
+    text: "Setia helps leaders, founders and teams think more clearly, decide more deliberately and pursue their growth with greater confidence.",
+    primary: "Book an introductory session",
+    secondary: "What is coaching?",
   },
   paths: {
     eyebrow: "Two kinds of leaders come to us",
@@ -248,32 +226,10 @@ const fa: Content = {
   },
   sourceLabel: "منبع",
   hero: {
-    eyebrow: "کوچینگ رهبری",
-    title: "قدرتمندترین رهبران دنیا کوچ دارند.",
-    subtitle:
-      "کوچینگ رهبری خصوصی برای مدیران ارشد و تیم‌های رهبری؛ کاربردی، محرمانه، بر پایه شواهد علمی.",
-    primary: "درخواست جلسه خصوصی",
-    secondary: "شواهد را ببینید",
-    points: ["کاملاً محرمانه", "جلسات فردی، در زمان‌بندی شما", "بر پایه شواهد علمی"],
-    card: {
-      label: "یک کوچ در کنار برخی از اثرگذارترین رهبران دنیا",
-      names: ["استیو جابز", "لری پیج", "اریک اشمیت"],
-      coach: "بیل کمبل",
-      body: "کوچ و مشاور مورد اعتماد مدیران اپل و گوگل. سه مدیر پیشین گوگل داستان او را در کتاب «کوچ تریلیون‌دلاری» روایت کرده‌اند.",
-      source: "campbell",
-      sourceText: "کتاب کوچ تریلیون‌دلاری، ۲۰۱۹",
-    },
-    stat: {
-      label: "کارکنانی که با انگیزه و تعهد کار می‌کنند",
-      rows: [
-        ["ایران", 12],
-        ["خاورمیانه و شمال آفریقا", 14],
-        ["میانگین جهانی", 20],
-      ],
-      note: "منظور کسانی است که با انرژی و تعهد کار می‌کنند، نه فقط حضور فیزیکی.",
-      source: "gallupIran",
-      sourceText: "گالوپ، گزارش وضعیت محیط کار جهانی ۲۰۲۶",
-    },
+    title: "رشد کسب‌وکار، از کیفیت تصمیم‌های شما آغاز می‌شود.",
+    text: "Setia به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
+    primary: "رزرو جلسه آشنایی",
+    secondary: "کوچینگ چیست؟",
   },
   paths: {
     eyebrow: "دو گروه از رهبران به ما مراجعه می‌کنند",

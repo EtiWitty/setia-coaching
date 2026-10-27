@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Contact, Evidence, Footer, Hero, Leaders, Nav, Paths, Privacy, Sources, WhatIsCoaching, WhyLeaders } from "./components/sections";
+import { Hero } from "./components/Hero";
+import { Contact, Evidence, Footer, Leaders, Nav, Paths, Privacy, Sources, WhatIsCoaching, WhyLeaders } from "./components/sections";
 
 export default function App() {
   // Choosing a path ("authority" or "team") preselects it in the contact form.
