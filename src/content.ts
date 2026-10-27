@@ -51,17 +51,17 @@ const en = {
   sourceLabel: "Source",
   hero: {
     title: "Business growth starts with the quality of your decisions.",
-    text: "Setia helps leaders, founders and teams think more clearly, decide more deliberately and pursue their growth with greater confidence.",
+    text: "Setia helps leaders, founders and teams think more clearly, decide more deliberately and pursue their path of growth with greater confidence.",
     primary: "Book an introductory session",
     secondary: "What is coaching?",
   },
   perspective: {
     title: "Sometimes, changing the results means looking from a new angle.",
-    text: "In business, the problem isn’t always not knowing the solution. Sometimes settled interpretations, automatic reactions or recurring patterns limit our choices. Coaching creates room to pause, re-examine what we take for granted, and see new possibilities for action.",
+    text: "In business, the problem isn’t always not knowing the solution. Sometimes entrenched interpretations, automatic reactions or recurring patterns limit our choices. Coaching creates room to pause, re-examine what we take for granted, and see new possibilities for action.",
     items: [
-      ["Seeing beyond first impressions", "Examining assumptions and discovering perspectives we have paid little attention to before."],
-      ["Choosing instead of reacting", "Recognising emotions and behavioural patterns to respond more deliberately, especially in difficult moments."],
-      ["Creating meaningful change", "Bringing the way we think, relate and act into closer alignment with our goals and values."],
+      ["Seeing beyond initial interpretations", "Examining assumptions and discovering perspectives we have paid little attention to before."],
+      ["Choosing instead of reacting automatically", "Recognising emotions and behavioural patterns to respond more deliberately, especially in difficult moments."],
+      ["Creating meaningful change", "Bringing the way we think, connect with others and act into closer alignment with our goals and values."],
     ],
   },
   audiences: {
@@ -74,11 +74,11 @@ const en = {
     ],
   },
   philosophy: {
-    title: "Lasting change begins with how we see and how we respond.",
+    title: "Lasting change begins with how we see and approach things.",
     text: "At Setia, coaching is a chance to pause, understand more deeply and discover new possibilities. We believe that when we examine our interpretations, get to know our emotions and reactions better, and see the connection between our values, choices and behaviour, we can choose our path more deliberately.",
     items: [
       ["Awareness before change", "Recognising the patterns that shape our decisions, reactions and relationships."],
-      ["Openness to new perspectives", "Curiosity about different interpretations, making room to see choices that weren’t visible before."],
+      ["Openness to new perspectives", "Curiosity about different interpretations and making room to see choices that weren’t visible before."],
       ["Inner alignment and deliberate action", "Bringing our decisions and behaviour closer to the values and goals that matter to us."],
     ],
     closing: "The aim isn’t to become flawless, but to grow our awareness and our capacity to choose in situations where we might once have reacted automatically.",
@@ -255,7 +255,7 @@ const fa: Content = {
   sourceLabel: "منبع",
   hero: {
     title: "رشد کسب‌وکار، از کیفیت تصمیم‌های شما آغاز می‌شود.",
-    text: "Setia به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
+    text: "ستیا به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
     primary: "رزرو جلسه آشنایی",
     secondary: "کوچینگ چیست؟",
   },
@@ -270,7 +270,7 @@ const fa: Content = {
   },
   audiences: {
     title: "هر چالش، فرصتی برای دیدن امکان‌های تازه است.",
-    text: "گاهی تغییر در یک تصمیم، یک گفت‌وگو یا شیوه مواجهه با یک چالش می‌تواند مسیر متفاوتی پیش روی ما بگذارد. Setia فضایی فراهم می‌کند تا رهبران و تیم‌ها مسائل را عمیق‌تر بررسی کنند و راه‌های تازه‌ای برای حرکت به جلو بیابند.",
+    text: "گاهی تغییر در یک تصمیم، یک گفت‌وگو یا شیوه مواجهه با یک چالش می‌تواند مسیر متفاوتی پیش روی ما بگذارد. ستیا فضایی فراهم می‌کند تا رهبران و تیم‌ها مسائل را عمیق‌تر بررسی کنند و راه‌های تازه‌ای برای حرکت به جلو بیابند.",
     items: [
       ["بنیان‌گذاران و صاحبان کسب‌وکار", "برای بررسی تصمیم‌های دشوار، چالش‌های شراکت، تعارض منافع و فرصت‌های رشد با نگاهی روشن‌تر و آگاهانه‌تر."],
       ["رهبران و مدیران", "برای شناخت الگوهای رهبری، مواجهه سازنده‌تر با فشار و تعارض، و ایجاد ارتباطاتی مبتنی بر اعتماد و مسئولیت‌پذیری."],
@@ -279,7 +279,7 @@ const fa: Content = {
   },
   philosophy: {
     title: "تغییر پایدار، از شیوه دیدن و مواجهه ما آغاز می‌شود.",
-    text: "در Setia، کوچینگ فرصتی برای مکث، شناخت عمیق‌تر و کشف امکان‌های تازه است. ما باور داریم وقتی برداشت‌های خود را بررسی می‌کنیم، احساسات و واکنش‌هایمان را بهتر می‌شناسیم و ارتباط میان ارزش‌ها، انتخاب‌ها و رفتارهایمان را می‌بینیم، می‌توانیم آگاهانه‌تر مسیر خود را انتخاب کنیم.",
+    text: "در ستیا، کوچینگ فرصتی برای مکث، شناخت عمیق‌تر و کشف امکان‌های تازه است. ما باور داریم وقتی برداشت‌های خود را بررسی می‌کنیم، احساسات و واکنش‌هایمان را بهتر می‌شناسیم و ارتباط میان ارزش‌ها، انتخاب‌ها و رفتارهایمان را می‌بینیم، می‌توانیم آگاهانه‌تر مسیر خود را انتخاب کنیم.",
     items: [
       ["آگاهی پیش از تغییر", "شناخت الگوهایی که بر تصمیم‌ها، واکنش‌ها و روابط ما اثر می‌گذارند."],
       ["گشودگی به دیدگاه‌های تازه", "کنجکاوی نسبت به برداشت‌های متفاوت و ایجاد فضایی برای دیدن انتخاب‌هایی که پیش‌تر آشکار نبودند."],
