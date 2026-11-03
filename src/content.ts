@@ -72,7 +72,7 @@ const en = {
   perspective: {
     eyebrow: "What is coaching?",
     title: "Choosing coaching for your leaders or your team?",
-    text: "You may not sit in the sessions yourself, but choosing well depends on you. This short guide explains what coaching is, what it gives your people and your organisation, and what to ask before you begin.",
+    text: "You may not sit in the sessions yourself, but choosing well depends on you. This short guide explains what coaching is and what it gives your people and your organisation.",
     definition: {
       label: "In one sentence",
       text: "Coaching is a regular, confidential conversation that helps people see their situation more clearly, recognise their patterns of reaction, and choose and act more deliberately.",
@@ -92,28 +92,6 @@ const en = {
         ["More considered decisions", "Leaders who pause before reacting and weigh more options."],
         ["Progress you can follow", "Goals agreed at the start and reviewed along the way, while the sessions themselves stay confidential."],
       ],
-    },
-    isNot: {
-      title: "What coaching is not",
-      items: [
-        ["A training course", "It isn’t the same content for everyone; it works on each person’s real situation."],
-        ["Consulting", "A coach doesn’t hand over ready-made solutions; they strengthen people’s own judgement."],
-        ["Therapy", "It focuses on work, relationships and the steps ahead."],
-        ["A performance review", "Sessions are confidential and are not a tool for judging or reporting on people."],
-      ],
-    },
-    checklist: {
-      title: "Before choosing a coach, ask these questions",
-      items: [
-        "What is coaching for, for this person or team, and what change do we hope to see?",
-        "Who takes part in setting the goals?",
-        "What stays confidential, and what is shared with the organisation?",
-        "How and when is progress reviewed?",
-        "Is the person or team ready and willing to take part?",
-      ],
-      share: "Send this guide to a colleague or manager",
-      copied: "Link copied",
-      cta: "Talk to us about your team’s needs",
     },
   },
   philosophy: {
@@ -272,7 +250,7 @@ const fa: Content = {
   perspective: {
     eyebrow: "کوچینگ چیست؟",
     title: "کوچینگ را برای مدیران یا تیم‌تان در نظر دارید؟",
-    text: "شاید خودتان در جلسات کوچینگ شرکت نکنید، اما انتخاب درست به شما بستگی دارد. این راهنمای کوتاه کمک می‌کند بدانید کوچینگ چیست، چه چیزی به افراد و سازمان شما می‌دهد و پیش از شروع چه بپرسید.",
+    text: "شاید خودتان در جلسات کوچینگ شرکت نکنید، اما انتخاب درست به شما بستگی دارد. این راهنمای کوتاه کمک می‌کند بدانید کوچینگ چیست و چه چیزی به افراد و سازمان شما می‌دهد.",
     definition: {
       label: "در یک جمله",
       text: "کوچینگ گفت‌وگویی منظم و محرمانه است که به افراد کمک می‌کند موقعیت خود را روشن‌تر ببینند، الگوهای واکنش خود را بشناسند و آگاهانه‌تر انتخاب و عمل کنند.",
@@ -292,28 +270,6 @@ const fa: Content = {
         ["تصمیم‌های سنجیده‌تر", "مدیرانی که پیش از واکنش مکث می‌کنند و گزینه‌های بیشتری را در نظر می‌گیرند."],
         ["پیشرفت قابل‌پیگیری", "اهدافی که در ابتدا توافق و در طول مسیر مرور می‌شوند؛ در حالی که جلسات محرمانه می‌مانند."],
       ],
-    },
-    isNot: {
-      title: "کوچینگ چه چیزی نیست",
-      items: [
-        ["دوره آموزشی", "محتوای یکسان برای همه نیست؛ روی موقعیت واقعی هر فرد کار می‌کند."],
-        ["مشاوره", "کوچ راه‌حل آماده نمی‌دهد؛ توان قضاوت و تصمیم‌گیری افراد را تقویت می‌کند."],
-        ["روان‌درمانی", "بر کار، روابط و قدم‌های پیش رو تمرکز دارد."],
-        ["ارزیابی عملکرد", "جلسات محرمانه‌اند و ابزاری برای قضاوت یا گزارش‌دهی درباره افراد نیستند."],
-      ],
-    },
-    checklist: {
-      title: "پیش از انتخاب کوچ، این پرسش‌ها را مطرح کنید",
-      items: [
-        "هدف کوچینگ برای این فرد یا تیم چیست و چه تغییری را انتظار داریم؟",
-        "چه کسانی در تعیین اهداف مشارکت دارند؟",
-        "چه چیزی محرمانه می‌ماند و چه چیزی با سازمان در میان گذاشته می‌شود؟",
-        "پیشرفت چگونه و در چه زمانی مرور می‌شود؟",
-        "آیا فرد یا تیم برای شرکت در کوچینگ آمادگی و تمایل دارد؟",
-      ],
-      share: "ارسال این راهنما برای همکار یا مدیر",
-      copied: "پیوند کپی شد",
-      cta: "گفت‌وگو درباره نیاز تیم‌تان",
     },
   },
   philosophy: {
