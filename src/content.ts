@@ -3,6 +3,17 @@
 
 export type Lang = "fa" | "en";
 
+export type Link = { label: string; href: string };
+
+// One banner slide. `image` is optional: without it the slide shows the Setia illustration.
+export type HeroSlide = {
+  title: string;
+  text: string;
+  primary: Link;
+  secondary?: Link;
+  image?: { src: string; alt: string };
+};
+
 const en = {
   meta: {
     title: "Setia | Leadership Coaching",
@@ -14,10 +25,16 @@ const en = {
     cta: "Request a private briefing",
   },
   hero: {
-    title: "Business growth starts with the quality of your decisions.",
-    text: "Setia helps leaders, founders and teams think more clearly, decide more deliberately and pursue their path of growth with greater confidence.",
-    primary: "Book an introductory session",
-    secondary: "What is coaching?",
+    // Banner slides. Add more objects to this list (and to the Persian one) to add slides.
+    slides: [
+      {
+        title: "Business growth starts with the quality of your decisions.",
+        text: "Setia helps leaders, founders and teams think more clearly, decide more deliberately and pursue their path of growth with greater confidence.",
+        primary: { label: "Book an introductory session", href: "#contact" },
+        secondary: { label: "What is coaching?", href: "#perspective" },
+      },
+    ] as HeroSlide[],
+    controls: { previous: "Previous slide", next: "Next slide", slide: "Slide" },
   },
   perspective: {
     title: "Sometimes, changing the results means looking from a new angle.",
@@ -66,10 +83,15 @@ const fa: Content = {
     cta: "درخواست جلسه خصوصی",
   },
   hero: {
-    title: "رشد کسب‌وکار، از کیفیت تصمیم‌های شما آغاز می‌شود.",
-    text: "ستیا به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
-    primary: "رزرو جلسه آشنایی",
-    secondary: "کوچینگ چیست؟",
+    slides: [
+      {
+        title: "رشد کسب‌وکار، از کیفیت تصمیم‌های شما آغاز می‌شود.",
+        text: "ستیا به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
+        primary: { label: "رزرو جلسه آشنایی", href: "#contact" },
+        secondary: { label: "کوچینگ چیست؟", href: "#perspective" },
+      },
+    ],
+    controls: { previous: "اسلاید قبلی", next: "اسلاید بعدی", slide: "اسلاید" },
   },
   perspective: {
     title: "گاهی برای تغییر نتایج، لازم است از زاویه‌ای تازه نگاه کنیم.",
