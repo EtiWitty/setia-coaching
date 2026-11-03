@@ -93,7 +93,7 @@ const fa: Content = {
     langSwitch: "English",
     langSwitchLabel: "تغییر زبان به انگلیسی",
   },
-  brand: { name: "ستیا", tagline: "LEADERSHIP COACHING" },
+  brand: { name: "ستیا", tagline: "کوچینگ رهبری" },
   nav: {
     cta: "درخواست جلسه خصوصی",
   },

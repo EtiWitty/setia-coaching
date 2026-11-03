@@ -11,7 +11,9 @@ export function Nav() {
       <Container className="flex h-16 items-center justify-between gap-4 lg:h-20">
         <a href="#top" className="flex min-w-0 items-baseline gap-2.5">
           <span className="text-xl font-extrabold tracking-tight">{t.brand.name}</span>
-          <span className="hidden font-[Inter] text-[10px] tracking-[0.22em] text-muted sm:block">{t.brand.tagline}</span>
+          <span className={`hidden text-muted sm:block ${lang === "fa" ? "text-xs" : "font-[Inter] text-[10px] tracking-[0.22em]"}`}>
+            {t.brand.tagline}
+          </span>
         </a>
 
         <div className="flex items-center gap-2">
