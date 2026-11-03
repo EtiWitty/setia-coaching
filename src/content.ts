@@ -37,6 +37,7 @@ const en = {
         text: "Setia helps leaders, founders and teams think more clearly, decide more deliberately and pursue their path of growth with greater confidence.",
         primary: { label: "Book an introductory session", href: "#contact" },
         secondary: { label: "What is coaching?", href: "#perspective" },
+        image: { src: "./images/hero-growth.png", alt: "Illustration of people climbing steps toward a rising sun" },
       },
       {
         eyebrow: "Every challenge is a chance to see new possibilities.",
@@ -103,6 +104,7 @@ const fa: Content = {
         text: "ستیا به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
         primary: { label: "رزرو جلسه آشنایی", href: "#contact" },
         secondary: { label: "کوچینگ چیست؟", href: "#perspective" },
+        image: { src: "./images/hero-growth.png", alt: "تصویری از افرادی که پله‌ها را به سوی خورشید بالا می‌روند" },
       },
       {
         eyebrow: "هر چالش، فرصتی برای دیدن امکان‌های تازه است.",

@@ -62,7 +62,7 @@ function AudienceIllustration({ count, accent }: NonNullable<HeroSlide["visual"]
 
 function SlideVisual({ slide }: { slide: HeroSlide }) {
   if (slide.image) {
-    return <img src={slide.image.src} alt={slide.image.alt} className="aspect-square w-full rounded-3xl object-cover" />;
+    return <img src={slide.image.src} alt={slide.image.alt} className="aspect-video w-full rounded-3xl object-cover" />;
   }
   if (slide.visual) return <AudienceIllustration {...slide.visual} />;
   return <HeroIllustration />;
@@ -94,12 +94,12 @@ function SlideText({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" 
   );
 }
 
-// Slide text beside its visual.
+// Slide text beside its visual. Wide photos get an equal share of the row.
 function Slide({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" }) {
   return (
-    <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+    <div className={`grid items-center gap-12 lg:gap-16 ${slide.image ? "lg:grid-cols-2" : "lg:grid-cols-[1.2fr_0.8fr]"}`}>
       <SlideText slide={slide} heading={heading} />
-      <div className="mx-auto hidden w-full max-w-md lg:block">
+      <div className={`mx-auto hidden w-full lg:block ${slide.image ? "" : "max-w-md"}`}>
         <SlideVisual slide={slide} />
       </div>
     </div>
