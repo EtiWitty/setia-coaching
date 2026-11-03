@@ -61,11 +61,20 @@ export function AudienceIllustration({ count, accent }: NonNullable<HeroSlide["v
 }
 
 function SlideVisual({ slide }: { slide: HeroSlide }) {
-  if (slide.image) {
-    return <img src={slide.image.src} alt={slide.image.alt} className="aspect-video w-full rounded-3xl object-cover" />;
-  }
   if (slide.visual) return <AudienceIllustration {...slide.visual} />;
   return <HeroIllustration />;
+}
+
+// A slide's image fills the whole banner behind the text. In Persian it is mirrored so
+// the busy side of the picture sits opposite the right-aligned text; a fade from the
+// page colour on the text side keeps the copy readable.
+function SlideBackground({ image, active }: { image: NonNullable<HeroSlide["image"]>; active: boolean }) {
+  return (
+    <div className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${active ? "opacity-100" : "opacity-0"}`} aria-hidden={!active || undefined}>
+      <img src={image.src} alt={image.alt} className="h-full w-full object-cover object-bottom rtl:-scale-x-100 lg:object-center" />
+      <div className="absolute inset-0 bg-linear-to-b from-background via-background/90 to-background/30 lg:via-background/70 lg:to-transparent lg:ltr:bg-linear-to-r lg:rtl:bg-linear-to-l" />
+    </div>
+  );
 }
 
 function SlideText({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" }) {
@@ -94,12 +103,13 @@ function SlideText({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" 
   );
 }
 
-// Slide text beside its visual. Wide photos get an equal share of the row.
+// Slide text beside its visual; a slide with an image shows it as the banner background instead.
 function Slide({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" }) {
+  if (slide.image) return <SlideText slide={slide} heading={heading} />;
   return (
-    <div className={`grid items-center gap-12 lg:gap-16 ${slide.image ? "lg:grid-cols-2" : "lg:grid-cols-[1.2fr_0.8fr]"}`}>
+    <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
       <SlideText slide={slide} heading={heading} />
-      <div className={`mx-auto hidden w-full lg:block ${slide.image ? "" : "max-w-md"}`}>
+      <div className="mx-auto hidden w-full max-w-md lg:block">
         <SlideVisual slide={slide} />
       </div>
     </div>
@@ -135,14 +145,15 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
   return (
     <section
       id="top"
-      className={`overflow-hidden border-b border-line/70 ${count > 1 ? "touch-pan-y" : ""}`}
+      className={`relative overflow-hidden border-b border-line/70 ${count > 1 ? "touch-pan-y" : ""}`}
       aria-roledescription={count > 1 ? "carousel" : undefined}
       onKeyDown={count > 1 ? onKeyDown : undefined}
       onPointerDown={count > 1 ? (e) => (swipeStart.current = e.clientX) : undefined}
       onPointerUp={count > 1 ? onPointerUp : undefined}
       onPointerCancel={() => (swipeStart.current = null)}
     >
-      <Container className="py-24 sm:py-32 lg:py-36">
+      {slides.map((slide, i) => slide.image && <SlideBackground key={i} image={slide.image} active={i === index} />)}
+      <Container className="relative py-24 sm:py-32 lg:py-36">
         {/* All slides share one grid cell, so the banner keeps the height of the tallest
             slide and the page below doesn't jump when slides change. */}
         <div className="grid items-center">
