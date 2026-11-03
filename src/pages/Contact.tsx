@@ -34,7 +34,7 @@ function ContactForm() {
   };
 
   const input =
-    "mt-2 h-12 w-full rounded-md border border-line bg-white px-4 outline-none transition focus:border-ink focus:ring-2 focus:ring-gold/40";
+    "mt-2 h-12 w-full rounded-md border border-line bg-white px-4 text-base outline-none transition focus:border-ink focus:ring-2 focus:ring-gold/40";
 
   return (
     <form onSubmit={submit} className="grid gap-5 rounded-2xl border border-line bg-white p-6 sm:grid-cols-2 sm:p-8">

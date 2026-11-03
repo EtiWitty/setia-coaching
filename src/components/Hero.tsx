@@ -135,11 +135,12 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
   return (
     <section
       id="top"
-      className="overflow-hidden border-b border-line/70"
+      className={`overflow-hidden border-b border-line/70 ${count > 1 ? "touch-pan-y" : ""}`}
       aria-roledescription={count > 1 ? "carousel" : undefined}
       onKeyDown={count > 1 ? onKeyDown : undefined}
       onPointerDown={count > 1 ? (e) => (swipeStart.current = e.clientX) : undefined}
       onPointerUp={count > 1 ? onPointerUp : undefined}
+      onPointerCancel={() => (swipeStart.current = null)}
     >
       <Container className="py-24 sm:py-32 lg:py-36">
         {/* All slides share one grid cell, so the banner keeps the height of the tallest
@@ -164,7 +165,7 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
         </div>
 
         {count > 1 && (
-          <div className="mt-14 flex items-center gap-5">
+          <div className="mt-14 flex items-center gap-3">
             <button
               onClick={() => go(-1)}
               aria-label={controls.previous}
@@ -172,15 +173,20 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
             >
               <ChevronLeft className="size-5 rtl:rotate-180" aria-hidden />
             </button>
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center">
               {slides.map((_, i) => (
+                // The visible bar is small; the button around it is a full finger-sized target.
                 <button
                   key={i}
                   onClick={() => setIndex(i)}
                   aria-label={`${controls.slide} ${position(i)}`}
                   aria-current={i === index}
-                  className={`h-1.5 rounded-full transition-all ${i === index ? "w-8 bg-ink" : "w-3 bg-ink/20 hover:bg-ink/40"}`}
-                />
+                  className="group grid h-11 min-w-7 place-items-center px-1"
+                >
+                  <span
+                    className={`block h-1.5 rounded-full transition-all ${i === index ? "w-8 bg-ink" : "w-3 bg-ink/20 group-hover:bg-ink/40"}`}
+                  />
+                </button>
               ))}
             </div>
             <button

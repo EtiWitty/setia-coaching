@@ -27,7 +27,7 @@ function PostCard({ post }: { post: Post }) {
         <a
           href={href}
           {...(isArticle ? {} : { target: "_blank", rel: "noopener noreferrer" })}
-          className="mt-6 self-start font-medium underline decoration-gold decoration-2 underline-offset-8 hover:decoration-ink"
+          className="mt-4 inline-flex min-h-11 items-center self-start font-medium underline decoration-gold decoration-2 underline-offset-8 hover:decoration-ink"
         >
           {action}
         </a>

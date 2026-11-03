@@ -28,7 +28,7 @@ export function TextLink({ href, children, className = "" }: { href: string; chi
   return (
     <a
       href={href}
-      className={`inline-flex items-center text-base font-medium text-ink underline decoration-gold decoration-2 underline-offset-[10px] transition-colors hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold ${className}`}
+      className={`inline-flex min-h-11 items-center text-base font-medium text-ink underline decoration-gold decoration-2 underline-offset-[10px] transition-colors hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold ${className}`}
     >
       {children}
     </a>

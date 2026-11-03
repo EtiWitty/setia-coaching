@@ -19,7 +19,7 @@ export function Nav({ route }: { route: Route }) {
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-background/85 backdrop-blur-xl">
       <Container className="flex h-16 items-center justify-between gap-4 lg:h-20">
-        <a href={pageHref("home")} className="flex min-w-0 items-baseline gap-2.5">
+        <a href={pageHref("home")} className="flex min-h-11 min-w-0 items-center gap-2.5">
           <span className="text-xl font-extrabold tracking-tight">{t.brand.name}</span>
           <span className={`hidden text-muted sm:block ${lang === "fa" ? "text-xs" : "font-[Inter] text-[10px] tracking-[0.22em]"}`}>
             {t.brand.tagline}
@@ -95,9 +95,9 @@ export function Footer() {
           <span className="text-base font-extrabold text-ink">{t.brand.name}</span>
           <span className="ms-3">{t.footer.about}</span>
         </div>
-        <nav className="flex flex-wrap gap-x-6 gap-y-2">
+        <nav className="flex flex-wrap gap-x-6">
           {t.nav.links.map(([page, label]) => (
-            <a key={page} href={pageHref(page)} className="hover:text-ink">
+            <a key={page} href={pageHref(page)} className="inline-flex min-h-11 items-center hover:text-ink">
               {label}
             </a>
           ))}
