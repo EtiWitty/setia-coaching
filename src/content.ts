@@ -5,13 +5,15 @@ export type Lang = "fa" | "en";
 
 export type Link = { label: string; href: string };
 
-// One banner slide. `image` is optional: without it the slide shows the Setia illustration.
+// One banner slide. A slide with `items` shows them as audience blocks; otherwise it
+// shows `image` if given, or the Setia illustration.
 export type HeroSlide = {
   title: string;
   text: string;
-  primary: Link;
+  primary?: Link;
   secondary?: Link;
   image?: { src: string; alt: string };
+  items?: string[][]; // [title, description] pairs
 };
 
 const en = {
@@ -33,6 +35,15 @@ const en = {
         primary: { label: "Book an introductory session", href: "#contact" },
         secondary: { label: "What is coaching?", href: "#perspective" },
       },
+      {
+        title: "Every challenge is a chance to see new possibilities.",
+        text: "Sometimes a change in one decision, one conversation or the way we approach a challenge can open a different path ahead. Setia offers leaders and teams a space to examine issues more deeply and find new ways to move forward.",
+        items: [
+          ["Founders and business owners", "To work through hard decisions, partnership challenges, conflicts of interest and growth opportunities with a clearer, more considered view."],
+          ["Leaders and managers", "To recognise leadership patterns, handle pressure and conflict more constructively, and build relationships grounded in trust and accountability."],
+          ["Teams and organisations", "To better understand differing perspectives, strengthen constructive conversations and build closer alignment around shared goals."],
+        ],
+      },
     ] as HeroSlide[],
     controls: { previous: "Previous slide", next: "Next slide", slide: "Slide" },
   },
@@ -43,15 +54,6 @@ const en = {
       ["Seeing beyond initial interpretations", "Examining assumptions and discovering perspectives we have paid little attention to before."],
       ["Choosing instead of reacting automatically", "Recognising emotions and behavioural patterns to respond more deliberately, especially in difficult moments."],
       ["Creating meaningful change", "Bringing the way we think, connect with others and act into closer alignment with our goals and values."],
-    ],
-  },
-  audiences: {
-    title: "Every challenge is a chance to see new possibilities.",
-    text: "Sometimes a change in one decision, one conversation or the way we approach a challenge can open a different path ahead. Setia offers leaders and teams a space to examine issues more deeply and find new ways to move forward.",
-    items: [
-      ["Founders and business owners", "To work through hard decisions, partnership challenges, conflicts of interest and growth opportunities with a clearer, more considered view."],
-      ["Leaders and managers", "To recognise leadership patterns, handle pressure and conflict more constructively, and build relationships grounded in trust and accountability."],
-      ["Teams and organisations", "To better understand differing perspectives, strengthen constructive conversations and build closer alignment around shared goals."],
     ],
   },
   philosophy: {
@@ -90,6 +92,15 @@ const fa: Content = {
         primary: { label: "رزرو جلسه آشنایی", href: "#contact" },
         secondary: { label: "کوچینگ چیست؟", href: "#perspective" },
       },
+      {
+        title: "هر چالش، فرصتی برای دیدن امکان‌های تازه است.",
+        text: "گاهی تغییر در یک تصمیم، یک گفت‌وگو یا شیوه مواجهه با یک چالش می‌تواند مسیر متفاوتی پیش روی ما بگذارد. ستیا فضایی فراهم می‌کند تا رهبران و تیم‌ها مسائل را عمیق‌تر بررسی کنند و راه‌های تازه‌ای برای حرکت به جلو بیابند.",
+        items: [
+          ["بنیان‌گذاران و صاحبان کسب‌وکار", "برای بررسی تصمیم‌های دشوار، چالش‌های شراکت، تعارض منافع و فرصت‌های رشد با نگاهی روشن‌تر و آگاهانه‌تر."],
+          ["رهبران و مدیران", "برای شناخت الگوهای رهبری، مواجهه سازنده‌تر با فشار و تعارض، و ایجاد ارتباطاتی مبتنی بر اعتماد و مسئولیت‌پذیری."],
+          ["تیم‌ها و سازمان‌ها", "برای درک بهتر تفاوت دیدگاه‌ها، تقویت گفت‌وگوهای سازنده و ایجاد هماهنگی بیشتر در مسیر اهداف مشترک."],
+        ],
+      },
     ],
     controls: { previous: "اسلاید قبلی", next: "اسلاید بعدی", slide: "اسلاید" },
   },
@@ -100,15 +111,6 @@ const fa: Content = {
       ["دیدن فراتر از برداشت‌های اولیه", "بررسی فرضیات و کشف زاویه‌های دیدی که پیش از این کمتر به آن‌ها توجه کرده‌ایم."],
       ["انتخاب به‌جای واکنش خودکار", "شناخت احساسات و الگوهای رفتاری برای پاسخ‌دادن آگاهانه‌تر، به‌ویژه در موقعیت‌های دشوار."],
       ["ایجاد تغییر معنادار", "هم‌راستاتر کردن شیوه فکرکردن، ارتباط برقرارکردن و عمل‌کردن با اهداف و ارزش‌ها."],
-    ],
-  },
-  audiences: {
-    title: "هر چالش، فرصتی برای دیدن امکان‌های تازه است.",
-    text: "گاهی تغییر در یک تصمیم، یک گفت‌وگو یا شیوه مواجهه با یک چالش می‌تواند مسیر متفاوتی پیش روی ما بگذارد. ستیا فضایی فراهم می‌کند تا رهبران و تیم‌ها مسائل را عمیق‌تر بررسی کنند و راه‌های تازه‌ای برای حرکت به جلو بیابند.",
-    items: [
-      ["بنیان‌گذاران و صاحبان کسب‌وکار", "برای بررسی تصمیم‌های دشوار، چالش‌های شراکت، تعارض منافع و فرصت‌های رشد با نگاهی روشن‌تر و آگاهانه‌تر."],
-      ["رهبران و مدیران", "برای شناخت الگوهای رهبری، مواجهه سازنده‌تر با فشار و تعارض، و ایجاد ارتباطاتی مبتنی بر اعتماد و مسئولیت‌پذیری."],
-      ["تیم‌ها و سازمان‌ها", "برای درک بهتر تفاوت دیدگاه‌ها، تقویت گفت‌وگوهای سازنده و ایجاد هماهنگی بیشتر در مسیر اهداف مشترک."],
     ],
   },
   philosophy: {

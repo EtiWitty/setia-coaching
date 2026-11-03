@@ -1,4 +1,3 @@
-import { Audiences } from "./components/Audiences";
 import { Hero } from "./components/Hero";
 import { Perspective } from "./components/Perspective";
 import { Philosophy } from "./components/Philosophy";
@@ -11,7 +10,6 @@ export default function App() {
       <main>
         <Hero />
         <Perspective />
-        <Audiences />
         <Philosophy />
       </main>
       <Footer />

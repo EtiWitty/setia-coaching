@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import type { HeroSlide } from "../content";
 import { localDigits, useI18n } from "../i18n";
+import { AudienceCards } from "./AudienceCards";
 import { ButtonLink, Container, TextLink } from "./ui";
 
 type Controls = { previous: string; next: string; slide: string };
@@ -31,21 +32,38 @@ function SlideVisual({ image }: { image?: HeroSlide["image"] }) {
   return <HeroIllustration />;
 }
 
-function Slide({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" }) {
+function SlideText({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" }) {
   const Heading = heading;
   return (
-    <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
-      <div className="max-w-3xl">
-        <span className="block h-0.5 w-12 bg-gold" aria-hidden />
-        <Heading className="mt-8 text-[2.25rem] font-extrabold leading-[1.35] tracking-tight text-balance sm:text-5xl sm:leading-[1.3] lg:text-[3.5rem]">
-          {slide.title}
-        </Heading>
-        <p className="mt-7 max-w-2xl text-lg leading-9 text-muted sm:text-xl sm:leading-10">{slide.text}</p>
+    <div className="max-w-3xl">
+      <span className="block h-0.5 w-12 bg-gold" aria-hidden />
+      <Heading className="mt-8 text-[2.25rem] font-extrabold leading-[1.35] tracking-tight text-balance sm:text-5xl sm:leading-[1.3] lg:text-[3.5rem]">
+        {slide.title}
+      </Heading>
+      <p className="mt-7 max-w-2xl text-lg leading-9 text-muted sm:text-xl sm:leading-10">{slide.text}</p>
+      {(slide.primary || slide.secondary) && (
         <div className="mt-11 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-9">
-          <ButtonLink href={slide.primary.href}>{slide.primary.label}</ButtonLink>
+          {slide.primary && <ButtonLink href={slide.primary.href}>{slide.primary.label}</ButtonLink>}
           {slide.secondary && <TextLink href={slide.secondary.href}>{slide.secondary.label}</TextLink>}
         </div>
+      )}
+    </div>
+  );
+}
+
+// Text beside a visual, or, for a slide with items, text above a row of audience blocks.
+function Slide({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" }) {
+  if (slide.items) {
+    return (
+      <div>
+        <SlideText slide={slide} heading={heading} />
+        <AudienceCards items={slide.items} className="mt-12 sm:mt-14" />
       </div>
+    );
+  }
+  return (
+    <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+      <SlideText slide={slide} heading={heading} />
       <div className="mx-auto hidden w-full max-w-md lg:block">
         <SlideVisual image={slide.image} />
       </div>
@@ -89,14 +107,25 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
       onPointerUp={count > 1 ? onPointerUp : undefined}
     >
       <Container className="py-24 sm:py-32 lg:py-36">
-        <div
-          key={index}
-          className={count > 1 ? "slide-in" : undefined}
-          role={count > 1 ? "group" : undefined}
-          aria-roledescription={count > 1 ? "slide" : undefined}
-          aria-label={count > 1 ? position(index) : undefined}
-        >
-          <Slide slide={slides[index]} heading={index === 0 ? "h1" : "h2"} />
+        {/* All slides share one grid cell, so on large screens the banner keeps the height
+            of the tallest slide. On small screens only the current slide takes up space. */}
+        <div className="grid items-center">
+          {slides.map((slide, i) => {
+            const active = i === index;
+            return (
+              <div
+                key={i}
+                className={`[grid-area:1/1] ${active ? (count > 1 ? "slide-in" : "") : "hidden lg:invisible lg:block"}`}
+                role={count > 1 ? "group" : undefined}
+                aria-roledescription={count > 1 ? "slide" : undefined}
+                aria-label={count > 1 ? position(i) : undefined}
+                aria-hidden={!active || undefined}
+                inert={!active || undefined}
+              >
+                <Slide slide={slide} heading={i === 0 ? "h1" : "h2"} />
+              </div>
+            );
+          })}
         </div>
 
         {count > 1 && (
