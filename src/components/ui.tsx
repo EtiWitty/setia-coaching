@@ -45,3 +45,18 @@ export function SectionIntro({ title, text, inverted = false }: { title: string;
     </div>
   );
 }
+
+// Top of an inner page: gold rule, page title and a short introduction.
+export function PageHeader({ title, intro }: { title: string; intro: string }) {
+  return (
+    <section className="border-b border-line/70">
+      <Container className="py-20 sm:py-28">
+        <div className="max-w-3xl">
+          <span className="block h-0.5 w-12 bg-gold" aria-hidden />
+          <h1 className="mt-8 text-4xl font-extrabold leading-[1.35] tracking-tight text-balance sm:text-5xl sm:leading-[1.3]">{title}</h1>
+          <p className="mt-7 text-lg leading-9 text-muted sm:text-xl sm:leading-10">{intro}</p>
+        </div>
+      </Container>
+    </section>
+  );
+}

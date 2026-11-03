@@ -46,7 +46,7 @@ const audienceLayouts: Record<1 | 2 | 3, [number, number][]> = {
 };
 
 // Audience mark: 1–3 overlapping circles in the audience's accent colour.
-function AudienceIllustration({ count, accent }: NonNullable<HeroSlide["visual"]>) {
+export function AudienceIllustration({ count, accent }: NonNullable<HeroSlide["visual"]>) {
   const c = accentClasses[accent];
   const r = count === 1 ? 110 : 84;
   return (

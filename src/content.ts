@@ -1,6 +1,8 @@
 // All site copy lives here. Each language has the same shape, so editing a
 // section means updating both `en` and `fa` below.
 
+import type { Page } from "./router";
+
 export type Lang = "fa" | "en";
 
 export type Link = { label: string; href: string };
@@ -27,7 +29,14 @@ const en = {
   },
   brand: { name: "Setia", tagline: "LEADERSHIP COACHING" },
   nav: {
-    cta: "Request a private briefing",
+    links: [
+      ["about", "About us"],
+      ["services", "Services"],
+      ["blog", "Blog & media"],
+      ["contact", "Contact us"],
+    ] as [Page, string][],
+    cta: "Book an introductory session",
+    menu: "Menu",
   },
   hero: {
     // Banner slides. Add more objects to this list (and to the Persian one) to add slides.
@@ -35,7 +44,7 @@ const en = {
       {
         title: "Business growth starts with the quality of your decisions.",
         text: "Setia helps leaders, founders and teams think more clearly, decide more deliberately and pursue their path of growth with greater confidence.",
-        primary: { label: "Book an introductory session", href: "#contact" },
+        primary: { label: "Book an introductory session", href: "#/contact" },
         secondary: { label: "What is coaching?", href: "#perspective" },
         image: { src: "./images/hero-growth.png", alt: "Illustration of people climbing steps toward a rising sun" },
       },
@@ -79,8 +88,96 @@ const en = {
     ],
     closing: "The aim isn’t to become flawless, but to grow our awareness and our capacity to choose in situations where we might once have reacted automatically.",
   },
+  cta: {
+    title: "Let’s start the conversation.",
+    text: "An introductory session is a chance to talk about where you are and whether coaching is the right next step for you or your team.",
+    button: "Book an introductory session",
+  },
+  about: {
+    title: "About Setia",
+    intro: "Setia is a space for leaders, founders and teams to pause, see more deeply and choose more deliberately.",
+    who: {
+      title: "Who we are",
+      text: "Setia was founded on the belief that the quality of a business’s growth depends on the quality of thinking, conversation and decision-making of the people who lead it. We work alongside leaders and teams so they can better understand their own interpretations and patterns and find new ways to move forward.",
+    },
+    approach: {
+      title: "Our approach",
+      text: "We don’t see coaching only as a tool for reaching performance goals. Lasting change happens when the way we see, feel and react comes into view as well. In Setia’s sessions, rather than offering ready-made answers, we create space to ask, examine and discover new possibilities.",
+      link: "More about how we see change",
+    },
+    values: {
+      title: "What matters to us",
+      items: [
+        ["Confidentiality", "What is shared in our sessions stays between us."],
+        ["Curiosity", "We approach situations with questions and openness rather than judgement."],
+        ["Respect", "We honour the experience, knowledge and path of every person and organisation."],
+        ["Responsibility", "Your choices and actions remain yours; our role is to accompany you and help make the path clearer."],
+      ],
+    },
+  },
+  services: {
+    title: "Services",
+    intro: "Every engagement begins by understanding your situation. Setia’s services are shaped around your role, your challenges and your goals.",
+    items: [
+      {
+        title: "Coaching for founders and business owners",
+        text: "One-to-one support to work through hard decisions, partnership challenges, conflicts of interest and growth opportunities with a clearer view.",
+        visual: { count: 1, accent: "gold" },
+      },
+      {
+        title: "Coaching for leaders and managers",
+        text: "One-to-one sessions to recognise leadership patterns, handle pressure and conflict more constructively, and build relationships grounded in trust.",
+        visual: { count: 2, accent: "teal" },
+      },
+      {
+        title: "Team coaching",
+        text: "Structured conversations with teams to understand differing perspectives, strengthen constructive dialogue and build closer alignment around shared goals.",
+        visual: { count: 3, accent: "ink" },
+      },
+    ] as { title: string; text: string; visual: { count: 1 | 2 | 3; accent: Accent } }[],
+    process: {
+      title: "How we work together",
+      steps: [
+        ["Introductory session", "A conversation to understand your situation, needs and expectations."],
+        ["Defining the path", "Agreeing on topics, goals and the framework for working together."],
+        ["Coaching sessions", "Regular sessions to examine, discover and practise new ways of acting."],
+        ["Review and next steps", "Looking back at what has changed and agreeing on what comes next."],
+      ],
+    },
+    note: "Coaching does not replace specialist advice, therapy or structural change in an organisation. It works alongside them, helping you decide and act more deliberately.",
+  },
+  blog: {
+    title: "Blog & media",
+    intro: "Notes, conversations and media on leadership, decision-making and lasting change.",
+    filters: { all: "All", article: "Articles", video: "Videos", podcast: "Podcasts" },
+    types: { article: "Article", video: "Video", podcast: "Podcast" },
+    empty: "Our first articles and media will be published here soon.",
+    readMore: "Read more",
+    watch: "Watch",
+    listen: "Listen",
+    back: "Back to blog & media",
+    notFound: "This post could not be found.",
+  },
+  contact: {
+    title: "Contact us",
+    intro: "To book an introductory session or ask a question, fill in the form below or reach us directly.",
+    details: { email: "Email", phone: "Phone", whatsapp: "WhatsApp", address: "Address", whatsappAction: "Chat on WhatsApp" },
+    pending: "Setia’s contact details will be added to this page soon.",
+    form: {
+      title: "Send us a message",
+      name: "Full name",
+      company: "Company (optional)",
+      email: "Email",
+      phone: "Phone (optional)",
+      topic: "Topic",
+      topics: ["Introductory session", "Individual coaching", "Team coaching", "Other"],
+      message: "Your message",
+      submit: "Send message",
+      success: "Thank you! Your email app has opened with your message. Just press send.",
+    },
+  },
   footer: {
-    about: "Leadership coaching for CEOs and leadership teams.",
+    about: "Leadership coaching for leaders, founders and teams.",
     rights: "All rights reserved.",
   },
 };
@@ -95,14 +192,21 @@ const fa: Content = {
   },
   brand: { name: "ستیا", tagline: "کوچینگ رهبری" },
   nav: {
-    cta: "درخواست جلسه خصوصی",
+    links: [
+      ["about", "درباره ما"],
+      ["services", "خدمات"],
+      ["blog", "نوشته‌ها و رسانه"],
+      ["contact", "تماس با ما"],
+    ],
+    cta: "رزرو جلسه آشنایی",
+    menu: "منو",
   },
   hero: {
     slides: [
       {
         title: "رشد کسب‌وکار، از کیفیت تصمیم‌های شما آغاز می‌شود.",
         text: "ستیا به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
-        primary: { label: "رزرو جلسه آشنایی", href: "#contact" },
+        primary: { label: "رزرو جلسه آشنایی", href: "#/contact" },
         secondary: { label: "کوچینگ چیست؟", href: "#perspective" },
         image: { src: "./images/hero-growth.png", alt: "تصویری از افرادی که پله‌ها را به سوی خورشید بالا می‌روند" },
       },
@@ -146,8 +250,96 @@ const fa: Content = {
     ],
     closing: "هدف، تبدیل‌شدن به فردی بی‌نقص نیست؛ بلکه افزایش آگاهی و ظرفیت انتخاب در موقعیت‌هایی است که پیش‌تر ممکن بود به‌صورت خودکار به آن‌ها واکنش نشان دهیم.",
   },
+  cta: {
+    title: "گفت‌وگو را آغاز کنیم.",
+    text: "جلسه آشنایی فرصتی است تا درباره موقعیت شما گفت‌وگو کنیم و ببینیم آیا کوچینگ قدم مناسب بعدی برای شما یا تیم‌تان است.",
+    button: "رزرو جلسه آشنایی",
+  },
+  about: {
+    title: "درباره ستیا",
+    intro: "ستیا فضایی برای رهبران، بنیان‌گذاران و تیم‌هاست تا مکث کنند، عمیق‌تر ببینند و آگاهانه‌تر انتخاب کنند.",
+    who: {
+      title: "ما چه کسانی هستیم",
+      text: "ستیا با این باور شکل گرفته است که کیفیت رشد هر کسب‌وکار به کیفیت فکر، گفت‌وگو و تصمیم‌های کسانی وابسته است که آن را هدایت می‌کنند. ما در کنار رهبران و تیم‌ها کار می‌کنیم تا برداشت‌ها و الگوهای خود را بهتر بشناسند و راه‌های تازه‌ای برای حرکت به جلو بیابند.",
+    },
+    approach: {
+      title: "رویکرد ما",
+      text: "ما کوچینگ را فقط ابزاری برای رسیدن به اهداف عملکردی نمی‌دانیم. تغییر پایدار زمانی رخ می‌دهد که شیوه دیدن، احساس‌کردن و واکنش‌نشان‌دادن ما نیز دیده شود. در جلسات ستیا، به‌جای ارائه پاسخ‌های آماده، فضایی برای پرسیدن، بررسی‌کردن و کشف امکان‌های تازه فراهم می‌کنیم.",
+      link: "بیشتر درباره نگاه ما به تغییر",
+    },
+    values: {
+      title: "آنچه برای ما مهم است",
+      items: [
+        ["رازداری", "آنچه در جلسات مطرح می‌شود، میان ما و شما می‌ماند."],
+        ["کنجکاوی", "به‌جای قضاوت، با پرسش و گشودگی به موقعیت‌ها نگاه می‌کنیم."],
+        ["احترام", "تجربه، دانش و مسیر هر فرد و سازمان را محترم می‌شماریم."],
+        ["مسئولیت‌پذیری", "انتخاب‌ها و اقدام‌ها از آنِ شماست؛ نقش ما همراهی و روشن‌تر کردن مسیر است."],
+      ],
+    },
+  },
+  services: {
+    title: "خدمات",
+    intro: "هر همکاری با شناخت موقعیت شما آغاز می‌شود. خدمات ستیا متناسب با نقش، چالش‌ها و اهداف شما شکل می‌گیرد.",
+    items: [
+      {
+        title: "کوچینگ بنیان‌گذاران و صاحبان کسب‌وکار",
+        text: "همراهی فردی برای بررسی تصمیم‌های دشوار، چالش‌های شراکت، تعارض منافع و فرصت‌های رشد با نگاهی روشن‌تر.",
+        visual: { count: 1, accent: "gold" },
+      },
+      {
+        title: "کوچینگ رهبران و مدیران",
+        text: "جلسات فردی برای شناخت الگوهای رهبری، مواجهه سازنده‌تر با فشار و تعارض، و ساختن روابطی مبتنی بر اعتماد.",
+        visual: { count: 2, accent: "teal" },
+      },
+      {
+        title: "کوچینگ تیمی",
+        text: "گفت‌وگوهای ساختاریافته با تیم‌ها برای درک تفاوت دیدگاه‌ها، تقویت گفت‌وگوی سازنده و هماهنگی بیشتر در مسیر اهداف مشترک.",
+        visual: { count: 3, accent: "ink" },
+      },
+    ],
+    process: {
+      title: "مسیر همکاری",
+      steps: [
+        ["جلسه آشنایی", "گفت‌وگویی برای شناخت موقعیت، نیازها و انتظارات شما."],
+        ["تعریف مسیر", "توافق بر موضوعات، اهداف و چارچوب همکاری."],
+        ["جلسات کوچینگ", "جلسات منظم برای بررسی، کشف و تمرین شیوه‌های تازه."],
+        ["مرور و جمع‌بندی", "بازنگری آنچه تغییر کرده و توافق بر قدم‌های بعدی."],
+      ],
+    },
+    note: "کوچینگ جایگزین مشاوره تخصصی، درمان یا تغییرات ساختاری در سازمان نیست؛ بلکه در کنار آن‌ها به شما کمک می‌کند آگاهانه‌تر تصمیم بگیرید و عمل کنید.",
+  },
+  blog: {
+    title: "نوشته‌ها و رسانه",
+    intro: "یادداشت‌ها، گفت‌وگوها و محتواهایی درباره رهبری، تصمیم‌گیری و تغییر پایدار.",
+    filters: { all: "همه", article: "نوشته‌ها", video: "ویدیوها", podcast: "پادکست‌ها" },
+    types: { article: "نوشته", video: "ویدیو", podcast: "پادکست" },
+    empty: "نخستین نوشته‌ها و محتواهای ما به‌زودی در این بخش منتشر می‌شوند.",
+    readMore: "ادامه مطلب",
+    watch: "تماشا",
+    listen: "شنیدن",
+    back: "بازگشت به نوشته‌ها و رسانه",
+    notFound: "این مطلب پیدا نشد.",
+  },
+  contact: {
+    title: "تماس با ما",
+    intro: "برای رزرو جلسه آشنایی یا طرح پرسش، فرم زیر را تکمیل کنید یا از راه‌های ارتباطی ما استفاده کنید.",
+    details: { email: "ایمیل", phone: "تلفن", whatsapp: "واتس‌اپ", address: "نشانی", whatsappAction: "گفت‌وگو در واتس‌اپ" },
+    pending: "راه‌های ارتباطی ستیا به‌زودی در این صفحه قرار می‌گیرند.",
+    form: {
+      title: "پیام خود را بفرستید",
+      name: "نام و نام خانوادگی",
+      company: "نام شرکت (اختیاری)",
+      email: "ایمیل",
+      phone: "تلفن (اختیاری)",
+      topic: "موضوع",
+      topics: ["جلسه آشنایی", "کوچینگ فردی", "کوچینگ تیمی", "سایر"],
+      message: "پیام شما",
+      submit: "ارسال پیام",
+      success: "سپاس! برنامه ایمیل شما با متن پیام باز شد؛ برای ارسال، فقط کافی است آن را بفرستید.",
+    },
+  },
   footer: {
-    about: "کوچینگ رهبری برای مدیران ارشد و تیم‌های رهبری.",
+    about: "کوچینگ رهبری برای رهبران، بنیان‌گذاران و تیم‌ها.",
     rights: "تمامی حقوق محفوظ است.",
   },
 };
