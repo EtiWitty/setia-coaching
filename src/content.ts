@@ -37,6 +37,7 @@ const en = {
     ] as [Page, string][],
     cta: "Book an introductory session",
     menu: "Menu",
+    coaching: { label: "What is coaching?", href: "#perspective" },
   },
   hero: {
     // Banner slides. Add more objects to this list (and to the Persian one) to add slides.
@@ -45,7 +46,6 @@ const en = {
         title: "Business growth starts with the quality of your decisions.",
         text: "Setia helps leaders, founders and teams think more clearly, decide more deliberately and pursue their path of growth with greater confidence.",
         primary: { label: "Book an introductory session", href: "#/contact" },
-        secondary: { label: "What is coaching?", href: "#perspective" },
         image: { src: "./images/hero-growth.png", alt: "Illustration of people climbing steps toward a rising sun" },
       },
       {
@@ -200,6 +200,7 @@ const fa: Content = {
     ],
     cta: "رزرو جلسه آشنایی",
     menu: "منو",
+    coaching: { label: "کوچینگ چیست؟", href: "#perspective" },
   },
   hero: {
     slides: [
@@ -207,7 +208,6 @@ const fa: Content = {
         title: "رشد کسب‌وکار، از کیفیت تصمیم‌های شما آغاز می‌شود.",
         text: "ستیا به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
         primary: { label: "رزرو جلسه آشنایی", href: "#/contact" },
-        secondary: { label: "کوچینگ چیست؟", href: "#perspective" },
         image: { src: "./images/hero-growth.png", alt: "تصویری از افرادی که پله‌ها را به سوی خورشید بالا می‌روند" },
       },
       {

@@ -27,6 +27,9 @@ export function Nav({ route }: { route: Route }) {
         </a>
 
         <nav className="hidden items-center gap-7 text-sm lg:flex">
+          <a href={t.nav.coaching.href} className={link(false)}>
+            {t.nav.coaching.label}
+          </a>
           {t.nav.links.map(([page, label]) => (
             <a key={page} href={pageHref(page)} aria-current={route.page === page ? "page" : undefined} className={link(route.page === page)}>
               {label}
@@ -63,6 +66,9 @@ export function Nav({ route }: { route: Route }) {
       {open && (
         <nav className="border-t border-line bg-background lg:hidden">
           <Container className="flex flex-col py-3">
+            <a href={t.nav.coaching.href} onClick={() => setOpen(false)} className={`py-3 text-base ${link(false)}`}>
+              {t.nav.coaching.label}
+            </a>
             {t.nav.links.map(([page, label]) => (
               <a key={page} href={pageHref(page)} aria-current={route.page === page ? "page" : undefined} className={`py-3 text-base ${link(route.page === page)}`}>
                 {label}
