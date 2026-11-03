@@ -70,13 +70,51 @@ const en = {
     controls: { previous: "Previous slide", next: "Next slide", slide: "Slide" },
   },
   perspective: {
-    title: "Sometimes, changing the results means looking from a new angle.",
-    text: "In business, the problem isn’t always not knowing the solution. Sometimes entrenched interpretations, automatic reactions or recurring patterns limit our choices. Coaching creates room to pause, re-examine what we take for granted, and see new possibilities for action.",
-    items: [
-      ["Seeing beyond initial interpretations", "Examining assumptions and discovering perspectives we have paid little attention to before."],
-      ["Choosing instead of reacting automatically", "Recognising emotions and behavioural patterns to respond more deliberately, especially in difficult moments."],
-      ["Creating meaningful change", "Bringing the way we think, connect with others and act into closer alignment with our goals and values."],
-    ],
+    eyebrow: "What is coaching?",
+    title: "Choosing coaching for your leaders or your team?",
+    text: "You may not sit in the sessions yourself, but choosing well depends on you. This short guide explains what coaching is, what it gives your people and your organisation, and what to ask before you begin.",
+    definition: {
+      label: "In one sentence",
+      text: "Coaching is a regular, confidential conversation that helps people see their situation more clearly, recognise their patterns of reaction, and choose and act more deliberately.",
+    },
+    people: {
+      title: "What your people experience",
+      items: [
+        ["Seeing beyond initial interpretations", "Examining assumptions and discovering perspectives we have paid little attention to before."],
+        ["Choosing instead of reacting automatically", "Recognising emotions and behavioural patterns to respond more deliberately, especially in difficult moments."],
+        ["Creating meaningful change", "Bringing the way we think, connect with others and act into closer alignment with our goals and values."],
+      ],
+    },
+    organisation: {
+      title: "What your organisation gains",
+      items: [
+        ["More constructive conversations", "Teams that understand differing perspectives better and speak more openly about difficult issues."],
+        ["More considered decisions", "Leaders who pause before reacting and weigh more options."],
+        ["Progress you can follow", "Goals agreed at the start and reviewed along the way, while the sessions themselves stay confidential."],
+      ],
+    },
+    isNot: {
+      title: "What coaching is not",
+      items: [
+        ["A training course", "It isn’t the same content for everyone; it works on each person’s real situation."],
+        ["Consulting", "A coach doesn’t hand over ready-made solutions; they strengthen people’s own judgement."],
+        ["Therapy", "It focuses on work, relationships and the steps ahead."],
+        ["A performance review", "Sessions are confidential and are not a tool for judging or reporting on people."],
+      ],
+    },
+    checklist: {
+      title: "Before choosing a coach, ask these questions",
+      items: [
+        "What is coaching for, for this person or team, and what change do we hope to see?",
+        "Who takes part in setting the goals?",
+        "What stays confidential, and what is shared with the organisation?",
+        "How and when is progress reviewed?",
+        "Is the person or team ready and willing to take part?",
+      ],
+      share: "Send this guide to a colleague or manager",
+      copied: "Link copied",
+      cta: "Talk to us about your team’s needs",
+    },
   },
   philosophy: {
     title: "Lasting change begins with how we see and approach things.",
@@ -232,13 +270,51 @@ const fa: Content = {
     controls: { previous: "اسلاید قبلی", next: "اسلاید بعدی", slide: "اسلاید" },
   },
   perspective: {
-    title: "گاهی برای تغییر نتایج، لازم است از زاویه‌ای تازه نگاه کنیم.",
-    text: "در کسب‌وکار، همیشه مسئله ندانستن راه‌حل نیست. گاهی برداشت‌های تثبیت‌شده، واکنش‌های خودکار یا الگوهای تکرارشونده، انتخاب‌های ما را محدود می‌کنند. کوچینگ فرصتی فراهم می‌کند تا مکث کنیم، آنچه را بدیهی می‌پنداریم دوباره بررسی کنیم و امکان‌های تازه‌ای برای اقدام ببینیم.",
-    items: [
-      ["دیدن فراتر از برداشت‌های اولیه", "بررسی فرضیات و کشف زاویه‌های دیدی که پیش از این کمتر به آن‌ها توجه کرده‌ایم."],
-      ["انتخاب به‌جای واکنش خودکار", "شناخت احساسات و الگوهای رفتاری برای پاسخ‌دادن آگاهانه‌تر، به‌ویژه در موقعیت‌های دشوار."],
-      ["ایجاد تغییر معنادار", "هم‌راستاتر کردن شیوه فکرکردن، ارتباط برقرارکردن و عمل‌کردن با اهداف و ارزش‌ها."],
-    ],
+    eyebrow: "کوچینگ چیست؟",
+    title: "کوچینگ را برای مدیران یا تیم‌تان در نظر دارید؟",
+    text: "شاید خودتان در جلسات کوچینگ شرکت نکنید، اما انتخاب درست به شما بستگی دارد. این راهنمای کوتاه کمک می‌کند بدانید کوچینگ چیست، چه چیزی به افراد و سازمان شما می‌دهد و پیش از شروع چه بپرسید.",
+    definition: {
+      label: "در یک جمله",
+      text: "کوچینگ گفت‌وگویی منظم و محرمانه است که به افراد کمک می‌کند موقعیت خود را روشن‌تر ببینند، الگوهای واکنش خود را بشناسند و آگاهانه‌تر انتخاب و عمل کنند.",
+    },
+    people: {
+      title: "آنچه افراد شما تجربه می‌کنند",
+      items: [
+        ["دیدن فراتر از برداشت‌های اولیه", "بررسی فرضیات و کشف زاویه‌های دیدی که پیش از این کمتر به آن‌ها توجه کرده‌ایم."],
+        ["انتخاب به‌جای واکنش خودکار", "شناخت احساسات و الگوهای رفتاری برای پاسخ‌دادن آگاهانه‌تر، به‌ویژه در موقعیت‌های دشوار."],
+        ["ایجاد تغییر معنادار", "هم‌راستاتر کردن شیوه فکرکردن، ارتباط برقرارکردن و عمل‌کردن با اهداف و ارزش‌ها."],
+      ],
+    },
+    organisation: {
+      title: "آنچه سازمان شما از آن بهره می‌برد",
+      items: [
+        ["گفت‌وگوهای سازنده‌تر", "تیم‌هایی که تفاوت دیدگاه‌ها را بهتر درک می‌کنند و درباره مسائل دشوار صریح‌تر گفت‌وگو می‌کنند."],
+        ["تصمیم‌های سنجیده‌تر", "مدیرانی که پیش از واکنش مکث می‌کنند و گزینه‌های بیشتری را در نظر می‌گیرند."],
+        ["پیشرفت قابل‌پیگیری", "اهدافی که در ابتدا توافق و در طول مسیر مرور می‌شوند؛ در حالی که جلسات محرمانه می‌مانند."],
+      ],
+    },
+    isNot: {
+      title: "کوچینگ چه چیزی نیست",
+      items: [
+        ["دوره آموزشی", "محتوای یکسان برای همه نیست؛ روی موقعیت واقعی هر فرد کار می‌کند."],
+        ["مشاوره", "کوچ راه‌حل آماده نمی‌دهد؛ توان قضاوت و تصمیم‌گیری افراد را تقویت می‌کند."],
+        ["روان‌درمانی", "بر کار، روابط و قدم‌های پیش رو تمرکز دارد."],
+        ["ارزیابی عملکرد", "جلسات محرمانه‌اند و ابزاری برای قضاوت یا گزارش‌دهی درباره افراد نیستند."],
+      ],
+    },
+    checklist: {
+      title: "پیش از انتخاب کوچ، این پرسش‌ها را مطرح کنید",
+      items: [
+        "هدف کوچینگ برای این فرد یا تیم چیست و چه تغییری را انتظار داریم؟",
+        "چه کسانی در تعیین اهداف مشارکت دارند؟",
+        "چه چیزی محرمانه می‌ماند و چه چیزی با سازمان در میان گذاشته می‌شود؟",
+        "پیشرفت چگونه و در چه زمانی مرور می‌شود؟",
+        "آیا فرد یا تیم برای شرکت در کوچینگ آمادگی و تمایل دارد؟",
+      ],
+      share: "ارسال این راهنما برای همکار یا مدیر",
+      copied: "پیوند کپی شد",
+      cta: "گفت‌وگو درباره نیاز تیم‌تان",
+    },
   },
   philosophy: {
     title: "تغییر پایدار، از شیوه دیدن و مواجهه ما آغاز می‌شود.",
