@@ -9,7 +9,7 @@ export const Container = ({ children, className = "" }: { children: ReactNode; c
 
 // Arrow that points "forward" in both reading directions.
 export const Forward = ({ className = "" }: { className?: string }) => (
-  <ArrowLeft className={`size-4 ltr:rotate-180 ${className}`} aria-hidden />
+  <ArrowLeft className={`size-4 ltr:[transform:scaleX(-1)] ${className}`} aria-hidden />
 );
 
 export function ButtonLink({ href, children, className = "" }: { href: string; children: ReactNode; className?: string }) {

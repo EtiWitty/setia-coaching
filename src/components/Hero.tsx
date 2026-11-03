@@ -71,7 +71,7 @@ function SlideVisual({ slide }: { slide: HeroSlide }) {
 function SlideBackground({ image, active }: { image: NonNullable<HeroSlide["image"]>; active: boolean }) {
   return (
     <div className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${active ? "opacity-100" : "opacity-0"}`} aria-hidden={!active || undefined}>
-      <img src={image.src} alt={image.alt} className="h-full w-full object-cover object-bottom rtl:-scale-x-100 lg:object-center" />
+      <img src={image.src} alt={image.alt} className="h-full w-full object-cover object-bottom rtl:[transform:scaleX(-1)] lg:object-center" />
       <div className="absolute inset-0 bg-linear-to-b from-background via-background/90 to-background/30 lg:via-background/70 lg:to-transparent lg:ltr:bg-linear-to-r lg:rtl:bg-linear-to-l" />
     </div>
   );
@@ -182,7 +182,7 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
               aria-label={controls.previous}
               className="grid size-11 place-items-center rounded-full border border-line transition-colors hover:border-ink"
             >
-              <ChevronLeft className="size-5 rtl:rotate-180" aria-hidden />
+              <ChevronLeft className="size-5 rtl:[transform:scaleX(-1)]" aria-hidden />
             </button>
             <div className="flex items-center">
               {slides.map((_, i) => (
@@ -205,7 +205,7 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
               aria-label={controls.next}
               className="grid size-11 place-items-center rounded-full border border-line transition-colors hover:border-ink"
             >
-              <ChevronRight className="size-5 rtl:rotate-180" aria-hidden />
+              <ChevronRight className="size-5 rtl:[transform:scaleX(-1)]" aria-hidden />
             </button>
           </div>
         )}
