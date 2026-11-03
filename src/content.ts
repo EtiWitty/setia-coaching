@@ -5,15 +5,18 @@ export type Lang = "fa" | "en";
 
 export type Link = { label: string; href: string };
 
-// One banner slide. A slide with `items` shows them as audience blocks; otherwise it
-// shows `image` if given, or the Setia illustration.
+export type Accent = "gold" | "teal" | "ink";
+
+// One banner slide. The side visual is `image` if given, else the audience mark
+// described by `visual` (1–3 circles in an accent colour), else the Setia illustration.
 export type HeroSlide = {
+  eyebrow?: string;
   title: string;
   text: string;
   primary?: Link;
   secondary?: Link;
   image?: { src: string; alt: string };
-  items?: string[][]; // [title, description] pairs
+  visual?: { count: 1 | 2 | 3; accent: Accent };
 };
 
 const en = {
@@ -36,13 +39,22 @@ const en = {
         secondary: { label: "What is coaching?", href: "#perspective" },
       },
       {
-        title: "Every challenge is a chance to see new possibilities.",
-        text: "Sometimes a change in one decision, one conversation or the way we approach a challenge can open a different path ahead. Setia offers leaders and teams a space to examine issues more deeply and find new ways to move forward.",
-        items: [
-          ["Founders and business owners", "To work through hard decisions, partnership challenges, conflicts of interest and growth opportunities with a clearer, more considered view."],
-          ["Leaders and managers", "To recognise leadership patterns, handle pressure and conflict more constructively, and build relationships grounded in trust and accountability."],
-          ["Teams and organisations", "To better understand differing perspectives, strengthen constructive conversations and build closer alignment around shared goals."],
-        ],
+        eyebrow: "Every challenge is a chance to see new possibilities.",
+        title: "Founders and business owners",
+        text: "To work through hard decisions, partnership challenges, conflicts of interest and growth opportunities with a clearer, more considered view.",
+        visual: { count: 1, accent: "gold" },
+      },
+      {
+        eyebrow: "Every challenge is a chance to see new possibilities.",
+        title: "Leaders and managers",
+        text: "To recognise leadership patterns, handle pressure and conflict more constructively, and build relationships grounded in trust and accountability.",
+        visual: { count: 2, accent: "teal" },
+      },
+      {
+        eyebrow: "Every challenge is a chance to see new possibilities.",
+        title: "Teams and organisations",
+        text: "To better understand differing perspectives, strengthen constructive conversations and build closer alignment around shared goals.",
+        visual: { count: 3, accent: "ink" },
       },
     ] as HeroSlide[],
     controls: { previous: "Previous slide", next: "Next slide", slide: "Slide" },
@@ -93,13 +105,22 @@ const fa: Content = {
         secondary: { label: "کوچینگ چیست؟", href: "#perspective" },
       },
       {
-        title: "هر چالش، فرصتی برای دیدن امکان‌های تازه است.",
-        text: "گاهی تغییر در یک تصمیم، یک گفت‌وگو یا شیوه مواجهه با یک چالش می‌تواند مسیر متفاوتی پیش روی ما بگذارد. ستیا فضایی فراهم می‌کند تا رهبران و تیم‌ها مسائل را عمیق‌تر بررسی کنند و راه‌های تازه‌ای برای حرکت به جلو بیابند.",
-        items: [
-          ["بنیان‌گذاران و صاحبان کسب‌وکار", "برای بررسی تصمیم‌های دشوار، چالش‌های شراکت، تعارض منافع و فرصت‌های رشد با نگاهی روشن‌تر و آگاهانه‌تر."],
-          ["رهبران و مدیران", "برای شناخت الگوهای رهبری، مواجهه سازنده‌تر با فشار و تعارض، و ایجاد ارتباطاتی مبتنی بر اعتماد و مسئولیت‌پذیری."],
-          ["تیم‌ها و سازمان‌ها", "برای درک بهتر تفاوت دیدگاه‌ها، تقویت گفت‌وگوهای سازنده و ایجاد هماهنگی بیشتر در مسیر اهداف مشترک."],
-        ],
+        eyebrow: "هر چالش، فرصتی برای دیدن امکان‌های تازه است.",
+        title: "بنیان‌گذاران و صاحبان کسب‌وکار",
+        text: "برای بررسی تصمیم‌های دشوار، چالش‌های شراکت، تعارض منافع و فرصت‌های رشد با نگاهی روشن‌تر و آگاهانه‌تر.",
+        visual: { count: 1, accent: "gold" },
+      },
+      {
+        eyebrow: "هر چالش، فرصتی برای دیدن امکان‌های تازه است.",
+        title: "رهبران و مدیران",
+        text: "برای شناخت الگوهای رهبری، مواجهه سازنده‌تر با فشار و تعارض، و ایجاد ارتباطاتی مبتنی بر اعتماد و مسئولیت‌پذیری.",
+        visual: { count: 2, accent: "teal" },
+      },
+      {
+        eyebrow: "هر چالش، فرصتی برای دیدن امکان‌های تازه است.",
+        title: "تیم‌ها و سازمان‌ها",
+        text: "برای درک بهتر تفاوت دیدگاه‌ها، تقویت گفت‌وگوهای سازنده و ایجاد هماهنگی بیشتر در مسیر اهداف مشترک.",
+        visual: { count: 3, accent: "ink" },
       },
     ],
     controls: { previous: "اسلاید قبلی", next: "اسلاید بعدی", slide: "اسلاید" },

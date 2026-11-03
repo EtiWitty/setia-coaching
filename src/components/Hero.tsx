@@ -1,8 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
-import type { HeroSlide } from "../content";
+import type { Accent, HeroSlide } from "../content";
 import { localDigits, useI18n } from "../i18n";
-import { AudienceCards } from "./AudienceCards";
 import { ButtonLink, Container, TextLink } from "./ui";
 
 type Controls = { previous: string; next: string; slide: string };
@@ -25,10 +24,47 @@ function HeroIllustration() {
   );
 }
 
-function SlideVisual({ image }: { image?: HeroSlide["image"] }) {
-  if (image) {
-    return <img src={image.src} alt={image.alt} className="aspect-square w-full rounded-3xl object-cover" />;
+// Full class names per accent, so Tailwind can see them.
+const accentClasses: Record<Accent, { soft: string; shape: string; dot: string }> = {
+  gold: { soft: "fill-gold", shape: "fill-gold stroke-gold", dot: "fill-ink" },
+  teal: { soft: "fill-teal", shape: "fill-teal stroke-teal", dot: "fill-gold" },
+  ink: { soft: "fill-ink", shape: "fill-ink stroke-ink", dot: "fill-gold" },
+};
+
+// Circle centres for one person, two people, or a group of three.
+const audienceLayouts: Record<1 | 2 | 3, [number, number][]> = {
+  1: [[220, 220]],
+  2: [
+    [176, 220],
+    [264, 220],
+  ],
+  3: [
+    [220, 172],
+    [176, 250],
+    [264, 250],
+  ],
+};
+
+// Audience mark: 1–3 overlapping circles in the audience's accent colour.
+function AudienceIllustration({ count, accent }: NonNullable<HeroSlide["visual"]>) {
+  const c = accentClasses[accent];
+  const r = count === 1 ? 110 : 84;
+  return (
+    <svg viewBox="0 0 440 440" fill="none" className="h-auto w-full" aria-hidden>
+      <circle cx="220" cy="220" r="210" className={c.soft} fillOpacity="0.08" />
+      {audienceLayouts[count].map(([cx, cy]) => (
+        <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={r} className={c.shape} fillOpacity="0.1" strokeOpacity="0.55" strokeWidth="1.25" />
+      ))}
+      <circle cx="220" cy={count === 3 ? 224 : 220} r="7" className={c.dot} />
+    </svg>
+  );
+}
+
+function SlideVisual({ slide }: { slide: HeroSlide }) {
+  if (slide.image) {
+    return <img src={slide.image.src} alt={slide.image.alt} className="aspect-square w-full rounded-3xl object-cover" />;
   }
+  if (slide.visual) return <AudienceIllustration {...slide.visual} />;
   return <HeroIllustration />;
 }
 
@@ -36,7 +72,14 @@ function SlideText({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" 
   const Heading = heading;
   return (
     <div className="max-w-3xl">
-      <span className="block h-0.5 w-12 bg-gold" aria-hidden />
+      {slide.eyebrow ? (
+        <p className="flex items-center gap-3 text-sm font-semibold leading-7 text-ink-soft sm:text-base">
+          <span className="h-0.5 w-12 shrink-0 bg-gold" aria-hidden />
+          {slide.eyebrow}
+        </p>
+      ) : (
+        <span className="block h-0.5 w-12 bg-gold" aria-hidden />
+      )}
       <Heading className="mt-8 text-[2.25rem] font-extrabold leading-[1.35] tracking-tight text-balance sm:text-5xl sm:leading-[1.3] lg:text-[3.5rem]">
         {slide.title}
       </Heading>
@@ -51,21 +94,13 @@ function SlideText({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" 
   );
 }
 
-// Text beside a visual, or, for a slide with items, text above a row of audience blocks.
+// Slide text beside its visual.
 function Slide({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" }) {
-  if (slide.items) {
-    return (
-      <div>
-        <SlideText slide={slide} heading={heading} />
-        <AudienceCards items={slide.items} className="mt-12 sm:mt-14" />
-      </div>
-    );
-  }
   return (
     <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
       <SlideText slide={slide} heading={heading} />
       <div className="mx-auto hidden w-full max-w-md lg:block">
-        <SlideVisual image={slide.image} />
+        <SlideVisual slide={slide} />
       </div>
     </div>
   );
@@ -107,15 +142,15 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
       onPointerUp={count > 1 ? onPointerUp : undefined}
     >
       <Container className="py-24 sm:py-32 lg:py-36">
-        {/* All slides share one grid cell, so on large screens the banner keeps the height
-            of the tallest slide. On small screens only the current slide takes up space. */}
+        {/* All slides share one grid cell, so the banner keeps the height of the tallest
+            slide and the page below doesn't jump when slides change. */}
         <div className="grid items-center">
           {slides.map((slide, i) => {
             const active = i === index;
             return (
               <div
                 key={i}
-                className={`[grid-area:1/1] ${active ? (count > 1 ? "slide-in" : "") : "hidden lg:invisible lg:block"}`}
+                className={`[grid-area:1/1] ${active ? (count > 1 ? "slide-in" : "") : "invisible"}`}
                 role={count > 1 ? "group" : undefined}
                 aria-roledescription={count > 1 ? "slide" : undefined}
                 aria-label={count > 1 ? position(i) : undefined}
