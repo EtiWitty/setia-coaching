@@ -89,12 +89,12 @@ function SlideText({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" 
       ) : (
         <span className="block h-0.5 w-12 bg-gold" aria-hidden />
       )}
-      <Heading className="mt-8 text-[2.25rem] font-extrabold leading-[1.35] tracking-tight text-balance sm:text-5xl sm:leading-[1.3] lg:text-[3.5rem]">
+      <Heading className="mt-6 text-[2rem] font-extrabold leading-[1.35] tracking-tight text-balance sm:mt-8 sm:text-5xl sm:leading-[1.3] lg:text-[3.5rem]">
         {slide.title}
       </Heading>
-      <p className="mt-7 max-w-2xl text-lg leading-9 text-muted sm:text-xl sm:leading-10">{slide.text}</p>
+      <p className="mt-5 max-w-2xl text-base leading-8 text-muted sm:mt-7 sm:text-xl sm:leading-10">{slide.text}</p>
       {(slide.primary || slide.secondary) && (
-        <div className="mt-11 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-9">
+        <div className="mt-8 flex flex-col items-start gap-6 sm:mt-11 sm:flex-row sm:items-center sm:gap-9">
           {slide.primary && <ButtonLink href={slide.primary.href}>{slide.primary.label}</ButtonLink>}
           {slide.secondary && <TextLink href={slide.secondary.href}>{slide.secondary.label}</TextLink>}
         </div>
@@ -153,7 +153,7 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
       onPointerCancel={() => (swipeStart.current = null)}
     >
       {slides.map((slide, i) => slide.image && <SlideBackground key={i} image={slide.image} active={i === index} />)}
-      <Container className="relative py-24 sm:py-32 lg:py-36">
+      <Container className="relative py-12 sm:py-32 lg:py-36">
         {/* All slides share one grid cell, so the banner keeps the height of the tallest
             slide and the page below doesn't jump when slides change. */}
         <div className="grid items-center">
