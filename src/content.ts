@@ -1,7 +1,7 @@
 // All site copy lives here. Each language has the same shape, so editing a
 // section means updating both `en` and `fa` below.
 
-import type { Page } from "./router";
+import type { SectionId } from "./router";
 
 export type Lang = "fa" | "en";
 
@@ -30,14 +30,14 @@ const en = {
   brand: { name: "Setia", tagline: "LEADERSHIP COACHING" },
   nav: {
     links: [
+      ["perspective", "What is coaching?"],
       ["about", "About us"],
       ["services", "Services"],
       ["blog", "Blog & media"],
       ["contact", "Contact us"],
-    ] as [Page, string][],
+    ] as [SectionId, string][],
     cta: "Book an introductory session",
     menu: "Menu",
-    coaching: { label: "What is coaching?", href: "#perspective" },
   },
   hero: {
     // Banner slides. Add more objects to this list (and to the Persian one) to add slides.
@@ -45,7 +45,7 @@ const en = {
       {
         title: "Business growth starts with the quality of your decisions.",
         text: "Setia helps leaders, founders and teams think more clearly, decide more deliberately and pursue their path of growth with greater confidence.",
-        primary: { label: "Book an introductory session", href: "#/contact" },
+        primary: { label: "Book an introductory session", href: "#contact" },
         image: { src: "./images/hero-growth.png", alt: "Illustration of people climbing steps toward a rising sun" },
       },
       {
@@ -103,11 +103,6 @@ const en = {
       ["Inner alignment and deliberate action", "Bringing our decisions and behaviour closer to the values and goals that matter to us."],
     ],
     closing: "The aim isn’t to become flawless, but to grow our awareness and our capacity to choose in situations where we might once have reacted automatically.",
-  },
-  cta: {
-    title: "Let’s start the conversation.",
-    text: "An introductory session is a chance to talk about where you are and whether coaching is the right next step for you or your team.",
-    button: "Book an introductory session",
   },
   about: {
     title: "About Setia",
@@ -209,6 +204,7 @@ const fa: Content = {
   brand: { name: "ستیا", tagline: "کوچینگ رهبری" },
   nav: {
     links: [
+      ["perspective", "کوچینگ چیست؟"],
       ["about", "درباره ما"],
       ["services", "خدمات"],
       ["blog", "نوشته‌ها و رسانه"],
@@ -216,14 +212,13 @@ const fa: Content = {
     ],
     cta: "رزرو جلسه آشنایی",
     menu: "منو",
-    coaching: { label: "کوچینگ چیست؟", href: "#perspective" },
   },
   hero: {
     slides: [
       {
         title: "رشد کسب‌وکار، از کیفیت تصمیم‌های شما آغاز می‌شود.",
         text: "ستیا به رهبران، بنیان‌گذاران و تیم‌ها کمک می‌کند شفاف‌تر فکر کنند، آگاهانه‌تر تصمیم بگیرند و مسیر رشد خود را با اطمینان بیشتری دنبال کنند.",
-        primary: { label: "رزرو جلسه آشنایی", href: "#/contact" },
+        primary: { label: "رزرو جلسه آشنایی", href: "#contact" },
         image: { src: "./images/hero-growth.png", alt: "تصویری از افرادی که پله‌ها را به سوی خورشید بالا می‌روند" },
       },
       {
@@ -281,11 +276,6 @@ const fa: Content = {
       ["هماهنگی درونی و اقدام آگاهانه", "نزدیک‌تر کردن تصمیم‌ها و رفتارها به ارزش‌ها و اهدافی که برای ما اهمیت دارند."],
     ],
     closing: "هدف، تبدیل‌شدن به فردی بی‌نقص نیست؛ بلکه افزایش آگاهی و ظرفیت انتخاب در موقعیت‌هایی است که پیش‌تر ممکن بود به‌صورت خودکار به آن‌ها واکنش نشان دهیم.",
-  },
-  cta: {
-    title: "گفت‌وگو را آغاز کنیم.",
-    text: "جلسه آشنایی فرصتی است تا درباره موقعیت شما گفت‌وگو کنیم و ببینیم آیا کوچینگ قدم مناسب بعدی برای شما یا تیم‌تان است.",
-    button: "رزرو جلسه آشنایی",
   },
   about: {
     title: "درباره ستیا",

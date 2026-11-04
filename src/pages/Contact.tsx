@@ -1,6 +1,6 @@
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState, type FormEvent, type ReactNode } from "react";
-import { Container, PageHeader } from "../components/ui";
+import { Container, SectionHeader } from "../components/ui";
 import { contact } from "../config";
 import { useI18n } from "../i18n";
 
@@ -38,7 +38,7 @@ function ContactForm() {
 
   return (
     <form onSubmit={submit} className="grid gap-5 rounded-2xl border border-line bg-white p-6 sm:grid-cols-2 sm:p-8">
-      <h2 className="text-xl font-bold sm:col-span-2">{f.title}</h2>
+      <h3 className="text-xl font-bold sm:col-span-2">{f.title}</h3>
       <label className="text-sm font-medium">
         {f.name}
         <input name="name" required autoComplete="name" className={input} />
@@ -91,10 +91,10 @@ export function Contact() {
   const hasDetails = Boolean(contact.email || contact.phone || contact.whatsapp || address);
 
   return (
-    <>
-      <PageHeader title={c.title} intro={c.intro} />
-      <section>
-        <Container className="grid gap-12 py-20 sm:py-28 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
+    <section id="contact" className="bg-surface">
+      <Container className="py-20 sm:py-28">
+        <SectionHeader title={c.title} intro={c.intro} />
+        <div className="mt-14 grid gap-12 sm:mt-16 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
           {hasDetails ? (
             <ul className="space-y-7">
               {contact.email && (
@@ -128,8 +128,8 @@ export function Contact() {
             <p className="text-lg leading-9 text-muted">{c.pending}</p>
           )}
           {contact.email && <ContactForm />}
-        </Container>
-      </section>
-    </>
+        </div>
+      </Container>
+    </section>
   );
 }

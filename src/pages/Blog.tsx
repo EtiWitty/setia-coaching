@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { CtaBand } from "../components/CtaBand";
-import { Container, PageHeader, TextLink } from "../components/ui";
+import { Container, SectionHeader, TextLink } from "../components/ui";
 import { useI18n } from "../i18n";
 import { posts, type Post, type PostType } from "../posts";
-import { pageHref } from "../router";
+import { articleHref, sectionHref } from "../router";
 
 const formatDate = (date: string, lang: string) =>
   new Intl.DateTimeFormat(lang === "fa" ? "fa-IR" : "en-GB", { dateStyle: "long" }).format(new Date(date));
@@ -12,7 +11,7 @@ function PostCard({ post }: { post: Post }) {
   const { t, lang } = useI18n();
   const b = t.blog;
   const isArticle = post.type === "article";
-  const href = isArticle ? pageHref("blog", post.slug) : post.url;
+  const href = isArticle ? articleHref(post.slug) : post.url;
   const action = isArticle ? b.readMore : post.type === "video" ? b.watch : b.listen;
   return (
     <li className="flex flex-col rounded-2xl border border-line bg-white p-7">
@@ -21,7 +20,7 @@ function PostCard({ post }: { post: Post }) {
         <span aria-hidden>·</span>
         <time dateTime={post.date}>{formatDate(post.date, lang)}</time>
       </div>
-      <h2 className="mt-4 text-xl font-bold leading-8">{post.title[lang]}</h2>
+      <h3 className="mt-4 text-xl font-bold leading-8">{post.title[lang]}</h3>
       <p className="mt-3 flex-1 leading-8 text-muted">{post.summary[lang]}</p>
       {href && (
         <a
@@ -94,7 +93,7 @@ function Article({ slug }: { slug: string }) {
           ) : (
             <p className="text-lg leading-9 text-muted">{t.blog.notFound}</p>
           )}
-          <TextLink href={pageHref("blog")} className="mt-14">
+          <TextLink href={sectionHref("blog")} className="mt-14">
             {t.blog.back}
           </TextLink>
         </article>
@@ -103,18 +102,19 @@ function Article({ slug }: { slug: string }) {
   );
 }
 
-export function Blog({ slug }: { slug?: string }) {
+// A full article, shown on its own in place of the page.
+export { Article };
+
+export function Blog() {
   const { blog } = useI18n().t;
-  if (slug) return <Article slug={slug} />;
   return (
-    <>
-      <PageHeader title={blog.title} intro={blog.intro} />
-      <section>
-        <Container className="py-20 sm:py-28">
+    <section id="blog" className="border-t border-line/70">
+      <Container className="py-20 sm:py-28">
+        <SectionHeader title={blog.title} intro={blog.intro} />
+        <div className="mt-14 sm:mt-16">
           <PostList />
-        </Container>
-      </section>
-      <CtaBand />
-    </>
+        </div>
+      </Container>
+    </section>
   );
 }

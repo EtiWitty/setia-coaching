@@ -4,17 +4,22 @@ import { Perspective } from "./components/Perspective";
 import { Philosophy } from "./components/Philosophy";
 import { Footer, Nav } from "./components/sections";
 import { About } from "./pages/About";
-import { Blog } from "./pages/Blog";
+import { Article, Blog } from "./pages/Blog";
 import { Contact } from "./pages/Contact";
 import { Services } from "./pages/Services";
 import { useRoute } from "./router";
 
-function Home() {
+// The whole site as one scrolling page, in the order the nav lists it.
+function OnePage() {
   return (
     <>
       <Hero />
       <Perspective />
+      <About />
       <Philosophy />
+      <Services />
+      <Blog />
+      <Contact />
     </>
   );
 }
@@ -22,22 +27,17 @@ function Home() {
 export default function App() {
   const route = useRoute();
 
-  // New page: start at the top. Home-page anchor (#philosophy): scroll to it once rendered.
+  // A full article opens at its top; anything else scrolls to the section in the
+  // address (#services), or to the top of the page.
   useEffect(() => {
-    if (route.anchor) document.getElementById(route.anchor)?.scrollIntoView();
-    else window.scrollTo(0, 0);
-  }, [route.page, route.slug, route.anchor]);
+    if (route.article) window.scrollTo(0, 0);
+    else if (route.anchor) document.getElementById(route.anchor)?.scrollIntoView();
+  }, [route.article, route.anchor]);
 
   return (
     <>
       <Nav route={route} />
-      <main>
-        {route.page === "home" && <Home />}
-        {route.page === "about" && <About />}
-        {route.page === "services" && <Services />}
-        {route.page === "blog" && <Blog slug={route.slug} />}
-        {route.page === "contact" && <Contact />}
-      </main>
+      <main>{route.article ? <Article slug={route.article} /> : <OnePage />}</main>
       <Footer />
     </>
   );

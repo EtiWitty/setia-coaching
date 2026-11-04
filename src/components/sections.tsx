@@ -1,25 +1,28 @@
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { localDigits, useI18n } from "../i18n";
-import { pageHref, type Route } from "../router";
+import { sectionHref, useActiveSection, type Route, type SectionId } from "../router";
 import { Container } from "./ui";
 
 /* ---------------------------------- Nav ---------------------------------- */
 
+// Stays at the top of the screen while scrolling; each link jumps to its section
+// on the page, and the section in view is highlighted.
 export function Nav({ route }: { route: Route }) {
   const { t, lang, setLang } = useI18n();
   const [open, setOpen] = useState(false);
+  const onPage = !route.article;
+  const visible = useActiveSection(onPage);
+  // The philosophy section belongs to "About us".
+  const active: SectionId | null = visible === "philosophy" ? "about" : visible;
 
-  // Close the mobile menu whenever the page changes.
-  useEffect(() => setOpen(false), [route.page, route.slug]);
-
-  const link = (active: boolean) =>
-    `transition-colors hover:text-ink ${active ? "font-semibold text-ink" : "text-muted"}`;
+  const link = (isActive: boolean) =>
+    `transition-colors hover:text-ink ${isActive ? "font-semibold text-ink" : "text-muted"}`;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/70 bg-background/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-line/70 bg-background/90 backdrop-blur-xl">
       <Container className="flex h-16 items-center justify-between gap-4 lg:h-20">
-        <a href={pageHref("home")} className="flex min-h-11 min-w-0 items-center gap-2.5">
+        <a href={sectionHref("top")} onClick={() => setOpen(false)} className="flex min-h-11 min-w-0 items-center gap-2.5">
           <span className="text-xl font-extrabold tracking-tight">{t.brand.name}</span>
           <span className={`hidden text-muted sm:block ${lang === "fa" ? "text-xs" : "font-[Inter] text-[10px] tracking-[0.22em]"}`}>
             {t.brand.tagline}
@@ -27,11 +30,8 @@ export function Nav({ route }: { route: Route }) {
         </a>
 
         <nav className="hidden items-center gap-7 text-sm lg:flex">
-          <a href={t.nav.coaching.href} className={link(false)}>
-            {t.nav.coaching.label}
-          </a>
-          {t.nav.links.map(([page, label]) => (
-            <a key={page} href={pageHref(page)} aria-current={route.page === page ? "page" : undefined} className={link(route.page === page)}>
+          {t.nav.links.map(([id, label]) => (
+            <a key={id} href={sectionHref(id)} aria-current={active === id ? "location" : undefined} className={link(active === id)}>
               {label}
             </a>
           ))}
@@ -47,7 +47,7 @@ export function Nav({ route }: { route: Route }) {
             {t.meta.langSwitch}
           </button>
           <a
-            href={pageHref("contact")}
+            href={sectionHref("contact")}
             className="hidden h-10 items-center rounded-md bg-ink px-5 text-sm font-medium text-ink-foreground transition-colors hover:bg-ink-soft sm:inline-flex"
           >
             {t.nav.cta}
@@ -66,15 +66,22 @@ export function Nav({ route }: { route: Route }) {
       {open && (
         <nav className="border-t border-line bg-background lg:hidden">
           <Container className="flex flex-col py-3">
-            <a href={t.nav.coaching.href} onClick={() => setOpen(false)} className={`py-3 text-base ${link(false)}`}>
-              {t.nav.coaching.label}
-            </a>
-            {t.nav.links.map(([page, label]) => (
-              <a key={page} href={pageHref(page)} aria-current={route.page === page ? "page" : undefined} className={`py-3 text-base ${link(route.page === page)}`}>
+            {t.nav.links.map(([id, label]) => (
+              <a
+                key={id}
+                href={sectionHref(id)}
+                onClick={() => setOpen(false)}
+                aria-current={active === id ? "location" : undefined}
+                className={`py-3 text-base ${link(active === id)}`}
+              >
                 {label}
               </a>
             ))}
-            <a href={pageHref("contact")} className="mt-2 mb-2 inline-flex h-12 items-center justify-center rounded-md bg-ink px-5 font-medium text-ink-foreground sm:hidden">
+            <a
+              href={sectionHref("contact")}
+              onClick={() => setOpen(false)}
+              className="mt-2 mb-2 inline-flex h-12 items-center justify-center rounded-md bg-ink px-5 font-medium text-ink-foreground sm:hidden"
+            >
               {t.nav.cta}
             </a>
           </Container>
@@ -96,8 +103,8 @@ export function Footer() {
           <span className="ms-3">{t.footer.about}</span>
         </div>
         <nav className="flex flex-wrap gap-x-6">
-          {t.nav.links.map(([page, label]) => (
-            <a key={page} href={pageHref(page)} className="inline-flex min-h-11 items-center hover:text-ink">
+          {t.nav.links.map(([id, label]) => (
+            <a key={id} href={sectionHref(id)} className="inline-flex min-h-11 items-center hover:text-ink">
               {label}
             </a>
           ))}

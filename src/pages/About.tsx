@@ -1,45 +1,41 @@
-import { CtaBand } from "../components/CtaBand";
-import { Container, PageHeader, TextLink } from "../components/ui";
+import { Container, SectionHeader, TextLink } from "../components/ui";
 import { useI18n } from "../i18n";
+import { sectionHref } from "../router";
 
 export function About() {
   const { about } = useI18n().t;
   return (
-    <>
-      <PageHeader title={about.title} intro={about.intro} />
+    <section id="about" className="border-t border-line/70">
+      <Container className="py-20 sm:py-28">
+        <SectionHeader title={about.title} intro={about.intro} />
 
-      <section>
-        <Container className="grid gap-16 py-20 sm:py-28 lg:grid-cols-2 lg:gap-20">
+        <div className="mt-16 grid gap-14 sm:mt-20 lg:grid-cols-2 lg:gap-20">
           <div>
-            <h2 className="text-2xl font-extrabold leading-[1.4] sm:text-3xl">{about.who.title}</h2>
-            <p className="mt-6 text-lg leading-9 text-muted">{about.who.text}</p>
+            <h3 className="text-2xl font-extrabold leading-[1.4]">{about.who.title}</h3>
+            <p className="mt-5 text-lg leading-9 text-muted">{about.who.text}</p>
           </div>
           <div>
-            <h2 className="text-2xl font-extrabold leading-[1.4] sm:text-3xl">{about.approach.title}</h2>
-            <p className="mt-6 text-lg leading-9 text-muted">{about.approach.text}</p>
-            <TextLink href="#philosophy" className="mt-8">
+            <h3 className="text-2xl font-extrabold leading-[1.4]">{about.approach.title}</h3>
+            <p className="mt-5 text-lg leading-9 text-muted">{about.approach.text}</p>
+            <TextLink href={sectionHref("philosophy")} className="mt-6">
               {about.approach.link}
             </TextLink>
           </div>
-        </Container>
-      </section>
+        </div>
 
-      <section className="bg-ink text-ink-foreground">
-        <Container className="py-20 sm:py-28">
-          <h2 className="text-2xl font-extrabold leading-[1.4] sm:text-3xl">{about.values.title}</h2>
-          <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+        <div className="mt-16 sm:mt-20">
+          <h3 className="text-2xl font-extrabold leading-[1.4]">{about.values.title}</h3>
+          <ul className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {about.values.items.map(([title, text]) => (
-              <li key={title} className="border-t border-white/15 pt-7">
+              <li key={title} className="border-t border-ink/15 pt-7">
                 <span className="block size-1.5 rounded-full bg-gold" aria-hidden />
-                <h3 className="mt-5 text-xl font-bold leading-8">{title}</h3>
-                <p className="mt-3 leading-8 text-ink-foreground/70">{text}</p>
+                <h4 className="mt-5 text-xl font-bold leading-8">{title}</h4>
+                <p className="mt-3 leading-8 text-muted">{text}</p>
               </li>
             ))}
           </ul>
-        </Container>
-      </section>
-
-      <CtaBand />
-    </>
+        </div>
+      </Container>
+    </section>
   );
 }

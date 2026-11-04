@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 
-// Hash-based pages (#/about, #/blog/some-post) so the site works on GitHub Pages
-// without server rewrites. Any other hash (#perspective) is an anchor on the home page.
+// The site is one scrolling page; each section has an id and the nav links to it
+// with a plain hash (#services). The only separate view is a full blog article,
+// at #/blog/<slug>. Older page links (#/about, #/contact) map to their section.
 
-export const pages = ["home", "about", "services", "blog", "contact"] as const;
-export type Page = (typeof pages)[number];
+export const sections = ["perspective", "about", "philosophy", "services", "blog", "contact"] as const;
+export type SectionId = (typeof sections)[number];
 
-export type Route = { page: Page; slug?: string; anchor?: string };
+export type Route = { article?: string; anchor?: string };
 
 function parse(hash: string): Route {
   if (hash.startsWith("#/")) {
     const [page, slug] = hash.slice(2).split("/");
-    if ((pages as readonly string[]).includes(page)) return { page: page as Page, slug: slug || undefined };
-    return { page: "home" };
+    if (page === "blog" && slug) return { article: slug };
+    return { anchor: page || undefined };
   }
-  return { page: "home", anchor: hash.slice(1) || undefined };
+  return { anchor: hash.slice(1) || undefined };
 }
 
 export function useRoute() {
@@ -27,4 +28,34 @@ export function useRoute() {
   return route;
 }
 
-export const pageHref = (page: Page, slug?: string) => (page === "home" ? "#/" : `#/${page}${slug ? `/${slug}` : ""}`);
+export const sectionHref = (id: SectionId | "top") => `#${id}`;
+export const articleHref = (slug: string) => `#/blog/${slug}`;
+
+// Which section is currently on screen, for highlighting its nav link.
+export function useActiveSection(enabled: boolean) {
+  const [active, setActive] = useState<SectionId | null>(null);
+  useEffect(() => {
+    if (!enabled) {
+      setActive(null);
+      return;
+    }
+    const pick = () => {
+      // The last section whose top has passed a line a third of the way down the screen.
+      const line = window.innerHeight / 3;
+      let current: SectionId | null = null;
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      }
+      setActive(current);
+    };
+    pick();
+    window.addEventListener("scroll", pick, { passive: true });
+    window.addEventListener("resize", pick);
+    return () => {
+      window.removeEventListener("scroll", pick);
+      window.removeEventListener("resize", pick);
+    };
+  }, [enabled]);
+  return active;
+}
