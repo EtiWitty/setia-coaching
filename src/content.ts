@@ -24,7 +24,7 @@ export type HeroSlide = {
 const en = {
   meta: {
     title: "Setia | Leadership Coaching",
-    langSwitch: "فارسی",
+    langSwitch: "فا",
     langSwitchLabel: "Switch to Persian",
   },
   brand: { name: "Setia", tagline: "LEADERSHIP COACHING" },
@@ -36,7 +36,7 @@ const en = {
       ["blog", "Blog & media"],
       ["contact", "Contact us"],
     ] as [SectionId, string][],
-    cta: "Book an introductory session",
+    cta: "Book a session",
     menu: "Menu",
   },
   hero: {
@@ -198,7 +198,7 @@ export type Content = typeof en;
 const fa: Content = {
   meta: {
     title: "ستیا | کوچینگ رهبری",
-    langSwitch: "English",
+    langSwitch: "EN",
     langSwitchLabel: "تغییر زبان به انگلیسی",
   },
   brand: { name: "ستیا", tagline: "کوچینگ رهبری" },
