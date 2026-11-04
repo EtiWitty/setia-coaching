@@ -12,8 +12,43 @@
   --color-surface: oklch(0.965 0.006 95);
   --color-line: oklch(0.89 0.008 95);
   --color-muted: oklch(0.5 0.02 258);
-  --font-fa: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+  --font-fa: "IRANYekan", "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
   --font-en: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* IRANYekan (Fontiran) for Persian text; Vazirmatn stays as the fallback.
+   Fontiran's licence file sits next to the fonts (src/fonts/iranyekan). Weight 600
+   has no file of its own, so browsers use Bold for it. */
+@font-face {
+  font-family: "IRANYekan";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/iranyekan/IRANYekanWebRegular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IRANYekan";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./fonts/iranyekan/IRANYekanWebMedium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IRANYekan";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/iranyekan/IRANYekanWebBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IRANYekan";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("./fonts/iranyekan/IRANYekanWebExtraBold.woff2") format("woff2");
 }
 
 html {
