@@ -136,23 +136,27 @@ export function Nav({ route }: { route: Route }) {
 
 /* ---------------------------------- Footer ------------------------------- */
 
+// Logo and description beside the section links, with the copyright on its own
+// line underneath. On phones everything stacks and the links form two columns.
 export function Footer() {
   const { t, lang } = useI18n();
   return (
-    <footer className="border-t border-line py-12">
-      <Container className="flex flex-col gap-8 text-sm text-muted lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-          <Logo compact />
-          <span>{t.footer.about}</span>
+    <footer className="border-t border-line">
+      <Container className="py-12 sm:py-14">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
+          <div className="max-w-sm">
+            <Logo compact />
+            <p className="mt-4 text-sm leading-7 text-muted">{t.footer.about}</p>
+          </div>
+          <nav className="grid grid-cols-2 gap-x-8 text-sm sm:flex sm:flex-wrap sm:gap-x-8 lg:justify-end">
+            {t.nav.links.map(([id, label]) => (
+              <a key={id} href={sectionHref(id)} className="inline-flex min-h-11 items-center whitespace-nowrap text-muted transition-colors hover:text-ink">
+                {label}
+              </a>
+            ))}
+          </nav>
         </div>
-        <nav className="flex flex-wrap gap-x-6">
-          {t.nav.links.map(([id, label]) => (
-            <a key={id} href={sectionHref(id)} className="inline-flex min-h-11 items-center hover:text-ink">
-              {label}
-            </a>
-          ))}
-        </nav>
-        <div>
+        <div className="mt-10 border-t border-line pt-6 text-sm text-muted">
           © {localDigits(new Date().getFullYear(), lang)} {t.brand.name}. {t.footer.rights}
         </div>
       </Container>
