@@ -67,6 +67,38 @@ html[lang="fa"] body {
   font-family: var(--font-fa);
 }
 
+/* The banner fills the screen below the menu bar (4rem tall, 5rem from lg).
+   svh ignores the phone's collapsing address bar; older browsers use vh. */
+.hero-screen {
+  min-height: calc(100vh - 4rem);
+}
+
+@supports (height: 100svh) {
+  .hero-screen {
+    min-height: calc(100svh - 4rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-screen {
+    min-height: calc(100vh - 5rem);
+  }
+
+  @supports (height: 100svh) {
+    .hero-screen {
+      min-height: calc(100svh - 5rem);
+    }
+  }
+}
+
+/* On short phone screens (e.g. iPhone SE) the slide marks are dropped so the
+   whole slide, with its controls, fits on one screen. */
+@media (max-width: 1023px) and (max-height: 639px) {
+  .slide-visual {
+    display: none;
+  }
+}
+
 /* Gentle cross-fade between banner slides. */
 @keyframes slide-in {
   from {

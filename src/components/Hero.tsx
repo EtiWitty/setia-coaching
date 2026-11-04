@@ -71,8 +71,8 @@ function SlideVisual({ slide }: { slide: HeroSlide }) {
 function SlideBackground({ image, active }: { image: NonNullable<HeroSlide["image"]>; active: boolean }) {
   return (
     <div className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${active ? "opacity-100" : "opacity-0"}`} aria-hidden={!active || undefined}>
-      <img src={image.src} alt={image.alt} className="h-full w-full object-cover object-bottom rtl:[transform:scaleX(-1)] lg:object-center" />
-      <div className="absolute inset-0 bg-linear-to-b from-background via-background/90 to-background/30 lg:via-background/70 lg:to-transparent lg:ltr:bg-linear-to-r lg:rtl:bg-linear-to-l" />
+      <img src={image.src} alt={image.alt} className="h-full w-full object-cover object-[85%_100%] rtl:[transform:scaleX(-1)] lg:object-center" />
+      <div className="absolute inset-0 bg-linear-to-b from-background from-25% via-background/75 via-50% to-transparent to-80% lg:from-0% lg:via-background/70 lg:via-50% lg:to-100% lg:ltr:bg-linear-to-r lg:rtl:bg-linear-to-l" />
     </div>
   );
 }
@@ -107,9 +107,9 @@ function SlideText({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" 
 function Slide({ slide, heading }: { slide: HeroSlide; heading: "h1" | "h2" }) {
   if (slide.image) return <SlideText slide={slide} heading={heading} />;
   return (
-    <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+    <div className="grid items-center gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
       <SlideText slide={slide} heading={heading} />
-      <div className="mx-auto hidden w-full max-w-md lg:block">
+      <div className="slide-visual mx-auto w-full max-w-[8rem] lg:max-w-md">
         <SlideVisual slide={slide} />
       </div>
     </div>
@@ -145,7 +145,7 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
   return (
     <section
       id="top"
-      className={`relative overflow-hidden border-b border-line/70 ${count > 1 ? "touch-pan-y" : ""}`}
+      className={`hero-screen relative flex flex-col overflow-hidden border-b border-line/70 ${count > 1 ? "touch-pan-y" : ""}`}
       aria-roledescription={count > 1 ? "carousel" : undefined}
       onKeyDown={count > 1 ? onKeyDown : undefined}
       onPointerDown={count > 1 ? (e) => (swipeStart.current = e.clientX) : undefined}
@@ -153,10 +153,10 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
       onPointerCancel={() => (swipeStart.current = null)}
     >
       {slides.map((slide, i) => slide.image && <SlideBackground key={i} image={slide.image} active={i === index} />)}
-      <Container className="relative py-12 sm:py-32 lg:py-36">
+      <Container className="relative flex flex-1 flex-col py-10 sm:py-24 lg:py-28">
         {/* All slides share one grid cell, so the banner keeps the height of the tallest
             slide and the page below doesn't jump when slides change. */}
-        <div className="grid items-center">
+        <div className="grid flex-1 items-start lg:items-center">
           {slides.map((slide, i) => {
             const active = i === index;
             return (
@@ -176,7 +176,7 @@ export function HeroBanner({ slides, controls }: { slides: HeroSlide[]; controls
         </div>
 
         {count > 1 && (
-          <div className="mt-14 flex items-center gap-3">
+          <div className="mt-auto flex items-center gap-3 pt-8">
             <button
               onClick={() => go(-1)}
               aria-label={controls.previous}
