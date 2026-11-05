@@ -24,7 +24,7 @@ export type HeroSlide = {
 const en = {
   meta: {
     title: "Setia | Leadership Coaching",
-    langSwitch: "فا",
+    langSwitch: "فارسی",
     langSwitchLabel: "Switch to Persian",
   },
   brand: { name: "Setia", tagline: "LEADERSHIP COACHING" },
