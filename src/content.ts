@@ -33,7 +33,7 @@ const en = {
       ["perspective", "What is coaching?"],
       ["about", "About us"],
       ["services", "Services"],
-      ["blog", "Blog & media"],
+      ["blog", "Blog"],
       ["contact", "Contact us"],
     ] as [SectionId, string][],
     cta: "Book a session",
@@ -158,7 +158,7 @@ const en = {
     note: "Coaching does not replace specialist advice, therapy or structural change in an organisation. It works alongside them, helping you decide and act more deliberately.",
   },
   blog: {
-    title: "Blog & media",
+    title: "Blog",
     intro: "Notes, conversations and media on leadership, decision-making and lasting change.",
     filters: { all: "All", article: "Articles", video: "Videos", podcast: "Podcasts" },
     types: { article: "Article", video: "Video", podcast: "Podcast" },
@@ -166,7 +166,7 @@ const en = {
     readMore: "Read more",
     watch: "Watch",
     listen: "Listen",
-    back: "Back to blog & media",
+    back: "Back to the blog",
     notFound: "This post could not be found.",
   },
   contact: {
@@ -207,7 +207,7 @@ const fa: Content = {
       ["perspective", "کوچینگ چیست؟"],
       ["about", "درباره ما"],
       ["services", "خدمات"],
-      ["blog", "نوشته‌ها و رسانه"],
+      ["blog", "وبلاگ"],
       ["contact", "تماس با ما"],
     ],
     cta: "رزرو جلسه آشنایی",
@@ -331,7 +331,7 @@ const fa: Content = {
     note: "کوچینگ جایگزین مشاوره تخصصی، درمان یا تغییرات ساختاری در سازمان نیست؛ بلکه در کنار آن‌ها به شما کمک می‌کند آگاهانه‌تر تصمیم بگیرید و عمل کنید.",
   },
   blog: {
-    title: "نوشته‌ها و رسانه",
+    title: "وبلاگ",
     intro: "یادداشت‌ها، گفت‌وگوها و محتواهایی درباره رهبری، تصمیم‌گیری و تغییر پایدار.",
     filters: { all: "همه", article: "نوشته‌ها", video: "ویدیوها", podcast: "پادکست‌ها" },
     types: { article: "نوشته", video: "ویدیو", podcast: "پادکست" },
@@ -339,7 +339,7 @@ const fa: Content = {
     readMore: "ادامه مطلب",
     watch: "تماشا",
     listen: "شنیدن",
-    back: "بازگشت به نوشته‌ها و رسانه",
+    back: "بازگشت به وبلاگ",
     notFound: "این مطلب پیدا نشد.",
   },
   contact: {
