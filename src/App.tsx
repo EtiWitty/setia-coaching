@@ -6,6 +6,7 @@ import { Footer, Nav } from "./components/sections";
 import { About } from "./pages/About";
 import { Article, Blog } from "./pages/Blog";
 import { Contact } from "./pages/Contact";
+import { Faq } from "./pages/Faq";
 import { Services } from "./pages/Services";
 import { useRoute } from "./router";
 
@@ -18,6 +19,7 @@ function OnePage() {
       <About />
       <Philosophy />
       <Services />
+      <Faq />
       <Blog />
       <Contact />
     </>

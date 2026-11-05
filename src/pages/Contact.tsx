@@ -25,9 +25,16 @@ function ContactForm() {
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const body = [f.name, f.company, f.email, f.phone, f.topic, f.message]
-      .map((label, i) => `${label}: ${data.get(["name", "company", "email", "phone", "topic", "message"][i]) ?? ""}`)
-      .join("\n");
+    const fields: [string, string][] = [
+      [f.name, "name"],
+      [f.company, "company"],
+      [f.email, "email"],
+      [f.phone, "phone"],
+      [f.topic, "topic"],
+      [f.format, "format"],
+      [f.message, "message"],
+    ];
+    const body = fields.map(([label, name]) => `${label}: ${data.get(name) ?? ""}`).join("\n");
     const subject = `${data.get("topic")} — ${data.get("name")}`;
     window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSent(true);
@@ -55,11 +62,19 @@ function ContactForm() {
         {f.phone}
         <input name="phone" type="tel" autoComplete="tel" dir="ltr" className={input} />
       </label>
-      <label className="text-sm font-medium sm:col-span-2">
+      <label className="text-sm font-medium">
         {f.topic}
         <select name="topic" className={input}>
           {f.topics.map((topic) => (
             <option key={topic}>{topic}</option>
+          ))}
+        </select>
+      </label>
+      <label className="text-sm font-medium">
+        {f.format}
+        <select name="format" className={input}>
+          {f.formats.map((format) => (
+            <option key={format}>{format}</option>
           ))}
         </select>
       </label>

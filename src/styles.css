@@ -99,6 +99,11 @@ html[lang="fa"] body {
   }
 }
 
+/* FAQ rows use <details>; hide Safari's built-in disclosure triangle. */
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
 /* Gentle cross-fade between banner slides. */
 @keyframes slide-in {
   from {
