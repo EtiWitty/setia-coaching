@@ -6,16 +6,12 @@ import { Container } from "./ui";
 
 /* ---------------------------------- Nav ---------------------------------- */
 
-// Setia's mark (as in the site icon) with the name and, underneath, the tagline.
+// Setia's logo mark (leaves and hands) with the name and, underneath, the tagline.
 export function Logo({ compact = false }: { compact?: boolean }) {
   const { t, lang } = useI18n();
   return (
     <span className="flex items-center gap-3">
-      <svg viewBox="0 0 64 64" className="size-9 shrink-0 sm:size-10" aria-hidden>
-        <rect width="64" height="64" rx="14" className="fill-ink" />
-        <path d="M19 41 L32 19 L45 41" fill="none" className="stroke-gold" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="32" cy="45.5" r="3.5" className="fill-gold" />
-      </svg>
+      <img src="./brand/setia-mark.png" alt="" width={150} height={192} className="h-10 w-auto shrink-0 sm:h-11" />
       <span className="flex flex-col leading-none">
         <span className="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">{t.brand.name}</span>
         {!compact && (
