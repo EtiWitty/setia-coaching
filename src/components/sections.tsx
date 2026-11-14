@@ -15,7 +15,7 @@ export function Logo({ compact = false }: { compact?: boolean }) {
       <span className="flex flex-col leading-none">
         <span className="text-xl font-extrabold tracking-tight text-black sm:text-2xl">{t.brand.name}</span>
         {!compact && (
-          <span className={`mt-1.5 text-muted ${lang === "fa" ? "text-[0.6875rem] font-medium" : "font-[Inter] text-[0.5625rem] font-semibold tracking-[0.2em]"}`}>
+          <span className={`mt-1.5 text-muted ${lang === "fa" ? "text-[0.6875rem] font-medium" : "font-[Inter] text-[0.5625rem] font-semibold tracking-[0.1em]"}`}>
             {t.brand.tagline}
           </span>
         )}
@@ -57,7 +57,7 @@ export function Nav({ route }: { route: Route }) {
           <Logo />
         </a>
 
-        <nav className="hidden h-full items-center gap-6 text-[0.9375rem] whitespace-nowrap lg:flex xl:gap-7">
+        <nav className="hidden h-full items-center gap-6 text-sm whitespace-nowrap xl:text-[0.9375rem] lg:flex lg:gap-5 xl:gap-7">
           {t.nav.links.map(([id, label]) => {
             const isActive = active === id;
             return (
@@ -141,7 +141,7 @@ export function Footer() {
       <Container className="py-12 sm:py-14">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
           <div className="max-w-sm">
-            <Logo compact />
+            <Logo />
             <p className="mt-4 text-sm leading-7 text-muted">{t.footer.about}</p>
           </div>
           <nav className="grid grid-cols-2 gap-x-8 text-sm sm:flex sm:flex-wrap sm:gap-x-8 lg:justify-end">
