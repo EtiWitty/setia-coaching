@@ -13,7 +13,7 @@ export function Logo({ compact = false }: { compact?: boolean }) {
     <span className="flex items-center gap-3">
       <img src="./brand/setia-mark.png" alt="" width={150} height={192} className="h-10 w-auto shrink-0 sm:h-11" />
       <span className="flex flex-col leading-none">
-        <span className="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">{t.brand.name}</span>
+        <span className="text-xl font-extrabold tracking-tight text-black sm:text-2xl">{t.brand.name}</span>
         {!compact && (
           <span className={`mt-1.5 text-muted ${lang === "fa" ? "text-[0.6875rem] font-medium" : "font-[Inter] text-[0.5625rem] font-semibold tracking-[0.2em]"}`}>
             {t.brand.tagline}
@@ -32,7 +32,7 @@ function LanguageToggle({ className = "" }: { className?: string }) {
       onClick={() => setLang(lang === "fa" ? "en" : "fa")}
       aria-label={t.meta.langSwitchLabel}
       lang={lang === "fa" ? "en" : "fa"}
-      className={`inline-flex h-10 items-center gap-1.5 rounded-md px-2.5 text-sm font-semibold text-muted transition-colors hover:bg-ink/5 hover:text-ink ${className}`}
+      className={`inline-flex h-10 items-center gap-1.5 rounded-md px-2.5 text-sm font-semibold text-muted transition-colors hover:bg-ink/5 hover:text-black ${className}`}
     >
       <Globe className="size-4" aria-hidden />
       {t.meta.langSwitch}
@@ -65,7 +65,7 @@ export function Nav({ route }: { route: Route }) {
                 key={id}
                 href={sectionHref(id)}
                 aria-current={isActive ? "location" : undefined}
-                className={`relative flex h-full items-center transition-colors hover:text-ink ${isActive ? "font-semibold text-ink" : "text-muted"}`}
+                className={`relative flex h-full items-center transition-colors hover:text-black ${isActive ? "font-semibold text-black" : "text-muted"}`}
               >
                 {label}
                 <span
@@ -109,7 +109,7 @@ export function Nav({ route }: { route: Route }) {
                   href={sectionHref(id)}
                   onClick={() => setOpen(false)}
                   aria-current={isActive ? "location" : undefined}
-                  className={`flex items-center gap-3 py-3 text-base transition-colors ${isActive ? "font-semibold text-ink" : "text-muted"}`}
+                  className={`flex items-center gap-3 py-3 text-base transition-colors ${isActive ? "font-semibold text-black" : "text-muted"}`}
                 >
                   <span className={`h-4 w-0.5 rounded-full ${isActive ? "bg-gold" : "bg-transparent"}`} aria-hidden />
                   {label}
@@ -146,7 +146,7 @@ export function Footer() {
           </div>
           <nav className="grid grid-cols-2 gap-x-8 text-sm sm:flex sm:flex-wrap sm:gap-x-8 lg:justify-end">
             {t.nav.links.map(([id, label]) => (
-              <a key={id} href={sectionHref(id)} className="inline-flex min-h-11 items-center whitespace-nowrap text-muted transition-colors hover:text-ink">
+              <a key={id} href={sectionHref(id)} className="inline-flex min-h-11 items-center whitespace-nowrap text-muted transition-colors hover:text-black">
                 {label}
               </a>
             ))}

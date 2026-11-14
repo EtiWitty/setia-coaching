@@ -7,7 +7,7 @@ import { useI18n } from "../i18n";
 function Detail({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {
   return (
     <li className="flex gap-4">
-      <span className="grid size-11 shrink-0 place-items-center rounded-full bg-gold-soft text-ink">{icon}</span>
+      <span className="grid size-11 shrink-0 place-items-center rounded-full bg-gold-soft text-black">{icon}</span>
       <div>
         <div className="text-sm text-muted">{label}</div>
         <div className="mt-1 font-medium leading-7">{children}</div>

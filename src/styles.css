@@ -1,20 +1,24 @@
 @import "tailwindcss";
 
-/* Brand palette from the Setia logo: forest green, olive green and charcoal.
-   Token names are kept from the first palette: "ink" is the deep forest green
-   (text, buttons, dark sections), "gold" is the logo's olive accent and "teal"
-   a middle green. */
+/* Setia brand palette:
+   #31511E dark green  - primary buttons, dark sections ("ink")
+   #869E3C olive       - graphic details and accent marks ("gold")
+   #5B7F45 mid green   - secondary elements and button hover ("ink-soft", "teal")
+   #F4F4F4 light grey  - page and section backgrounds
+   #FFFFFF white       - cards, and text on primary buttons
+   #000000 black       - text and headings on light backgrounds
+   Muted text and lines are neutral greys that sit between these. */
 @theme {
-  --color-ink: #2c401d;
-  --color-ink-soft: #3d5728;
-  --color-ink-foreground: #f6f6ef;
-  --color-gold: #8a9c48;
-  --color-gold-soft: #eaeedb;
-  --color-teal: #5e7a3a;
-  --color-background: #fbfbf7;
-  --color-surface: #f2f3ec;
-  --color-line: #dfe1d4;
-  --color-muted: #5b6153;
+  --color-ink: #31511e;
+  --color-ink-soft: #5b7f45;
+  --color-ink-foreground: #ffffff;
+  --color-gold: #869e3c;
+  --color-gold-soft: #ecf0dc;
+  --color-teal: #5b7f45;
+  --color-background: #f4f4f4;
+  --color-surface: #f4f4f4;
+  --color-line: #e0e0e0;
+  --color-muted: #555555;
   --font-fa: "IRANYekan", "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
   --font-en: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
@@ -61,7 +65,7 @@ html {
 
 body {
   background: var(--color-background);
-  color: var(--color-ink);
+  color: #000;
   font-family: var(--font-en);
   -webkit-font-smoothing: antialiased;
 }
